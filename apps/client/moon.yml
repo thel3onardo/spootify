@@ -1,0 +1,8 @@
+language: 'typescript'
+
+tasks:
+  dev:
+    command:
+      - 'vite'
+    outputs:
+      - '.svelte-kit'
