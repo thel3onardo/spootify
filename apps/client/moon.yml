@@ -1,8 +1,12 @@
-language: 'typescript'
+language: "typescript"
 
 tasks:
   dev:
     command:
-      - 'vite'
+      - "vite"
     outputs:
-      - '.svelte-kit'
+      - ".svelte-kit"
+
+  tauri-dev:
+    command:
+      - "dev"
