@@ -11,6 +11,7 @@ export default {
         primary: '#1ED760',
         gray: {
           100: '#FEFEFE',
+          500: '#b3b3b3',
           800: '#252525',
           900: '#232323',
         },
