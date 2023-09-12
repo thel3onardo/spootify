@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ['Inter Variable', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
       colors: {
         primary: '#1ED760',

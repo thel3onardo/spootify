@@ -1,13 +1,11 @@
 <script lang="ts">
-  import { TRACK_COVER_SIZE } from '$lib/constants';
-
   import PlayerbarOptions from './PlayerbarOptions.svelte';
 </script>
 
 <div class="flex justify-between items-center px-8 py-6 backdrop-blur-xl">
   <div class="flex items-center group">
     <div
-      class="w-[{TRACK_COVER_SIZE}] h-[{TRACK_COVER_SIZE}] rounded-2xl overflow-hidden mr-4 group-hover:shadow-2xl group-hover:shadow-primary transition"
+      class="w-[60px] h-[60px] rounded-2xl overflow-hidden mr-4 group-hover:shadow-2xl group-hover:shadow-primary transition"
     >
       <img
         src="https://wallpapers-clan.com/wp-content/uploads/2023/01/aesthetic-anime-girl-pfp-9.jpg"

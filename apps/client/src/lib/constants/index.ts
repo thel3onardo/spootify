@@ -1,1 +1,1 @@
-export const TRACK_COVER_SIZE = '60px';
+export const TRACK_COVER_SIZE = '40px';
