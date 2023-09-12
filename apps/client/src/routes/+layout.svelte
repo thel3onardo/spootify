@@ -1,5 +1,6 @@
 <script lang="ts">
-  import "../app.css";
+  import '@fontsource-variable/inter';
+  import '../app.css';
 
   let counter = 0;
 
@@ -8,8 +9,10 @@
   };
 </script>
 
-<slot />
-<span>{counter}</span>
-<button on:click={handleClick} class="bg-red-500/30 px-4 py-2"
-  >click here</button
->
+<div class="font-inter">
+  <slot />
+  <span>{counter}</span>
+  <button on:click={handleClick} class="bg-red-500/30 px-4 py-2 font-bold"
+    >click here</button
+  >
+</div>
