@@ -4,9 +4,9 @@
 </script>
 
 <div class="min-h-screen bg-black text-white grid grid-rows-[1fr_min-content]">
-  <div class="grid grid-cols-[min-content_1fr] border border-red-500">
+  <div class="grid grid-cols-[min-content_1fr] gap-x-2 p-2">
     <Sidebar />
-    <p>HERE GOES SLOT</p>
+    <slot />
   </div>
   <PlayerBar />
 </div>

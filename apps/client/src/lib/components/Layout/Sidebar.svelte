@@ -19,9 +19,9 @@
 </script>
 
 <!-- TODO:  I should refactor some of these, seems kinda bad -->
-<div class="flex flex-col gap-y-2 items-center px-2 text-white w-[400px]">
+<div class="flex flex-col gap-y-2 items-center text-white w-[400px]">
   <div
-    class="flex flex-col gap-y-2 py-2 bg-gray-800 rounded-lg w-full mt-1 text-gray-500"
+    class="flex flex-col gap-y-2 py-2 text-gray-500 bg-gray-800 rounded-lg w-full"
   >
     {#each menuOptions as { icon, label, href }}
       <a
@@ -32,8 +32,7 @@
           : 'text-gray-500'}"
       >
         <Icon {icon} width="1.8rem" height="1.8rem" />
-        <span class="text-md font-bold font-manrope tracking-wide">{label}</span
-        >
+        <span class="text-md font-bold font-manrope">{label}</span>
       </a>
     {/each}
   </div>
