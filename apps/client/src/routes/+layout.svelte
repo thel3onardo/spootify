@@ -11,7 +11,7 @@
 
   import '../app.css';
 
-  import LayoutWrapper from '$lib/components/Layout/LayoutWrapper.svelte';
+  import LayoutWrapper from '$lib/components/layout/LayoutWrapper.svelte';
 </script>
 
 <LayoutWrapper>

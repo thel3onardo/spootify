@@ -1,6 +1,5 @@
 <script lang="ts">
   import SignupBar from '../SignupBar.svelte';
-  import PlayerBar from './Playerbar.svelte';
   import Sidebar from './Sidebar.svelte';
 </script>
 
