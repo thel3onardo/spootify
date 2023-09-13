@@ -10,10 +10,6 @@
   import '@fontsource/manrope/400.css';
 
   import '../app.css';
-
-  import LayoutWrapper from '$lib/components/layout/LayoutWrapper.svelte';
 </script>
 
-<LayoutWrapper>
-  <slot />
-</LayoutWrapper>
+<slot />

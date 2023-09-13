@@ -14,7 +14,7 @@
       card needed
     </p>
   </div>
-  <Button background>
+  <Button variant="light" rounded="3xl">
     <span class="font-semibold text-black">Sign up free</span>
   </Button>
 </div>

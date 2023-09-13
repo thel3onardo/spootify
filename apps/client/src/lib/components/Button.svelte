@@ -6,8 +6,9 @@
   type RoundedKeyProp = keyof typeof roundedList;
 
   const variantList = {
-    light: 'bg-white px-8 py-3 shadow-lg',
+    light: 'bg-white shadow-lg',
     dark: 'bg-transparent shadow-lg',
+    primary: 'bg-primary shadow-lg hover:shadow-primary/30 transition',
   } satisfies VariantList;
 
   const roundedList = {
@@ -17,9 +18,15 @@
     '3xl': 'rounded-3xl',
   } satisfies RoundedList;
 
-  export let variant: VariantKeyProp, rounded: RoundedKeyProp;
+  export let variant: VariantKeyProp,
+    rounded: RoundedKeyProp,
+    block = false;
 </script>
 
-<button class="{variantList[variant]} {roundedList[rounded]}">
+<button
+  class="{variantList[variant]} {roundedList[rounded]} {block
+    ? 'w-full'
+    : ''} {$$props.class}"
+>
   <slot />
 </button>
