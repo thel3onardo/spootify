@@ -1,6 +1,9 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
   import FormInput from '$lib/components/FormInput.svelte';
+
+  let password = '';
+  let credential = '';
 </script>
 
 <div
@@ -9,8 +12,14 @@
   <div class="flex flex-col text-white bg-black py-3 px-12 rounded-lg">
     <h1 class="font-bold text-5xl my-8">Log in to Spootify</h1>
 
-    <FormInput label="Email or username" placeholder="Email" name="email" />
     <FormInput
+      bind:value={credential}
+      label="Email or username"
+      placeholder="Email"
+      name="email"
+    />
+    <FormInput
+      bind:value={password}
       label="Password"
       placeholder="Password"
       name="password"

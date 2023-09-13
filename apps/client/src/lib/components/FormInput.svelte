@@ -8,12 +8,16 @@
 
     type = type === 'text' ? 'password' : 'text';
   };
+  const handleInput = (e: Event) => {
+    value = (e.target as HTMLInputElement).value;
+  };
 
   export let type = 'text',
     placeholder: string,
     label: string,
     name: string,
-    password = false;
+    password = false,
+    value: string;
 </script>
 
 <form class="flex flex-col text-white {$$props.class}">
@@ -24,6 +28,7 @@
       class="border border-white/40 px-3 py-2.5 rounded w-full bg-gray-950 text-white hover:border-white focus:border-2 focus:border-white outline-none transition"
       {type}
       {placeholder}
+      on:input={handleInput}
     />
     {#if password}
       <button
