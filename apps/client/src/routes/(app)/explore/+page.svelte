@@ -1,5 +1,34 @@
-<script lang="ts"></script>
+<script lang="ts">
+  import CategoryItem from '$lib/components/GenreItem.svelte';
 
-<div class="w-full h-full bg-gray-800 text-white rounded-lg">
-  <h1>Epxlore page</h1>
+  const categories = [
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+  ];
+</script>
+
+<div class="w-full h-full bg-gray-800 text-white rounded-lg py-8 px-6">
+  <h1 class="font-manrope font-bold text-xl mb-4">Browse all</h1>
+
+  <div class="grid grid-cols-9 gap-4">
+    {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
+      <CategoryItem {name} {rgbColor} {redirectUrl} {categoryCover} />
+    {/each}
+  </div>
 </div>
