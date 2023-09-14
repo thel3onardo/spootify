@@ -1,5 +1,8 @@
 <script lang="ts">
   import PlayButton from '$lib/components/PlayButton.svelte';
+  import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
+  import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
+  import TracksList from '$lib/components/collection/TracksList.svelte';
   import type { IPlaylist } from './types';
 
   const mainColor = '#4000f0';
@@ -27,13 +30,16 @@
       <h1 class="font-inter font-bold text-8xl mb-6 tracking-tighter">
         {data.name}
       </h1>
-      <p class="text-gray-500">{data.description}</p>
+      <p class="text-gray-500 text-sm font-medium">{data.description}</p>
     </div>
   </div>
   <div class="flex flex-col bg-black/20 h-full p-8">
-    <div>
-      <PlayButton on:click={test} />
+    <div class="flex items-center gap-x-8">
+      <PlayButton on:click={test} class="mr-4" />
+      <SaveLibraryButton size="lg" />
+      <DownloadButton />
     </div>
+    <TracksList class="my-8" />
   </div>
 </div>
 
