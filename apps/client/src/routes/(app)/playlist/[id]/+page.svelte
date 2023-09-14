@@ -33,7 +33,8 @@
       <p class="text-gray-500 text-sm font-medium">{data.description}</p>
     </div>
   </div>
-  <div class="flex flex-col bg-black/20 h-full p-8">
+  <div class="flex flex-col bg-[#121212] h-full p-8 isolate relative">
+    <div class="absolute top-0 -z-10 left-0 what h-[232px] w-full"></div>
     <div class="flex items-center gap-x-8">
       <PlayButton on:click={test} class="mr-4" />
       <SaveLibraryButton size="lg" />
@@ -45,6 +46,12 @@
 
 <style>
   .playlist-page {
-    background: linear-gradient(var(--main-color), #121212 50%);
+    background-color: var(--main-color);
+    /* background: linear-gradient(var(--main-color) 5%, #121212); */
+  }
+
+  .what {
+    background-color: var(--main-color);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0, #121212 95%);
   }
 </style>
