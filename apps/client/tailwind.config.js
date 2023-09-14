@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter Variable', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
         manrope: ['Manrope', 'sans-serif'],
       },
       colors: {
