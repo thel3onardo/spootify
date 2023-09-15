@@ -5,9 +5,10 @@
     categoryCover: string;
 </script>
 
-<a href={redirectUrl}>
+<!-- TODO: Insert image cover in this component -->
+<a href="/">
   <div
-    class="p-5 relative rounded-lg w-[210px] h-[210px] genre-item"
+    class="p-5 relative rounded-lg genre-item"
     style="--theme-color: {rgbColor}"
   >
     <h2 class="font-manrope font-bold text-2xl">{name}</h2>
@@ -17,13 +18,10 @@
 <style>
   .genre-item {
     background-color: rgb(var(--theme-color));
-    transition:
-      box-shadow 0.2s ease-out,
-      transform 0.4s ease;
+    transition: box-shadow 0.2s ease-out;
   }
 
   .genre-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 7px 20px rgba(var(--theme-color), 0.4);
+    box-shadow: 0px 7px 20px rgba(var(--theme-color), 0.1);
   }
 </style>

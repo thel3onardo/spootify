@@ -7,7 +7,7 @@ tasks:
     outputs:
       - 'build'
 
-  tauri:
+  tauri-dev:
     command:
       - 'tauri'
     args:

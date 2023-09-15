@@ -1,4 +1,4 @@
-import type { IPlaylist } from './types.js';
+import type { IPlaylist } from './interfaces';
 
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {

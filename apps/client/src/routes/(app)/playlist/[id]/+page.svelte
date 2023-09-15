@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { IPlaylist } from './types';
+  import type { IPlaylist } from './interfaces';
   import { onMount } from 'svelte';
   import { FastAverageColor } from 'fast-average-color';
 
@@ -9,12 +9,6 @@
   import TracksList from '$lib/components/collection/TracksList.svelte';
   import SearchBar from '$lib/components/collection/SearchBar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
-
-  interface IPlaylist {
-    name: string;
-    coverUrl: string;
-    description: string;
-  }
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;

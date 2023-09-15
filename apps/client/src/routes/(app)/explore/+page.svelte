@@ -20,13 +20,141 @@
       redirectUrl: '/genres/podcasts',
       categoryCover: '',
     },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '48, 102, 80',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '234, 230, 202',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
+    {
+      name: 'Podcasts',
+      rgbColor: '244, 169, 0',
+      redirectUrl: '/genres/podcasts',
+      categoryCover: '',
+    },
   ];
 </script>
 
-<div class="w-full h-full bg-gray-800 text-white rounded-lg py-8 px-6">
+<div class="w-full bg-gray-800 text-white rounded-lg py-8 px-6">
   <h1 class="font-manrope font-bold text-xl mb-4">Browse all</h1>
 
-  <div class="grid grid-cols-9 gap-4">
+  <div
+    class="grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 max-w-[2000px]"
+  >
     {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
       <CategoryItem {name} {rgbColor} {redirectUrl} {categoryCover} />
     {/each}
