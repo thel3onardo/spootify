@@ -54,7 +54,9 @@
     </div>
     <div class="font-manrope ml-6 basis-3/4">
       <p class="text-sm font-semibold mb-2">Playlist</p>
-      <h1 class="font-inter font-bold text-8xl mb-6 tracking-tighter">
+      <h1
+        class="font-inter font-bold text-6xl xl:text-8xl mb-6 tracking-tighter"
+      >
         {data.name}
       </h1>
       <p class="text-gray-500 text-sm font-medium">{data.description}</p>
