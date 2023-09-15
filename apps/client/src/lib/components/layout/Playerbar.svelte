@@ -2,7 +2,7 @@
   import PlayerbarOptions from './PlayerbarOptions.svelte';
 </script>
 
-<div class="flex justify-between items-center px-8 py-6 backdrop-blur-xl">
+<div class="flex justify-between items-center px-8 py-3 backdrop-blur-xl">
   <div class="flex items-center group">
     <div
       class="w-[60px] h-[60px] rounded-2xl overflow-hidden mr-4 group-hover:shadow-2xl group-hover:shadow-primary transition"

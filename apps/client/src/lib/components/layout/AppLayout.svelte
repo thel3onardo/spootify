@@ -5,11 +5,13 @@
 </script>
 
 <div
-  class="min-h-screen bg-black text-white p-2 grid grid-rows-[1fr_min-content] gap-y-2"
+  class="h-screen bg-black text-white p-2 grid grid-rows-[minmax(100px,_1fr)_min-content] gap-y-2"
 >
-  <div class="grid grid-cols-[min-content_1fr] gap-x-2">
+  <div class="grid grid-cols-[min-content_1fr] gap-x-2 h-full">
     <Sidebar />
-    <slot />
+    <div class="overflow-y-scroll">
+      <slot />
+    </div>
   </div>
   <Playerbar />
 </div>
