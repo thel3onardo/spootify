@@ -1,0 +1,18 @@
+<script lang="ts">
+  //TODO
+
+  import Icon from '@iconify/svelte';
+
+  const download = () => {
+    //todo
+  };
+</script>
+
+<button on:click={download}>
+  <Icon
+    icon="ph:download-simple-bold"
+    width="2rem"
+    height="2rem"
+    class="text-gray-500 hover:text-white transition {$$props.class}"
+  />
+</button>
