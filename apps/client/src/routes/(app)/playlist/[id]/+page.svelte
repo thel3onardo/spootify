@@ -60,7 +60,7 @@
         <SaveLibraryButton size="lg" />
         <DownloadButton />
       </div>
-      <div class="flex">
+      <div class="flex relative">
         <SearchBar />
       </div>
     </div>
