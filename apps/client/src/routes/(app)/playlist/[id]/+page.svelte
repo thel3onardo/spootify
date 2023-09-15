@@ -10,8 +10,15 @@
   import SearchBar from '$lib/components/collection/SearchBar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
 
+  interface IPlaylist {
+    name: string;
+    coverUrl: string;
+    description: string;
+  }
+
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
+
   const test = () => {
     console.log('play button triggered');
   };
