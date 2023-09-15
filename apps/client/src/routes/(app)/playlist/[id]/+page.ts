@@ -7,7 +7,7 @@ export function load({ params }) {
   const data: IPlaylist = {
     name: 'Musicas curtidas',
     coverUrl:
-      'https://preview.redd.it/j2ink51mnxz51.jpg?auto=webp&s=040889cb6a1bfa825a4736afa128421009ba12a6',
+      'https://img.freepik.com/premium-photo/lofi-anime-girl-wearing-headphones-park-created-using-generative-ai-technology_772924-9844.jpg',
     description: 'The biggest songs of 2010s.',
   };
 
