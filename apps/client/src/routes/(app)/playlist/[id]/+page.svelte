@@ -8,11 +8,12 @@
   import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
   import TracksList from '$lib/components/collection/TracksList.svelte';
   import SearchBar from '$lib/components/collection/SearchBar.svelte';
+  import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
   const test = () => {
-    console.log('test funciton');
+    console.log('play button triggered');
   };
   const getAverageColor = async () => {
     const fac = new FastAverageColor();
@@ -60,8 +61,9 @@
         <SaveLibraryButton size="lg" />
         <DownloadButton />
       </div>
-      <div class="flex relative">
+      <div class="flex gap-x-6 relative">
         <SearchBar />
+        <SortOptionsMenu />
       </div>
     </div>
     <TracksList class="my-8" />
