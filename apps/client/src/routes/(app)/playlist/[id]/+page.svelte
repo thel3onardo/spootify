@@ -8,6 +8,7 @@
 
   import type { IPlaylist } from './types';
   import { onMount } from 'svelte';
+  import Searchbar from '$lib/components/collection/Searchbar.svelte';
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
   const test = () => {
@@ -34,7 +35,7 @@
   style="--main-color: {backgroundColor}"
 >
   <div class="flex items-end mt-28 p-8">
-    <div class="h-[232px] w-[232px] drop-shadow-2xl mr-6">
+    <div class="drop-shadow-2xl h-[232px] max-w-[232px] grow">
       <img
         crossorigin="anonymous"
         src="/anime-girl.jpg"
@@ -43,7 +44,7 @@
         bind:this={coverImage}
       />
     </div>
-    <div class="font-manrope">
+    <div class="font-manrope ml-6 basis-3/4">
       <p class="text-sm font-semibold mb-2">Playlist</p>
       <h1 class="font-inter font-bold text-8xl mb-6 tracking-tighter">
         {data.name}
@@ -53,10 +54,15 @@
   </div>
   <div class="flex flex-col bg-[#121212] h-full p-8 isolate relative">
     <div class="absolute top-0 -z-10 left-0 gradient h-[232px] w-full"></div>
-    <div class="flex items-center gap-x-8">
-      <PlayButton on:click={test} class="mr-4" />
-      <SaveLibraryButton size="lg" />
-      <DownloadButton />
+    <div class="flex items-center justify-between">
+      <div class="flex gap-x-8">
+        <PlayButton on:click={test} class="mr-4" />
+        <SaveLibraryButton size="lg" />
+        <DownloadButton />
+      </div>
+      <div class="flex">
+        <Searchbar />
+      </div>
     </div>
     <TracksList class="my-8" />
   </div>
