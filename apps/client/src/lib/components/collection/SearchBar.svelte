@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
+  import { clickOutside } from '$lib/utils/clickOutside';
 
   let visible = false;
   let value;
@@ -7,11 +8,18 @@
   const toggleVisible = () => {
     visible = !visible;
   };
+  const what = () => {
+    console.log('clicked outside');
+  };
 </script>
 
 <div class="text-gray-500">
   {#if visible}
-    <form class="flex items-center bg-gray-500/20 px-2 py-1 rounded">
+    <form
+      use:clickOutside
+      on:clickOutside={what}
+      class="flex items-center bg-gray-500/20 px-2 py-1 rounded"
+    >
       <Icon
         icon="iconamoon:search-bold"
         width="1rem"

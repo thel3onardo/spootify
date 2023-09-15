@@ -1,14 +1,14 @@
 <script lang="ts">
+  import type { IPlaylist } from './types';
+  import { onMount } from 'svelte';
   import { FastAverageColor } from 'fast-average-color';
 
   import PlayButton from '$lib/components/PlayButton.svelte';
   import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
   import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
   import TracksList from '$lib/components/collection/TracksList.svelte';
+  import SearchBar from '$lib/components/collection/SearchBar.svelte';
 
-  import type { IPlaylist } from './types';
-  import { onMount } from 'svelte';
-  import Searchbar from '$lib/components/collection/Searchbar.svelte';
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
   const test = () => {
@@ -61,7 +61,7 @@
         <DownloadButton />
       </div>
       <div class="flex">
-        <Searchbar />
+        <SearchBar />
       </div>
     </div>
     <TracksList class="my-8" />
