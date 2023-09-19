@@ -152,9 +152,7 @@
 <div class="w-full bg-gray-800 text-white rounded-lg py-8 px-6">
   <h1 class="font-manrope font-bold text-xl mb-4">Browse all</h1>
 
-  <div
-    class="grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 max-w-[2000px]"
-  >
+  <div class="columns-[190px] grid auto-rows-auto gap-4 max-w-[1900px]">
     {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
       <CategoryItem {name} {rgbColor} {redirectUrl} {categoryCover} />
     {/each}

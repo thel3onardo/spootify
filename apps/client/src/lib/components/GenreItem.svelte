@@ -6,7 +6,7 @@
 </script>
 
 <!-- TODO: Insert image cover in this component -->
-<a href="/">
+<a href="/" class="h-full">
   <div
     class="p-5 relative rounded-lg genre-item"
     style="--theme-color: {rgbColor}"
