@@ -2,16 +2,17 @@
   import { fade } from 'svelte/transition';
   import { createTooltip, melt } from '@melt-ui/svelte';
 
+  export let label: string,
+    delay = 500;
+
   const {
     elements: { trigger, content, arrow },
     states: { open },
   } = createTooltip({
     positioning: { placement: 'top' },
-    openDelay: 300,
+    openDelay: delay,
     forceVisible: true,
   });
-
-  export let label: string;
 </script>
 
 <div use:melt={$trigger} class="flex items-center">
