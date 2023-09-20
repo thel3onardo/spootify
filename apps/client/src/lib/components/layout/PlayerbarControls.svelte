@@ -4,6 +4,7 @@
 
   let currentTime = '1:20';
   let tracktime = '3:20';
+  let playing = true;
 </script>
 
 <div class="flex items-center flex-col">
@@ -21,12 +22,11 @@
         tooltipLabel="Previous"
         class="hover:text-white"
       />
-      <div class="bg-white rounded-full p-1 text-black">
+      <div class="bg-white rounded-full p-1 text-black cursor-pointer">
         <Icon
-          icon="ic:baseline-play-arrow"
+          icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
           width="1.8rem"
           height="1.8rem"
-          class="hover:text-white"
         />
       </div>
       <IconButton
