@@ -1,11 +1,14 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
 
+  type AutoComplete = 'on' | 'off';
+
   let passwordVisible = false;
 
   const togglePasswordVisible = () => {
     passwordVisible = !passwordVisible;
 
+    //TODO: there's a way to improve this?
     type = type === 'text' ? 'password' : 'text';
   };
   const handleInput = (e: Event) => {
@@ -17,7 +20,8 @@
     label: string,
     name: string,
     password = false,
-    value: string;
+    value: string,
+    autocomplete: AutoComplete = 'off';
 </script>
 
 <form class="flex flex-col text-white {$$props.class}">
@@ -25,9 +29,10 @@
   <div class="relative">
     <input
       id={name}
-      class="border border-white/40 px-3 py-2.5 rounded w-full bg-gray-950 text-white hover:border-white focus:border-2 focus:border-white outline-none transition"
+      class="border border-white/40 px-3 py-2.5 rounded w-full bg-gray-950 text-white hover:border-white focus:border-primary outline-none transition"
       {type}
       {placeholder}
+      {autocomplete}
       on:input={handleInput}
     />
     {#if password}
