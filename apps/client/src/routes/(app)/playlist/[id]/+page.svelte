@@ -7,11 +7,12 @@
   import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
   import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
   import TracksList from '$lib/components/collection/TracksList.svelte';
-  import SearchBar from '$lib/components/collection/SearchBar.svelte';
+  import FilterBar from '$lib/components/IconSearchbar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
+  let filterValue = '';
 
   const test = () => {
     console.log('play button triggered');
@@ -65,7 +66,7 @@
         <DownloadButton />
       </div>
       <div class="flex gap-x-6 relative">
-        <SearchBar />
+        <FilterBar placeholder="Search in playlist" bind:value={filterValue} />
         <SortOptionsMenu />
       </div>
     </div>

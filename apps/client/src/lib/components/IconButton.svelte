@@ -14,11 +14,15 @@
     hoverBg = false;
 </script>
 
+<!-- An icon button can accept slots (intended for texts) -->
 <Tooltip label={tooltipLabel}>
   <button
     on:click={emitClick}
-    class={hoverBg ? 'hover:bg-gray-100/20 p-2 rounded-full transition' : ''}
+    class="{hoverBg
+      ? 'hover:bg-gray-100/20 p-2 rounded-full transition'
+      : ''} flex items-center"
   >
     <Icon {icon} width={size} height={size} class={$$props.class} />
+    <slot />
   </button>
 </Tooltip>

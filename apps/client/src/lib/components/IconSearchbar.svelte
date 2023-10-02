@@ -3,11 +3,12 @@
   import { clickOutside } from '$lib/directives/clickOutside';
 
   let visible = false;
-  let value;
 
   const toggleVisible = () => {
     visible = !visible;
   };
+
+  export let placeholder: string, value: any;
 </script>
 
 <!--TODO: Add svelte transitions / Implement search filter feature -->
@@ -25,8 +26,8 @@
         class="mr-2"
       />
       <input
-        bind:this={value}
-        placeholder="Search in playlist"
+        bind:value
+        {placeholder}
         class="bg-transparent outline-none text-sm"
       />
     </form>

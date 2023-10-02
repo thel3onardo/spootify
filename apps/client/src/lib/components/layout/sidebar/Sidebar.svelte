@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import Icon from '@iconify/svelte';
+  import SidebarMyLibrary from './SidebarMyLibrary.svelte';
 
   const menuOptions: Array<{
     id: number;
@@ -38,4 +39,6 @@
       </a>
     {/each}
   </div>
+
+  <SidebarMyLibrary />
 </div>

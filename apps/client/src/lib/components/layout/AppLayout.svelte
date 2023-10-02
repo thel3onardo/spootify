@@ -1,7 +1,7 @@
 <script lang="ts">
   import SignupBar from '../SignupBar.svelte';
   import Playerbar from './Playerbar.svelte';
-  import Sidebar from './Sidebar.svelte';
+  import Sidebar from './sidebar/Sidebar.svelte';
 </script>
 
 <div
