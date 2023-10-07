@@ -20,9 +20,15 @@
     on:click={emitClick}
     class="{hoverBg
       ? 'hover:bg-gray-100/20 p-2 rounded-full transition'
-      : ''} flex items-center"
+      : ''} flex items-center select-none"
   >
-    <Icon {icon} width={size} height={size} class={$$props.class} />
+    <Icon
+      {icon}
+      width={size}
+      height={size}
+      class={$$props.class}
+      draggable="false"
+    />
     <slot />
   </button>
 </Tooltip>

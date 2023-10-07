@@ -1,9 +1,6 @@
 <script lang="ts">
   import PlayerbarControls from './PlayerbarControls.svelte';
-  import PlayerbarOptions from './PlayerbarOptions.svelte';
-
-  let currentTime = '1:25';
-  let trackTime = '3:00';
+  import PlayerbarActions from './PlayerbarActions.svelte';
 </script>
 
 <div
@@ -23,19 +20,6 @@
       </p>
     </div>
   </div>
-
-  <div class="flex flex-col items-center justify-center grow">
-    <PlayerbarControls />
-    <div
-      class="flex items-center mt-3 text-xs font-manrope font-medium text-gray-500 w-full max-w-[700px]"
-    >
-      <span>{currentTime}</span>
-      <div
-        class="h-[4px] w-full mx-3 bg-gray-500/40 rounded grow relative before:content-[''] before:absolute before:bg-white before:left-0 before:h-full before:w-2/4 before:rounded"
-      />
-      <span>{trackTime}</span>
-    </div>
-  </div>
-
-  <PlayerbarOptions />
+  <PlayerbarControls />
+  <PlayerbarActions />
 </div>

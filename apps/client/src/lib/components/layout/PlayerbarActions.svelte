@@ -3,7 +3,7 @@
 
   export let favorite = false;
 
-  const options: Array<{ icon: string; tooltipLabel: string }> = [
+  const options = [
     {
       icon: `${
         favorite ? 'material-symbols:favorite-rounded' : 'ph:heart-bold'
