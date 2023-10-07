@@ -22,6 +22,7 @@
       ? 'hover:bg-gray-100/20 p-2 rounded-full transition'
       : ''} flex items-center select-none"
   >
+    <!-- TODO: draggable="false" seems not to be working here -->
     <Icon
       {icon}
       width={size}
