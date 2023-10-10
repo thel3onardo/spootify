@@ -24,7 +24,7 @@
     href: string | null = null;
 </script>
 
-<svelte:element this={href ? 'a' : 'button'} {href}>
+<svelte:element this={href ? 'a' : 'button'} {href} data-sveltekit-preload-data>
   <div
     class="{variantList[variant]} {roundedList[rounded]} {block
       ? 'w-full'
