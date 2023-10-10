@@ -149,7 +149,7 @@
   ];
 </script>
 
-<div class="w-full bg-gray-800 text-white rounded-lg py-8 px-6">
+<div class="w-full bg-gray-800 text-white rounded-lg pt-20 pb-8 px-6">
   <h1 class="font-manrope font-bold text-xl mb-4">Browse all</h1>
 
   <div class="columns-[190px] grid auto-rows-auto gap-4 max-w-[1900px]">

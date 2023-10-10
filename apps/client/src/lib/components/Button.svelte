@@ -6,8 +6,8 @@
   type RoundedKeyProp = keyof typeof roundedList;
 
   const variantList = {
-    light: 'bg-white shadow-lg',
-    dark: 'bg-transparent shadow-lg',
+    light: 'bg-white shadow-lg text-gray-900',
+    dark: 'bg-transparent',
     primary: 'bg-primary shadow-lg hover:shadow-primary/30 transition',
   } satisfies VariantList;
 
@@ -20,13 +20,16 @@
 
   export let variant: VariantKeyProp,
     rounded: RoundedKeyProp,
-    block = false;
+    block = false,
+    href: string | null = null;
 </script>
 
-<button
-  class="{variantList[variant]} {roundedList[rounded]} {block
-    ? 'w-full'
-    : ''} {$$props.class}"
->
-  <slot />
-</button>
+<svelte:element this={href ? 'a' : 'button'} {href}>
+  <div
+    class="{variantList[variant]} {roundedList[rounded]} {block
+      ? 'w-full'
+      : ''} {$$props.class}"
+  >
+    <slot />
+  </div>
+</svelte:element>

@@ -3,13 +3,20 @@
 
   import Icon from '@iconify/svelte';
   import IconButton from '../IconButton.svelte';
+  import { onMount } from 'svelte';
 
   const {
     elements: { root, range, thumb },
+    states: { value },
   } = createSlider({
-    defaultValue: [30],
+    defaultValue: [50],
     max: 100,
     step: 1,
+  });
+
+  onMount(() => {
+    //TODO: remove console.log
+    console.log({ value });
   });
 
   let playing = true;
@@ -76,12 +83,6 @@
         class="block h-3 w-3 rounded-full bg-white focus:ring-4 focus:ring-black/40"
       />
     </span>
-
-    <!-- <div class="h-[4px] w-full mx-3 bg-gray-500/40 rounded grow relative group">
-      <div
-        class="relative bg-white left-0 top-0 h-full w-2/4 rounded group-hover:bg-primary before:content-[''] before:w-[12px] before:h-[12px] before:rounded-full before:bg-white before:absolute before:left-[99%] before:-translate-y-1/4 before:hidden group-hover:before:block"
-      ></div>
-    </div> -->
     <span>{trackTime}</span>
   </div>
 </div>
