@@ -12,10 +12,10 @@
     <span>after</span>
   </div>
   <div class="flex">
-    <Button href="/test" rounded="md" variant="dark" class="py-3 px-7">
+    <Button href="/register" rounded="md" variant="dark" class="py-3 px-7">
       <span class="text-gray-500 font-semibold">Sign up</span>
     </Button>
-    <Button href="/test" rounded="3xl" variant="light" class="py-3 px-7">
+    <Button href="/login" rounded="3xl" variant="light" class="py-3 px-7">
       <span class="font-semibold">Log in</span>
     </Button>
   </div>
