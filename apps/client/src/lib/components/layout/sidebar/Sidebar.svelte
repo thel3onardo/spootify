@@ -3,12 +3,7 @@
   import Icon from '@iconify/svelte';
   import SidebarMyLibrary from './SidebarMyLibrary.svelte';
 
-  const menuOptions: Array<{
-    id: number;
-    label: string;
-    icon: string;
-    href: string;
-  }> = [
+  const menuOptions = [
     { id: 1, label: 'Home', icon: 'material-symbols:home-rounded', href: '/' },
     {
       id: 2,
@@ -33,6 +28,7 @@
         $page.url.pathname
           ? 'text-white'
           : 'text-gray-500'}"
+        data-sveltekit-preload-data
       >
         <Icon {icon} width="1.8rem" height="1.8rem" />
         <span class="text-md font-bold font-manrope">{label}</span>
