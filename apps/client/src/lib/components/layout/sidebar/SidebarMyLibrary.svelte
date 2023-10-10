@@ -1,18 +1,57 @@
 <script lang="ts">
-  import IconSearchbar from '$lib/components/IconSearchbar.svelte';
   import IconButton from '$lib/components/IconButton.svelte';
+  import LibraryItem from './LibraryItem.svelte';
 
   let filterValue = '';
+  const libraryItems = [
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+  ];
 </script>
 
 <div class="flex flex-col w-full bg-gray-800 px-5 py-4 rounded-lg">
   <div id="my-lib-header" class="flex justify-between text-gray-500">
     <IconButton
       icon="solar:music-library-2-bold"
-      tooltipLabel="what"
-      size="1.75rem"
+      tooltipLabel="Collapse your library"
+      size="1.5rem"
+      class="hover:text-white transition"
     >
-      <span class="font-semibold font-inter text-lg ml-3">Your library</span>
+      <span class="font-semibold font-inter text-md ml-2">Your library</span>
     </IconButton>
     <div class="flex gap-x-1">
       <IconButton
@@ -29,9 +68,13 @@
       />
     </div>
   </div>
-  <div class="flex flex-col">
-    <div class="flex justify-between">
-      <IconSearchbar placeholder="Search" bind:value={filterValue} />
-    </div>
+  <div class="flex flex-col mt-2">
+    {#if libraryItems !== null}
+      <div class="flex flex-col">
+        {#each libraryItems as item}
+          <LibraryItem {...item} />
+        {/each}
+      </div>
+    {/if}
   </div>
 </div>
