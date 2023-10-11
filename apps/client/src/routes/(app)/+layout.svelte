@@ -16,18 +16,12 @@
 >
   <div class="grid grid-cols-[min-content_1fr] gap-x-2 h-full">
     <Sidebar />
-    <div class="flex">
+    <div class="grid grid-rows-1 grid-cols-[1fr_min-content]">
       <div class="overflow-y-scroll relative rounded-lg w-full">
         <Navbar />
         <div class="absolute top-0 h-full w-full">
           <slot />
         </div>
-        <button
-          on:click={togglePlayingNowMenu}
-          class="bg-red-500 text-black absolute z-20 bottom-0"
-        >
-          hey
-        </button>
       </div>
       {#if playingNowMenuVisible}
         <PlayingNow />
