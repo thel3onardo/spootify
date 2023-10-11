@@ -7,7 +7,7 @@ export function load({ params }) {
   const data: IPlaylist = {
     name: 'Musicas curtidas',
     coverUrl:
-      'https://img.freepik.com/premium-photo/lofi-anime-girl-wearing-headphones-park-created-using-generative-ai-technology_772924-9844.jpg',
+      'https://www.creativefabrica.com/wp-content/uploads/2022/12/01/Anime-Girl-HD-Black-Hair-High-Details-Style-Neon-Red-49761904-1.png',
     description: 'The biggest songs of 2010s.',
   };
 

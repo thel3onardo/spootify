@@ -225,7 +225,9 @@
   ];
 </script>
 
-<div class="flex flex-col w-full bg-gray-950 rounded-lg overflow-hidden">
+<div
+  class="flex flex-col w-full bg-gray-950 backdrop-blur-md rounded-lg overflow-hidden"
+>
   <div id="my-lib-header" class="flex justify-between text-gray-500 pt-3 px-5">
     <IconButton
       icon="solar:music-library-2-bold"
