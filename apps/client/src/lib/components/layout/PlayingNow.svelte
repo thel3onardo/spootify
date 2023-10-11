@@ -31,13 +31,15 @@
   };
 
   const handleMouseMove = (e: MouseEvent) => {
-    const dx = e.clientX - clientWidth;
-    const cw = containerWidth - dx; // largura completa
+    e.preventDefault();
 
-    console.log({ cw });
+    const widthDiff = e.clientX - clientWidth;
+    const newWidth = containerWidth - widthDiff;
 
-    if (cw <= 550 && cw >= 300) {
-      container.style.width = `${cw}px`;
+    console.log({ newWidth });
+
+    if (newWidth <= 500 && newWidth >= 300) {
+      container.style.width = `${newWidth}px`;
     }
   };
 
@@ -55,6 +57,9 @@
     class="absolute left-0 top-0 h-full w-[2px] bg-white/20 cursor-w-resize"
     bind:this={resizer}
     on:mousedown={handleMouseDown}
+    on:click={(e) => {
+      e.preventDefault();
+    }}
   />
   <div class="flex items-center justify-between mb-4">
     <h2 class="font-manrope font-bold">{albumName}</h2>
@@ -70,7 +75,11 @@
 
   <div class="flex flex-col">
     <div class="w-full h-[400px] rounded-lg overflow-hidden">
-      <img src={trackCover} alt="track cover" class="object-cover h-full" />
+      <img
+        src={trackCover}
+        alt="track cover"
+        class="object-cover h-full w-full"
+      />
     </div>
     <div class="flex items-center">
       <div class="my-4">
