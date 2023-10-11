@@ -10,6 +10,9 @@
   import '@fontsource/manrope/500.css';
   import '@fontsource/manrope/400.css';
 
+  import 'simplebar'; // or "import SimpleBar from 'simplebar';" if you want to use it manually.
+  import 'simplebar/dist/simplebar.css';
+
   import '../app.css';
 </script>
 

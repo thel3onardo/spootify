@@ -16,7 +16,7 @@
 
 <!-- TODO:  I should refactor some of these, seems kinda bad -->
 <div
-  class="flex flex-col gap-y-2 items-center text-white w-[400px] select-none"
+  class="flex flex-col gap-y-2 items-center h-full text-white w-[400px] select-none overflow-hidden"
 >
   <div
     class="flex flex-col gap-y-2 py-2 text-gray-500 bg-gray-800 rounded-lg w-full"

@@ -3,7 +3,189 @@
   import LibraryItem from './LibraryItem.svelte';
 
   let filterValue = '';
+
   const libraryItems = [
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+
+    {
+      id: 0,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 1,
+      name: 'Hollow Coves',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: true,
+      description: 'Playlist - 300 songs',
+    },
+    {
+      id: 2,
+      name: 'What is this',
+      coverUrl:
+        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
+    {
+      id: 3,
+      name: 'What is this',
+      coverUrl:
+        'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
+      coverAlt: '',
+      pinned: false,
+      description: 'Author',
+    },
     {
       id: 0,
       name: 'Hollow Coves',
@@ -43,7 +225,7 @@
   ];
 </script>
 
-<div class="flex flex-col w-full bg-gray-800 px-5 py-4 rounded-lg">
+<div class="flex flex-col w-full bg-gray-800 rounded-lg overflow-hidden">
   <div id="my-lib-header" class="flex justify-between text-gray-500">
     <IconButton
       icon="solar:music-library-2-bold"
@@ -68,7 +250,7 @@
       />
     </div>
   </div>
-  <div class="flex flex-col mt-2">
+  <div data-simplebar class="flex flex-col mt-2 overflow-y-scroll">
     {#if libraryItems !== null}
       <div class="flex flex-col">
         {#each libraryItems as item}
