@@ -71,7 +71,7 @@
   });
 </script>
 
-<div class="pt-24 px-8">
+<div class="pt-24 px-8 bg-gradient-to-b from-[#780000]/20 to-black">
   <h1 class="font-inter font-bold text-3xl text-white mb-6">
     {greetingsMessage}
   </h1>

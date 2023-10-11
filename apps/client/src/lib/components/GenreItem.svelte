@@ -6,9 +6,9 @@
 </script>
 
 <!-- TODO: Insert image cover in this component -->
-<a href="/" class="h-full">
+<a href="/" class="h-[140px]">
   <div
-    class="p-5 relative rounded-lg genre-item"
+    class="p-3 px-5 relative rounded-lg genre-item w-full h-full max-w-[200px]"
     style="--theme-color: {rgbColor}"
   >
     <h2 class="font-manrope font-bold text-2xl">{name}</h2>

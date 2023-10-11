@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CategoryItem from '$lib/components/GenreItem.svelte';
+  import GenreItem from '$lib/components/GenreItem.svelte';
 
   const categories = [
     {
@@ -149,12 +149,12 @@
   ];
 </script>
 
-<div class="w-full bg-gray-800 text-white rounded-lg pt-20 pb-8 px-6">
-  <h1 class="font-manrope font-bold text-xl mb-4">Browse all</h1>
+<div class="w-full bg-gray-950 text-white rounded-lg pt-20 pb-8 px-6 h-full">
+  <h1 class="font-inter font-bold text-2xl mb-8">Browse all</h1>
 
-  <div class="columns-[190px] grid auto-rows-auto gap-4 max-w-[1900px]">
+  <div class="flex flex-wrap gap-4 max-w-[1900px]">
     {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
-      <CategoryItem {name} {rgbColor} {redirectUrl} {categoryCover} />
+      <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />
     {/each}
   </div>
 </div>
