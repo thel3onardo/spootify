@@ -16,7 +16,7 @@
 >
   <div class="grid grid-cols-[min-content_1fr] gap-x-2 h-full">
     <Sidebar />
-    <div class="grid grid-rows-1 grid-cols-[1fr_min-content]">
+    <div class="grid grid-rows-1 grid-cols-[1fr_min-content] overflow-hidden">
       <div class="overflow-y-scroll relative rounded-lg w-full">
         <Navbar />
         <div class="absolute top-0 h-full w-full">

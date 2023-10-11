@@ -3,9 +3,7 @@
   import PlayerbarActions from './PlayerbarActions.svelte';
 </script>
 
-<div
-  class="flex justify-between items-center gap-x-12 px-4 py-3 backdrop-blur-xl"
->
+<div class="flex justify-between items-center gap-x-12 px-4 py-3">
   <div class="flex items-center group">
     <div class="w-[60px] h-[60px] rounded-2xl overflow-hidden mr-4">
       <img

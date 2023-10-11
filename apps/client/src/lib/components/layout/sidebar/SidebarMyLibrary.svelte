@@ -225,8 +225,8 @@
   ];
 </script>
 
-<div class="flex flex-col w-full bg-gray-800 rounded-lg overflow-hidden">
-  <div id="my-lib-header" class="flex justify-between text-gray-500">
+<div class="flex flex-col w-full bg-gray-950 rounded-lg overflow-hidden">
+  <div id="my-lib-header" class="flex justify-between text-gray-500 pt-3 px-5">
     <IconButton
       icon="solar:music-library-2-bold"
       tooltipLabel="Collapse your library"
@@ -250,7 +250,7 @@
       />
     </div>
   </div>
-  <div data-simplebar class="flex flex-col mt-2 overflow-y-scroll">
+  <div data-simplebar class="flex flex-col mt-2 mb-2 px-4 overflow-y-scroll">
     {#if libraryItems !== null}
       <div class="flex flex-col">
         {#each libraryItems as item}

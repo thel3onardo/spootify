@@ -1,18 +1,14 @@
 <script lang="ts">
-  import { SvelteComponent, createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import Icon from '@iconify/svelte';
   import CardArtistDetails from './CardArtistDetails.svelte';
-  import { parse } from 'svelte/compiler';
 
   let albumName = 'Lowkey tech';
   let trackCover =
     'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/22ee671f-2c0a-48dd-9c70-4ff5b5092538/dfmm32g-e1749540-d01f-40e0-934c-930c389a57d7.jpg/v1/fill/w_894,h_894,q_70,strp/anime_girl_made_by_nature_by_ratzbyrats_dfmm32g-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcLzIyZWU2NzFmLTJjMGEtNDhkZC05YzcwLTRmZjViNTA5MjUzOFwvZGZtbTMyZy1lMTc0OTU0MC1kMDFmLTQwZTAtOTM0Yy05MzBjMzg5YTU3ZDcuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.4XfuROd9iw67yBpHHHK3otVOaINFTyXznkERdEE1Brg';
   let trackName = 'Keep Going';
   let author = 'Stephan Jolk';
-
   let container: HTMLElement;
-  let resizer: HTMLElement;
-
   let clientWidth: number, containerWidth: number;
 
   const dispatch = createEventDispatcher();
@@ -36,8 +32,6 @@
     const widthDiff = e.clientX - clientWidth;
     const newWidth = containerWidth - widthDiff;
 
-    console.log({ newWidth });
-
     if (newWidth <= 500 && newWidth >= 300) {
       container.style.width = `${newWidth}px`;
     }
@@ -50,12 +44,11 @@
 </script>
 
 <div
-  class="flex flex-col w-[500px] bg-gray-950 rounded ml-4 py-4 px-5 relative grow"
+  class="flex flex-col w-[400px] bg-gray-950 rounded ml-4 py-4 px-5 relative overflow-y-scroll"
   bind:this={container}
 >
   <div
-    class="absolute left-0 top-0 h-full w-[2px] bg-white/20 cursor-w-resize"
-    bind:this={resizer}
+    class="absolute left-0 top-0 h-full w-[2px] bg-transparent cursor-w-resize hover:bg-white/50 transition"
     on:mousedown={handleMouseDown}
     on:click={(e) => {
       e.preventDefault();
