@@ -2,7 +2,7 @@
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
   import Playerbar from '$lib/components/layout/Playerbar.svelte';
   import Navbar from '$lib/components/layout/Navbar.svelte';
-  import PlayingNow from '$lib/components/layout/playing-now/PlayingNow.svelte';
+  import PlayingNow from '$lib/components/layout/PlayingNow.svelte';
 
   let playingNowMenuVisible = true;
 
