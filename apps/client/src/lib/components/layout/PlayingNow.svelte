@@ -3,7 +3,10 @@
 
   import Icon from '@iconify/svelte';
   import CardArtistDetails from './CardArtistDetails.svelte';
+  import SkeletonLoader from '../SkeletonLoader.svelte';
+  import { onMount } from 'svelte';
 
+  let trackCoverLoaded = false;
   let albumName = 'Lowkey tech';
   let trackCover =
     'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/22ee671f-2c0a-48dd-9c70-4ff5b5092538/dfmm32g-e1749540-d01f-40e0-934c-930c389a57d7.jpg/v1/fill/w_894,h_894,q_70,strp/anime_girl_made_by_nature_by_ratzbyrats_dfmm32g-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcLzIyZWU2NzFmLTJjMGEtNDhkZC05YzcwLTRmZjViNTA5MjUzOFwvZGZtbTMyZy1lMTc0OTU0MC1kMDFmLTQwZTAtOTM0Yy05MzBjMzg5YTU3ZDcuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.4XfuROd9iw67yBpHHHK3otVOaINFTyXznkERdEE1Brg';
@@ -40,6 +43,12 @@
     document.removeEventListener('mouseup', handleMouseUp);
     document.removeEventListener('mousemove', handleMouseMove);
   };
+
+  // onMount(() => {
+  //   setTimeout(() => {
+  //     trackCoverLoaded = true;
+  //   }, 500);
+  // });
 </script>
 
 <div
@@ -66,12 +75,16 @@
   </div>
 
   <div class="flex flex-col">
-    <div class="w-full h-3/4 rounded-lg overflow-hidden">
+    <div class="w-full rounded-lg overflow-hidden relative">
       <img
         src={trackCover}
         alt="track cover"
-        class="object-cover h-full w-full"
+        class="object-cover h-full w-full z-10"
+        on:load={() => (trackCoverLoaded = true)}
       />
+      {#if !trackCoverLoaded}
+        <SkeletonLoader width="100%" height="100%" class="z-20 top-0" />
+      {/if}
     </div>
     <div class="flex items-center">
       <div class="my-4">

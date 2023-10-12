@@ -1,10 +1,11 @@
 <script lang="ts">
   import { createSlider, melt } from '@melt-ui/svelte';
+  import { createEventDispatcher } from 'svelte';
 
   import Icon from '@iconify/svelte';
   import IconButton from '../IconButton.svelte';
-  import { onMount } from 'svelte';
 
+  const dispatcher = createEventDispatcher();
   const {
     elements: { root, range, thumb },
     states: { value },
@@ -14,14 +15,12 @@
     step: 1,
   });
 
-  onMount(() => {
-    //TODO: remove console.log
-    console.log({ value });
-  });
+  $: value.set([progressValue]);
 
-  let playing = true;
-  let currentTime = '1:25';
-  let trackTime = '3:00';
+  export let playing: Boolean,
+    progressValue: number,
+    currentTime: string,
+    duration: string;
 </script>
 
 <div class="flex flex-col items-center justify-center grow">
@@ -39,7 +38,8 @@
         tooltipLabel="Previous"
         class="hover:text-white"
       />
-      <div
+      <button
+        on:click={() => dispatcher('pause')}
         class="bg-white rounded-full p-1 text-black cursor-pointer select-none"
       >
         <Icon
@@ -48,7 +48,7 @@
           height="1.8rem"
           draggable="false"
         />
-      </div>
+      </button>
       <IconButton
         icon="fluent:arrow-next-12-filled"
         tooltipLabel="Next"
@@ -83,6 +83,6 @@
         class="block h-3 w-3 rounded-full bg-white focus:ring-4 focus:ring-black/40"
       />
     </span>
-    <span>{trackTime}</span>
+    <span>{duration}</span>
   </div>
 </div>

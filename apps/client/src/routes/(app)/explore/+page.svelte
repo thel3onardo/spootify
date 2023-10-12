@@ -1,5 +1,6 @@
 <script lang="ts">
   import GenreItem from '$lib/components/GenreItem.svelte';
+  import SkeletonLoader from '$lib/components/SkeletonLoader.svelte';
 
   const categories = [
     {
@@ -157,4 +158,5 @@
       <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />
     {/each}
   </div>
+  <SkeletonLoader width="10rem" height="10rem" />
 </div>
