@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { playingNowMenuVisible } from '$lib/stores/layout';
+
   import Icon from '@iconify/svelte';
   import CardArtistDetails from './CardArtistDetails.svelte';
 
@@ -11,15 +12,13 @@
   let container: HTMLElement;
   let clientWidth: number, containerWidth: number;
 
-  const dispatch = createEventDispatcher();
-
-  const emitClose = () => {
-    dispatch('close', true);
+  const toggleMenu = () => {
+    $playingNowMenuVisible = false;
   };
 
   const handleMouseDown = (e: MouseEvent) => {
-    clientWidth = e.clientX;
     const elWidth = window.getComputedStyle(container).width;
+    clientWidth = e.clientX;
     containerWidth = parseInt(elWidth, 10);
 
     document.addEventListener('mousemove', handleMouseMove);
@@ -56,18 +55,18 @@
   />
   <div class="flex items-center justify-between mb-4">
     <h2 class="font-manrope font-bold">{albumName}</h2>
-    <button on:click={emitClose} class="p-2 rounded-full hover:bg-gray-900">
+    <button on:click={toggleMenu} class="p-2 rounded-full hover:bg-gray-900">
       <Icon
         icon="material-symbols:close-rounded"
-        width="1.5rem"
-        height="1.5rem"
+        width="1.4rem"
+        height="1.4rem"
         class="text-white"
       />
     </button>
   </div>
 
   <div class="flex flex-col">
-    <div class="w-full h-[400px] rounded-lg overflow-hidden">
+    <div class="w-full h-3/4 rounded-lg overflow-hidden">
       <img
         src={trackCover}
         alt="track cover"

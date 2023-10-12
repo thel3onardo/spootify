@@ -3,13 +3,16 @@
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
+  const emitClick = () => {
+    dispatch('click');
+  };
 
-  export let size = '40px';
+  export let size = '2.5rem';
 </script>
 
 <button
   class="bg-primary rounded-full p-2 hover:scale-105 hover:shadow-xl hover:shadow-primary/10 active:scale-95 transition {$$props.class}"
-  on:click={() => dispatch('click')}
+  on:click={emitClick}
 >
   <Icon
     icon="ic:baseline-play-arrow"

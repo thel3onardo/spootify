@@ -1,14 +1,11 @@
 <script lang="ts">
+  import { playingNowMenuVisible } from '$lib/stores/layout';
+
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
   import Playerbar from '$lib/components/layout/Playerbar.svelte';
   import Navbar from '$lib/components/layout/Navbar.svelte';
   import PlayingNow from '$lib/components/layout/PlayingNow.svelte';
-
-  let playingNowMenuVisible = true;
-
-  const togglePlayingNowMenu = () => {
-    playingNowMenuVisible = !playingNowMenuVisible;
-  };
+  import { onMount } from 'svelte';
 </script>
 
 <div
@@ -25,7 +22,7 @@
           <slot />
         </div>
       </div>
-      {#if playingNowMenuVisible}
+      {#if $playingNowMenuVisible}
         <PlayingNow />
       {/if}
     </div>

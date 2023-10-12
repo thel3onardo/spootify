@@ -1,23 +1,48 @@
 <script lang="ts">
+  import { playingNowMenuVisible } from '$lib/stores/layout';
+
   import IconButton from '../IconButton.svelte';
 
-  export let favorite = false;
+  const handleTogglePlayingNowMenu = () => {
+    $playingNowMenuVisible = !$playingNowMenuVisible;
+  };
 
   const options = [
     {
-      icon: `${
-        favorite ? 'material-symbols:favorite-rounded' : 'ph:heart-bold'
-      }`,
-      tooltipLabel: 'Favorite',
+      icon: 'mdi:music-box',
+      tooltipLabel: 'Playing now',
+      action: handleTogglePlayingNowMenu,
+      active: false,
     },
-    { icon: 'material-symbols:volume-up-rounded', tooltipLabel: 'Volume' },
-    { icon: 'material-symbols:lyrics', tooltipLabel: 'Lyrics' },
-    { icon: 'material-symbols:info-outline-rounded', tooltipLabel: 'Help' },
+    {
+      icon: 'material-symbols:volume-up-rounded',
+      tooltipLabel: 'Volume',
+      action: () => '',
+      active: false,
+    },
+    {
+      icon: 'material-symbols:lyrics',
+      tooltipLabel: 'Lyrics',
+      action: () => '',
+      active: false,
+    },
+    {
+      icon: 'material-symbols:info-outline-rounded',
+      tooltipLabel: 'Help',
+      action: () => '',
+      active: false,
+    },
   ];
 </script>
 
 <div class="flex gap-x-4">
-  {#each options as { icon, tooltipLabel }}
-    <IconButton {tooltipLabel} {icon} size="1.35rem" hoverBg />
+  {#each options as { icon, tooltipLabel, action }}
+    <IconButton
+      on:click={action}
+      {tooltipLabel}
+      {icon}
+      size="1.35rem"
+      hoverBg
+    />
   {/each}
 </div>

@@ -26,7 +26,7 @@
 
     {#if playBtnVisible}
       <div in:fade={{ duration: 250 }} out:fade={{ duration: 100 }}>
-        <PlayButton />
+        <PlayButton size="1.6rem" />
       </div>
     {/if}
   </div>
