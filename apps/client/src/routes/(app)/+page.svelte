@@ -71,7 +71,7 @@
   });
 </script>
 
-<div class="pt-24 px-8 bg-gradient-to-b from-[#780000]/20 to-black">
+<div class="h-full pt-24 px-8 bg-gradient-to-b from-[#780000]/20 to-gray-950">
   <h1 class="font-inter font-bold text-3xl text-white mb-6">
     {greetingsMessage}
   </h1>
@@ -87,12 +87,14 @@
     {/each}
   </div>
   {#each HomeSections as section}
-    <section class="w-full flex flex-col my-12">
-      <div class="flex justify-between w-full mb-4">
+    <section class="w-full flex flex-col my-16">
+      <div class="flex items-center justify-between w-full mb-4">
         <h1 class="font-bold font-inter text-2xl text-white">
           {section.title}
         </h1>
-        <a href="/" class="text-gray-500 text-sm underline underline-offset-1"
+        <a
+          href="/"
+          class="text-gray-500 text-sm font-bold font-manrope hover:underline underline-offset-1"
           >Show all</a
         >
       </div>

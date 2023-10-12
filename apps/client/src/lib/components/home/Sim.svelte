@@ -16,7 +16,7 @@
 
 <a href="">
   <div
-    class="flex flex-col rounded-lg bg-gray-950 p-4 max-w-[400px] hover:bg-gray-900 transition"
+    class="flex flex-col rounded-lg bg-gray-950 p-4 max-w-[400px] hover:bg-gray-900 transition duration-500"
     on:mouseenter={togglePlayBtn}
     on:mouseleave={togglePlayBtn}
   >
@@ -24,7 +24,7 @@
       <img src={coverUrl} alt={coverAlt} class="object-cover h-full w-full" />
 
       {#if playBtnVisible}
-        <div transition:fly={{ y: 100 }}>
+        <div transition:fly={{ y: 50 }}>
           <PlayButton class="absolute bottom-2 right-2" size="1.8rem" />
         </div>
       {/if}

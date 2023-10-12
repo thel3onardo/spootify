@@ -44,7 +44,7 @@
 </script>
 
 <div
-  class="flex flex-col w-[400px] bg-gray-950 rounded ml-4 py-4 px-5 relative overflow-y-scroll"
+  class="flex flex-col w-[400px] bg-gray-950 rounded py-4 px-5 relative overflow-y-scroll"
   bind:this={container}
 >
   <div
