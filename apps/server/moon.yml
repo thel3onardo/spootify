@@ -1,0 +1,15 @@
+language: "typescript"
+
+tasks:
+  dev:
+    command:
+      - "nodemon"
+    args:
+      - "./src/index.ts"
+
+  build:
+    command:
+      - "tsc"
+    args:
+      - "-p"
+      - "tsconfig.json"
