@@ -1,5 +1,0 @@
-language: 'typescript'
-
-tasks:
-  dev:
-    command:
