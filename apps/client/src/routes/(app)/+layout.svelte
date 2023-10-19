@@ -5,7 +5,6 @@
   import Playerbar from '$lib/components/layout/Playerbar.svelte';
   import Navbar from '$lib/components/layout/Navbar.svelte';
   import PlayingNow from '$lib/components/layout/PlayingNow.svelte';
-  import { onMount } from 'svelte';
 </script>
 
 <div
@@ -18,7 +17,7 @@
     >
       <div class="overflow-y-scroll relative rounded-lg w-full">
         <Navbar />
-        <div class="absolute top-0 h-full w-full">
+        <div class="absolute top-0 w-full">
           <slot />
         </div>
       </div>
