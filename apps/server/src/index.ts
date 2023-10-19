@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import prismaPlugin from "./plugins/prisma";
 import trackRoutes from "./modules/track/track.route";
+import "dotenv/config";
 
 const server = fastify({
   logger: {
@@ -23,7 +24,7 @@ server.register(
   { prefix: "/api" },
 );
 
-server.listen({ port: 4000 }, async (err) => {
+server.listen({ port: Number(process.env.PORT) || 4000 }, async (err) => {
   if (err) {
     server.log.error(err);
     process.exit(1);
