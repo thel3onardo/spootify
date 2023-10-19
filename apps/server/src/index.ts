@@ -1,4 +1,6 @@
 import fastify from "fastify";
+import prismaPlugin from "./plugins/prisma";
+import trackRoutes from "./modules/track/track.route";
 
 const server = fastify({
   logger: {
@@ -8,11 +10,20 @@ const server = fastify({
   },
 });
 
-server.get("/ping", () => {
-  return "pong";
-});
+//plugins
+server.register(prismaPlugin);
 
-server.listen({ port: 4000 }, (err) => {
+//routes
+server.register(
+  (app, _, done) => {
+    trackRoutes(app);
+
+    done();
+  },
+  { prefix: "/api" },
+);
+
+server.listen({ port: 4000 }, async (err) => {
   if (err) {
     server.log.error(err);
     process.exit(1);
