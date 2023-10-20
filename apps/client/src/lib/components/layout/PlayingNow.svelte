@@ -4,7 +4,6 @@
   import Icon from '@iconify/svelte';
   import CardArtistDetails from './CardArtistDetails.svelte';
   import SkeletonLoader from '../SkeletonLoader.svelte';
-  import { onMount } from 'svelte';
 
   let trackCoverLoaded = false;
   let albumName = 'Lowkey tech';
@@ -52,7 +51,7 @@
 </script>
 
 <div
-  class="flex flex-col w-[400px] bg-gray-950 rounded py-4 px-5 relative overflow-y-scroll"
+  class="flex flex-col w-[350px] bg-gray-950 rounded py-4 px-5 relative overflow-y-scroll"
   bind:this={container}
 >
   <div
