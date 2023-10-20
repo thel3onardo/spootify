@@ -9,7 +9,7 @@
       id: 2,
       label: 'Explore',
       icon: 'ph:magnifying-glass-fill',
-      href: '/explore',
+      href: '/search',
     },
   ];
 </script>

@@ -1,6 +1,7 @@
 <script lang="ts">
   import GenreItem from '$lib/components/GenreItem.svelte';
   import SkeletonLoader from '$lib/components/SkeletonLoader.svelte';
+  import Sim from '$lib/components/home/Sim.svelte';
 
   const categories = [
     {
@@ -153,12 +154,75 @@
 <div
   class="min-h-full w-full rounded-lg bg-gray-950 px-6 pb-8 pt-20 text-white"
 >
-  <h1 class="mb-8 font-inter text-2xl font-bold">Browse all</h1>
+  <div class="flex max-w-[1900px] flex-col">
+    <section class="overflow-hidden">
+      <h1 class="font-inter text-2xl font-bold">Recent searches</h1>
 
-  <div class="flex max-w-[1900px] flex-wrap gap-4">
-    {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
-      <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />
-    {/each}
+      <div class="my-4 flex gap-x-6 overflow-hidden">
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+        <Sim
+          name="Sad musics"
+          description="What is this"
+          coverUrl="https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg"
+          coverAlt="yeah"
+        />
+      </div>
+    </section>
+    <section>
+      <h1 class="font-inter mb-4 text-2xl font-bold">Browse all</h1>
+      <div class="grid gap-6 xl:grid-cols-4 2xl:grid-cols-9">
+        {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
+          <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />
+        {/each}
+      </div>
+      <!-- <SkeletonLoader width="10rem" height="10rem" /> -->
+    </section>
   </div>
-  <SkeletonLoader width="10rem" height="10rem" />
 </div>
