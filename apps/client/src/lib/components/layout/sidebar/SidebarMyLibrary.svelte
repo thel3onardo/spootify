@@ -226,16 +226,16 @@
 </script>
 
 <div
-  class="flex flex-col w-full bg-gray-950 backdrop-blur-md rounded-lg overflow-hidden"
+  class="flex w-full flex-col overflow-hidden rounded-lg bg-gray-950 backdrop-blur-md"
 >
-  <div id="my-lib-header" class="flex justify-between text-gray-500 pt-3 px-5">
+  <div id="my-lib-header" class="flex justify-between px-5 pt-3 text-gray-500">
     <IconButton
       icon="solar:music-library-2-bold"
       tooltipLabel="Collapse your library"
       size="1.5rem"
-      class="hover:text-white transition"
+      class="transition hover:text-white"
     >
-      <span class="font-semibold font-inter text-md ml-2">Your library</span>
+      <span class="text-md ml-2 font-inter font-semibold">Your library</span>
     </IconButton>
     <div class="flex gap-x-1">
       <IconButton
@@ -252,7 +252,7 @@
       />
     </div>
   </div>
-  <div data-simplebar class="flex flex-col mt-2 mb-2 px-4 overflow-y-scroll">
+  <div data-simplebar class="mb-2 mt-2 flex flex-col overflow-y-scroll px-4">
     {#if libraryItems !== null}
       <div class="flex flex-col">
         {#each libraryItems as item}

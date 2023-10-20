@@ -25,11 +25,11 @@
 </script>
 
 <form class="flex flex-col text-white {$$props.class}">
-  <label for={name} class="text-xs font-manrope font-bold mb-2">{label}</label>
+  <label for={name} class="mb-2 font-manrope text-xs font-bold">{label}</label>
   <div class="relative">
     <input
       id={name}
-      class="border border-white/40 px-3 py-2.5 rounded w-full bg-gray-950 text-white hover:border-white focus:border-primary outline-none transition"
+      class="w-full rounded border border-white/40 bg-gray-950 px-3 py-2.5 text-white outline-none transition hover:border-white focus:border-primary"
       {type}
       {placeholder}
       {autocomplete}

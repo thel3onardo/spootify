@@ -29,25 +29,25 @@
 
 <button
   use:melt={$trigger}
-  class="text-gray-500 flex items-center select-none hover:text-white transition"
+  class="flex select-none items-center text-gray-500 transition hover:text-white"
 >
-  <span class="font-inter font-medium text-sm">{currentOption.label}</span>
+  <span class="font-inter text-sm font-medium">{currentOption.label}</span>
   <Icon icon="ic:outline-arrow-drop-down" width="1.5rem" height="1.5rem" />
 </button>
 
 <div
   use:melt={$menu}
   transition:fade
-  class="bg-gray-800 text-white font-manrope w-[200px] p-2 right-0 rounded"
+  class="right-0 w-[200px] rounded bg-gray-800 p-2 font-manrope text-white"
 >
   <div class="my-2 px-2">
-    <span class="text-xs text-gray-500 font-bold select-none">Sort by</span>
+    <span class="select-none text-xs font-bold text-gray-500">Sort by</span>
   </div>
   {#each sortOptions as option}
     <button
       use:melt={$item}
       on:m-click={() => setOption(option)}
-      class="w-full text-start font-medium p-2 rounded transition hover:bg-gray-500/20 {option?.identifier ===
+      class="w-full rounded p-2 text-start font-medium transition hover:bg-gray-500/20 {option?.identifier ===
       currentOption?.identifier
         ? 'text-primary'
         : ''}"

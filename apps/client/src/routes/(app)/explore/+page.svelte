@@ -151,11 +151,11 @@
 </script>
 
 <div
-  class="w-full min-h-full bg-gray-950 text-white rounded-lg pt-20 pb-8 px-6"
+  class="min-h-full w-full rounded-lg bg-gray-950 px-6 pb-8 pt-20 text-white"
 >
-  <h1 class="font-inter font-bold text-2xl mb-8">Browse all</h1>
+  <h1 class="mb-8 font-inter text-2xl font-bold">Browse all</h1>
 
-  <div class="flex flex-wrap gap-4 max-w-[1900px]">
+  <div class="flex max-w-[1900px] flex-wrap gap-4">
     {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
       <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />
     {/each}

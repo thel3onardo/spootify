@@ -51,19 +51,19 @@
 </script>
 
 <div
-  class="flex flex-col w-[350px] bg-gray-950 rounded py-4 px-5 relative overflow-y-scroll"
+  class="relative flex w-[350px] flex-col overflow-y-scroll rounded bg-gray-950 px-5 py-4"
   bind:this={container}
 >
   <div
-    class="absolute left-0 top-0 h-full w-[2px] bg-transparent cursor-w-resize hover:bg-white/50 transition"
+    class="absolute left-0 top-0 h-full w-[2px] cursor-w-resize bg-transparent transition hover:bg-white/50"
     on:mousedown={handleMouseDown}
     on:click={(e) => {
       e.preventDefault();
     }}
   />
-  <div class="flex items-center justify-between mb-4">
+  <div class="mb-4 flex items-center justify-between">
     <h2 class="font-manrope font-bold">{albumName}</h2>
-    <button on:click={toggleMenu} class="p-2 rounded-full hover:bg-gray-900">
+    <button on:click={toggleMenu} class="rounded-full p-2 hover:bg-gray-900">
       <Icon
         icon="material-symbols:close-rounded"
         width="1.4rem"
@@ -74,27 +74,27 @@
   </div>
 
   <div class="flex flex-col">
-    <div class="w-full rounded-lg overflow-hidden relative">
+    <div class="relative w-full overflow-hidden rounded-lg">
       <img
         src={trackCover}
         alt="track cover"
-        class="object-cover h-full w-full z-10"
+        class="z-10 h-full w-full object-cover"
         on:load={() => (trackCoverLoaded = true)}
       />
       {#if !trackCoverLoaded}
-        <SkeletonLoader width="100%" height="100%" class="z-20 top-0" />
+        <SkeletonLoader width="100%" height="100%" class="top-0 z-20" />
       {/if}
     </div>
     <div class="flex items-center">
       <div class="my-4">
         <a href="/" class="hover:underline">
-          <h2 class="text-white font-inter font-bold text-2xl mb-2">
+          <h2 class="mb-2 font-inter text-2xl font-bold text-white">
             {trackName}
           </h2>
         </a>
 
         <a href="#" class="hover:underline">
-          <span class="text-gray-500 font-manrope font-semibold">{author}</span>
+          <span class="font-manrope font-semibold text-gray-500">{author}</span>
         </a>
       </div>
     </div>
@@ -102,12 +102,12 @@
 
   <CardArtistDetails artistId={200} />
 
-  <div class="bg-gray-800 w-full p-4 rounded-lg">
-    <div class="flex justify-between font-semibold mb-3">
+  <div class="w-full rounded-lg bg-gray-800 p-4">
+    <div class="mb-3 flex justify-between font-semibold">
       <h3 class="text-md">Next in queue</h3>
       <a
         href="/queue"
-        class="text-gray-500 text-sm hover:text-white hover:underline hover:underline-offset-2"
+        class="text-sm text-gray-500 hover:text-white hover:underline hover:underline-offset-2"
         >Open queue</a
       >
     </div>

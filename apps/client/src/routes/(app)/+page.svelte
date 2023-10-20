@@ -72,13 +72,13 @@
 </script>
 
 <div
-  class="pt-24 px-8 min-h-full bg-gradient-to-b from-[#780000]/20 to-gray-950"
+  class="min-h-full bg-gradient-to-b from-[#780000]/20 to-gray-950 px-8 pt-24"
 >
-  <h1 class="font-inter font-bold text-3xl text-white mb-6">
+  <h1 class="mb-6 font-inter text-3xl font-bold text-white">
     {greetingsMessage}
   </h1>
   <div
-    class="grid grid-cols-1 grid-rows-2 xl:grid-cols-2 2xl:grid-cols-3 gap-4 max-w-[1400px]"
+    class="grid max-w-[1400px] grid-cols-1 grid-rows-2 gap-4 xl:grid-cols-2 2xl:grid-cols-3"
   >
     {#each latestAlbums as album}
       <PlaylistItem
@@ -89,14 +89,14 @@
     {/each}
   </div>
   {#each HomeSections as section}
-    <section class="w-full flex flex-col py-16">
-      <div class="flex items-center justify-between w-full mb-4">
-        <h1 class="font-bold font-inter text-2xl text-white">
+    <section class="flex w-full flex-col py-16">
+      <div class="mb-4 flex w-full items-center justify-between">
+        <h1 class="font-inter text-2xl font-bold text-white">
           {section.title}
         </h1>
         <a
           href="/"
-          class="text-gray-500 text-sm font-bold font-manrope hover:underline underline-offset-1"
+          class="font-manrope text-sm font-bold text-gray-500 underline-offset-1 hover:underline"
           >Show all</a
         >
       </div>

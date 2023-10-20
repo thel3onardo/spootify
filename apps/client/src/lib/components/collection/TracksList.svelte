@@ -7,7 +7,7 @@
 
 <div class="text-gray-500 {$$props.class}">
   <div
-    class="grid grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 text-sm font-manrope font-medium border-b border-gray-500/10 py-2 px-4 mb-4"
+    class="mb-4 grid grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 border-b border-gray-500/10 px-4 py-2 font-manrope text-sm font-medium"
   >
     {#each tableSections as section}
       <span>{section}</span>

@@ -23,6 +23,6 @@
     icon="ph:heart-bold"
     width={sizeList[size]}
     height={sizeList[size]}
-    class="hover:text-white text-gray-500 transition"
+    class="text-gray-500 transition hover:text-white"
   />
 </button>

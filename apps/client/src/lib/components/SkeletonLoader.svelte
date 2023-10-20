@@ -10,7 +10,7 @@
 
 <div
   style="width: {width}; height: {height}"
-  class="bg-gray-900 skeleton {$$props.class}"
+  class="skeleton bg-gray-900 {$$props.class}"
 ></div>
 
 <style>

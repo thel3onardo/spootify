@@ -34,38 +34,38 @@
 </script>
 
 <div
-  class="flex flex-col w-full min-h-full playlist-page"
+  class="playlist-page flex min-h-full w-full flex-col"
   style="--main-color: {backgroundColor}"
 >
-  <div class="flex items-end mt-28 p-8">
-    <div class="drop-shadow-2xl h-[232px] max-w-[232px] grow">
+  <div class="mt-28 flex items-end p-8">
+    <div class="h-[232px] max-w-[232px] grow drop-shadow-2xl">
       <img
         crossorigin="anonymous"
         src="/anime-girl.jpg"
         alt="Playlists cover"
-        class="object-cover h-full w-full"
+        class="h-full w-full object-cover"
         bind:this={coverImage}
       />
     </div>
-    <div class="font-manrope ml-6 basis-3/4">
-      <p class="text-sm font-semibold mb-2">Playlist</p>
+    <div class="ml-6 basis-3/4 font-manrope">
+      <p class="mb-2 text-sm font-semibold">Playlist</p>
       <h1
-        class="font-inter font-bold text-6xl xl:text-8xl mb-6 tracking-tighter"
+        class="mb-6 font-inter text-6xl font-bold tracking-tighter xl:text-8xl"
       >
         {data.name}
       </h1>
-      <p class="text-gray-500 text-sm font-medium">{data.description}</p>
+      <p class="text-sm font-medium text-gray-500">{data.description}</p>
     </div>
   </div>
-  <div class="flex flex-col bg-[#121212] h-full p-8 isolate relative">
-    <div class="absolute top-0 -z-10 left-0 gradient h-[232px] w-full"></div>
+  <div class="relative isolate flex h-full flex-col bg-[#121212] p-8">
+    <div class="gradient absolute left-0 top-0 -z-10 h-[232px] w-full"></div>
     <div class="flex items-center justify-between">
       <div class="flex gap-x-8">
         <PlayButton on:click={test} class="mr-4" />
         <SaveLibraryButton size="lg" />
         <DownloadButton />
       </div>
-      <div class="flex gap-x-6 relative">
+      <div class="relative flex gap-x-6">
         <FilterBar placeholder="Search in playlist" bind:value={filterValue} />
         <SortOptionsMenu />
       </div>

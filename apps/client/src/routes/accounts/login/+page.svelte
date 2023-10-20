@@ -7,12 +7,12 @@
 </script>
 
 <div
-  class="flex justify-center items-center w-full min-h-screen bg-gradient-to-b from-gray-900 to-black"
+  class="flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-gray-900 to-black"
 >
   <div
-    class="flex flex-col items-center text-white bg-black py-12 px-24 rounded-lg"
+    class="flex flex-col items-center rounded-lg bg-black px-24 py-12 text-white"
   >
-    <h1 class="font-bold text-5xl mb-8">Log in to Spootify</h1>
+    <h1 class="mb-8 text-5xl font-bold">Log in to Spootify</h1>
 
     <FormInput
       bind:value={credential}
@@ -33,11 +33,11 @@
     />
 
     <Button variant="primary" rounded="3xl" class="my-8 px-8 py-3" block>
-      <span class="text-gray-900 font-bold text-md">Log in</span>
+      <span class="text-md font-bold text-gray-900">Log in</span>
     </Button>
 
     <a href="/accounts/signup">
-      <span class="text-manrope text-white font-xl underline hover:text-primary"
+      <span class="text-manrope font-xl text-white underline hover:text-primary"
         >Forgot my password</span
       >
     </a>

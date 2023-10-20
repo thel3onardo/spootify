@@ -16,12 +16,12 @@
 
 <a href="">
   <div
-    class="flex flex-col rounded-lg bg-gray-950 p-4 max-w-[400px] hover:bg-gray-900 transition duration-500"
+    class="flex max-w-[400px] flex-col rounded-lg bg-gray-950 p-4 transition duration-500 hover:bg-gray-900"
     on:mouseenter={togglePlayBtn}
     on:mouseleave={togglePlayBtn}
   >
-    <div class="h-[150px] w-[150px] rounded-md relative overflow-hidden">
-      <img src={coverUrl} alt={coverAlt} class="object-cover h-full w-full" />
+    <div class="relative h-[150px] w-[150px] overflow-hidden rounded-md">
+      <img src={coverUrl} alt={coverAlt} class="h-full w-full object-cover" />
 
       {#if playBtnVisible}
         <div transition:fly={{ y: 50 }}>
@@ -30,8 +30,8 @@
       {/if}
     </div>
     <div class="mt-4">
-      <h2 class="text-white font-inter font-bold mb-1">{name}</h2>
-      <p class="text-gray-500 font-manrope font-semibold text-sm">
+      <h2 class="mb-1 font-inter font-bold text-white">{name}</h2>
+      <p class="font-manrope text-sm font-semibold text-gray-500">
         {description}
       </p>
     </div>

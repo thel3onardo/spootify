@@ -17,7 +17,7 @@
     <form
       use:clickOutside
       on:clickOutside={toggleVisible}
-      class="flex items-center bg-gray-500/20 px-2 py-2 rounded"
+      class="flex items-center rounded bg-gray-500/20 px-2 py-2"
     >
       <Icon
         icon="iconamoon:search-bold"
@@ -28,13 +28,13 @@
       <input
         bind:value
         {placeholder}
-        class="bg-transparent outline-none text-sm"
+        class="bg-transparent text-sm outline-none"
       />
     </form>
   {:else}
     <button
       on:click={toggleVisible}
-      class="p-2 rounded-full hover:bg-gray-500/20 hover:text-white"
+      class="rounded-full p-2 hover:bg-gray-500/20 hover:text-white"
     >
       <Icon icon="iconamoon:search-bold" width="1.25rem" height="1.25rem" />
     </button>

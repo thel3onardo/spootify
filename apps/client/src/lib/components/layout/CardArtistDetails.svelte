@@ -9,11 +9,11 @@
 
 <a href="/artist/{artistId}">
   <div
-    class="h-[250px] w-full rounded-lg overflow-hidden mb-6 transition duration-500 artist-card relative bg-cover before:bg-black/70 before:absolute before:top-0 before:left-0 before:w-full before:h-full before:z-10"
+    class="artist-card relative mb-6 h-[250px] w-full overflow-hidden rounded-lg bg-cover transition duration-500 before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-full before:bg-black/70"
     style="background-image: url('{coverImage}')"
   >
     <div
-      class="font-manrope p-4 flex flex-col justify-between w-full h-full relative z-20"
+      class="relative z-20 flex h-full w-full flex-col justify-between p-4 font-manrope"
     >
       <div class="flex items-center">
         <Icon
@@ -22,9 +22,9 @@
           height="1.3rem"
           class=" text-primary"
         />
-        <span class="text-xs ml-1.5 font-semibold">Verified artist</span>
+        <span class="ml-1.5 text-xs font-semibold">Verified artist</span>
       </div>
-      <div class="font-semibold text-sm">
+      <div class="text-sm font-semibold">
         <p class="mb-2">1,2000 monthly listeners</p>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat</p>
       </div>

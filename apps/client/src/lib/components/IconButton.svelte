@@ -19,8 +19,8 @@
   <button
     on:click={emitClick}
     class="{hoverBg
-      ? 'hover:bg-gray-100/20 p-2 rounded-full transition'
-      : ''} flex items-center select-none"
+      ? 'rounded-full p-2 transition hover:bg-gray-100/20'
+      : ''} flex select-none items-center"
   >
     <!-- TODO: draggable="false" seems not to be working here -->
     <Icon

@@ -23,7 +23,7 @@
     duration: string;
 </script>
 
-<div class="flex flex-col items-center justify-center grow">
+<div class="flex grow flex-col items-center justify-center">
   <div class="flex items-center gap-x-6 text-gray-500">
     <IconButton
       icon="fe:random"
@@ -32,7 +32,7 @@
       size="1.5rem"
     />
 
-    <div class="flex items-center mx-4 gap-x-6">
+    <div class="mx-4 flex items-center gap-x-6">
       <IconButton
         icon="fluent:arrow-previous-12-filled"
         tooltipLabel="Previous"
@@ -40,7 +40,7 @@
       />
       <button
         on:click={() => dispatcher('pause')}
-        class="bg-white rounded-full p-1 text-black cursor-pointer select-none"
+        class="cursor-pointer select-none rounded-full bg-white p-1 text-black"
       >
         <Icon
           icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
@@ -65,17 +65,17 @@
   </div>
 
   <div
-    class="flex items-center mt-3 text-xs font-manrope font-bold text-gray-500 w-full max-w-[700px]"
+    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-bold text-gray-500"
   >
     <span>{currentTime}</span>
     <span
       use:melt={$root}
-      class="relative flex h-[10px] w-full items-center grow mx-3 group"
+      class="group relative mx-3 flex h-[10px] w-full grow items-center"
     >
-      <span class="block h-[4px] w-full bg-gray-500/40 rounded">
+      <span class="block h-[4px] w-full rounded bg-gray-500/40">
         <span
           use:melt={$range}
-          class="h-[4px] bg-white rounded group-hover:bg-primary"
+          class="h-[4px] rounded bg-white group-hover:bg-primary"
         />
       </span>
       <span

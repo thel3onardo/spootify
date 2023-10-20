@@ -8,14 +8,14 @@
 </script>
 
 <div
-  class="h-screen bg-black text-white p-2 grid grid-rows-[minmax(100px,_1fr)_min-content] gap-y-2"
+  class="grid h-screen grid-rows-[minmax(100px,_1fr)_min-content] gap-y-2 bg-black p-2 text-white"
 >
   <div class="grid grid-cols-[min-content_1fr] gap-x-2">
     <Sidebar />
     <div
-      class="grid grid-rows-1 grid-cols-[1fr_min-content] gap-x-2 overflow-x-hidden relative rounded-lg h-full"
+      class="relative grid h-full grid-cols-[1fr_min-content] grid-rows-1 gap-x-2 overflow-x-hidden rounded-lg"
     >
-      <div class="overflow-y-scroll relative">
+      <div class="relative overflow-y-scroll">
         <Navbar />
         <div class="absolute top-0 h-full w-full">
           <slot />

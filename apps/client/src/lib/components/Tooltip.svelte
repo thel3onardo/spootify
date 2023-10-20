@@ -23,10 +23,10 @@
   <div
     use:melt={$content}
     transition:fade={{ duration: 100 }}
-    class="z-10 rounded-lg bg-gray-800 text-white select-none"
+    class="z-10 select-none rounded-lg bg-gray-800 text-white"
   >
     <div use:melt={$arrow} />
-    <p class="text-white text-sm font-manrope font-semibold px-3 py-1">
+    <p class="px-3 py-1 font-manrope text-sm font-semibold text-white">
       {label}
     </p>
   </div>

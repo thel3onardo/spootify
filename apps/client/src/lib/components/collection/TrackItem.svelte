@@ -3,16 +3,16 @@
 </script>
 
 <div
-  class="font-manrope text-sm text-gray-500 grid grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 items-center px-4 h-[60px] rounded-lg hover:bg-gray-500/10"
+  class="grid h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr] items-center gap-4 rounded-lg px-4 font-manrope text-sm text-gray-500 hover:bg-gray-500/10"
 >
   <div>
     <span>1</span>
   </div>
   <div class="flex">
-    <div class="h-[40px] w-[40px] rounded-md overflow-hidden mr-4">
+    <div class="mr-4 h-[40px] w-[40px] overflow-hidden rounded-md">
       <img
         src="https://wallpapers.com/images/hd/korean-anime-girl-with-pretty-face-vzd720qo9n5de9d1.jpg"
-        class="object-cover h-full"
+        class="h-full object-cover"
         alt="#"
       />
     </div>
