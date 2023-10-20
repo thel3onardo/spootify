@@ -9,6 +9,7 @@
   import TracksList from '$lib/components/collection/TracksList.svelte';
   import FilterBar from '$lib/components/IconSearchbar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
+  import Navbar from '$lib/components/layout/Navbar.svelte';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
@@ -37,7 +38,8 @@
   class="playlist-page flex min-h-full w-full flex-col"
   style="--main-color: {backgroundColor}"
 >
-  <div class="mt-28 flex items-end p-8">
+  <Navbar />
+  <div class="mt-14 flex items-end p-8">
     <div class="h-[232px] max-w-[232px] grow drop-shadow-2xl">
       <img
         crossorigin="anonymous"
@@ -47,10 +49,10 @@
         bind:this={coverImage}
       />
     </div>
-    <div class="ml-6 basis-3/4 font-manrope">
+    <div class="font-manrope ml-6 basis-3/4">
       <p class="mb-2 text-sm font-semibold">Playlist</p>
       <h1
-        class="mb-6 font-inter text-6xl font-bold tracking-tighter xl:text-8xl"
+        class="font-inter mb-6 text-6xl font-bold tracking-tighter xl:text-8xl"
       >
         {data.name}
       </h1>

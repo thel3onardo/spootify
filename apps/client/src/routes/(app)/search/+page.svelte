@@ -2,6 +2,7 @@
   import GenreItem from '$lib/components/GenreItem.svelte';
   import SkeletonLoader from '$lib/components/SkeletonLoader.svelte';
   import Sim from '$lib/components/home/Sim.svelte';
+  import Navbar from '$lib/components/layout/Navbar.svelte';
 
   const categories = [
     {
@@ -155,13 +156,11 @@
   <title>Spootify - Search</title>
 </svelte:head>
 
-<div
-  class="min-h-full w-full rounded-lg bg-gray-950 px-6 pb-8 pt-20 text-white"
->
-  <div class="flex max-w-[1900px] flex-col">
+<div class="flex min-h-full w-full flex-col rounded-lg bg-gray-950 text-white">
+  <Navbar />
+  <div class="flex max-w-[1900px] flex-col px-6 py-6">
     <section class="overflow-hidden">
       <h1 class="font-inter text-2xl font-bold">Recent searches</h1>
-
       <div class="my-4 flex gap-x-6 overflow-hidden">
         <Sim
           name="Sad musics"

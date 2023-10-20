@@ -1,12 +1,27 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
   import Button from '../Button.svelte';
+  import { onMount } from 'svelte';
+
+  let navEl: HTMLElement;
 
   const loggedIn = true;
+  const observer = new IntersectionObserver(
+    ([e]) =>
+      e.target.classList.toggle(`bg-${bgColor}`, e.intersectionRatio < 1),
+    { threshold: [1] },
+  );
+
+  onMount(() => {
+    observer.observe(navEl);
+  });
+
+  export let bgColor: string = 'red-500';
 </script>
 
 <div
-  class="sticky top-0 z-20 flex w-full items-center justify-between bg-black/40 px-6 py-2"
+  bind:this={navEl}
+  class="sticky -top-1 z-20 flex w-full items-center justify-between bg-transparent px-6 py-2 transition duration-500"
 >
   <div class="flex gap-x-2 text-white">
     <!-- TODO: implement functionality to those buttons below -->

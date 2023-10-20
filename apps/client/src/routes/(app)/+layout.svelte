@@ -16,10 +16,7 @@
       class="relative grid h-full grid-cols-[1fr_min-content] grid-rows-1 gap-x-2 overflow-x-hidden rounded-lg"
     >
       <div class="relative overflow-y-scroll">
-        <Navbar />
-        <div class="absolute top-0 h-full w-full">
-          <slot />
-        </div>
+        <slot />
       </div>
 
       {#if $playingNowMenuVisible}
