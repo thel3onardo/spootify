@@ -35,7 +35,6 @@ async function main() {
       server.log.error(err);
       process.exit(1);
     }
-    server.log.info("Server listening to port 40020");
   });
 }
 

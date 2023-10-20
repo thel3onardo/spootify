@@ -12,7 +12,8 @@ async function trackRoutes(server: FastifyInstance) {
     { schema: { body: $ref("createTrackSchema") } },
     createTrackHandler,
   );
-  server.get("/track/:id", getTrackHandler);
+
+  server.get("/track/:uuid", getTrackHandler);
   server.get("/track", getTrackHandler);
   server.delete("/track/:id", deleteTrackHandler);
 }
