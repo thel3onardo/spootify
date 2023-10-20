@@ -24,7 +24,7 @@
       width: 232,
       height: 232,
     });
-    backgroundColor = result?.rgba;
+    backgroundColor = result?.hex;
   };
 
   onMount(() => {
@@ -43,7 +43,7 @@
     <div class="h-[232px] max-w-[232px] grow drop-shadow-2xl">
       <img
         crossorigin="anonymous"
-        src="/anime-girl.jpg"
+        src="/anime-girl.jpeg"
         alt="Playlists cover"
         class="h-full w-full object-cover"
         bind:this={coverImage}

@@ -110,24 +110,30 @@
           >
         </div>
         <div class="flex gap-x-4">
-          <Sim
-            name="Chill mix"
-            description="Artist"
-            coverAlt="s"
-            coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
-          />
-          <Sim
-            name="Chill mix"
-            description="Artist"
-            coverAlt="s"
-            coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
-          />
-          <Sim
-            name="Chill mix"
-            description="Artist"
-            coverAlt="s"
-            coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
-          />
+          <div>
+            <Sim
+              name="Chill mix"
+              description="Artist"
+              coverAlt="s"
+              coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+            />
+          </div>
+          <div>
+            <Sim
+              name="Chill mix"
+              description="Artist"
+              coverAlt="s"
+              coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+            />
+          </div>
+          <div>
+            <Sim
+              name="Chill mix"
+              description="Artist"
+              coverAlt="s"
+              coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+            />
+          </div>
         </div>
       </section>
     {/each}
