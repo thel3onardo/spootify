@@ -150,7 +150,9 @@
   ];
 </script>
 
-<div class="w-full bg-gray-950 text-white rounded-lg pt-20 pb-8 px-6 h-full">
+<div
+  class="w-full min-h-full bg-gray-950 text-white rounded-lg pt-20 pb-8 px-6"
+>
   <h1 class="font-inter font-bold text-2xl mb-8">Browse all</h1>
 
   <div class="flex flex-wrap gap-4 max-w-[1900px]">

@@ -10,17 +10,18 @@
 <div
   class="h-screen bg-black text-white p-2 grid grid-rows-[minmax(100px,_1fr)_min-content] gap-y-2"
 >
-  <div class="grid grid-cols-[min-content_1fr] gap-x-2 h-full">
+  <div class="grid grid-cols-[min-content_1fr] gap-x-2">
     <Sidebar />
     <div
-      class="grid grid-rows-1 grid-cols-[1fr_min-content] gap-x-2 overflow-hidden"
+      class="grid grid-rows-1 grid-cols-[1fr_min-content] gap-x-2 overflow-x-hidden relative rounded-lg h-full"
     >
-      <div class="overflow-y-scroll relative rounded-lg w-full">
+      <div class="overflow-y-scroll relative">
         <Navbar />
-        <div class="absolute top-0 w-full">
+        <div class="absolute top-0 h-full w-full">
           <slot />
         </div>
       </div>
+
       {#if $playingNowMenuVisible}
         <PlayingNow />
       {/if}

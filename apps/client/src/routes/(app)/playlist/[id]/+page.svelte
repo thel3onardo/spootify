@@ -34,7 +34,7 @@
 </script>
 
 <div
-  class="flex flex-col w-full playlist-page"
+  class="flex flex-col w-full min-h-full playlist-page"
   style="--main-color: {backgroundColor}"
 >
   <div class="flex items-end mt-28 p-8">
