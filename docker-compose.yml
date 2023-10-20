@@ -10,4 +10,8 @@ services:
       - MYSQL_DATABASE=spootify
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     volumes:
-      - /var/opt/spootify:/var/lib/mysql
+      - db:/var/lib/mysql
+
+volumes:
+  db:
+    driver: local
