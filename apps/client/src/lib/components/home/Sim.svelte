@@ -9,12 +9,11 @@
 
 <a href="" class="w-full">
   <div
-    class="duration-250 hover:bg-gray-850 group flex flex-col rounded-lg bg-gray-900 p-4 transition"
+    class="duration-400 hover:bg-gray-850 group flex flex-col rounded-lg bg-gray-900 p-4 transition"
   >
     <div class="relative h-[150px] w-[150px] overflow-hidden rounded-md">
       <img src={coverUrl} alt={coverAlt} class="h-full w-full object-cover" />
-
-      <div class="hidden transform-gpu group-hover:block">
+      <div class="play-btn hidden group-hover:block">
         <PlayButton class="absolute bottom-2 right-2 " size="1.8rem" />
       </div>
     </div>
@@ -30,8 +29,8 @@
 <style>
   .play-btn {
     animation:
-      opacityAnimation 0.3s ease,
-      translateAnimation 0.3s ease-out;
+      opacityAnimation 0.45s ease,
+      translateAnimation 0.25s ease;
   }
   @keyframes opacityAnimation {
     from {

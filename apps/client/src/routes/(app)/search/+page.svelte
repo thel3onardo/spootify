@@ -151,6 +151,10 @@
   ];
 </script>
 
+<svelte:head>
+  <title>Spootify - Search</title>
+</svelte:head>
+
 <div
   class="min-h-full w-full rounded-lg bg-gray-950 px-6 pb-8 pt-20 text-white"
 >

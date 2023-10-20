@@ -7,7 +7,7 @@
     { id: 1, label: 'Home', icon: 'material-symbols:home-rounded', href: '/' },
     {
       id: 2,
-      label: 'Explore',
+      label: 'Search',
       icon: 'ph:magnifying-glass-fill',
       href: '/search',
     },

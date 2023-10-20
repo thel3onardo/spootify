@@ -71,10 +71,14 @@
   });
 </script>
 
+<svelte:head>
+  <title>Spootify - Home</title>
+</svelte:head>
+
 <div
   class="min-h-full bg-gradient-to-b from-[#780000]/20 to-gray-950 px-8 pt-24"
 >
-  <h1 class="mb-6 font-inter text-3xl font-bold text-white">
+  <h1 class="font-inter mb-6 text-3xl font-bold text-white">
     {greetingsMessage}
   </h1>
   <div
