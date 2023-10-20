@@ -9,12 +9,12 @@
 
 <a href="" class="w-full">
   <div
-    class="duration-250 group flex flex-col rounded-lg bg-gray-950 p-4 transition hover:bg-gray-900"
+    class="duration-250 hover:bg-gray-850 group flex flex-col rounded-lg bg-gray-900 p-4 transition"
   >
     <div class="relative h-[150px] w-[150px] overflow-hidden rounded-md">
       <img src={coverUrl} alt={coverAlt} class="h-full w-full object-cover" />
 
-      <div class="play-btn hidden transform-gpu group-hover:block">
+      <div class="hidden transform-gpu group-hover:block">
         <PlayButton class="absolute bottom-2 right-2 " size="1.8rem" />
       </div>
     </div>
