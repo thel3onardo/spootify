@@ -1,22 +1,19 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
+  import IconButton from './IconButton.svelte';
 
   export let trackId: number, size: string, favorite: boolean;
 
   const toggleFavorite = () => {
-    //TODO: this toggle should be handled here?
+    //TODO: proper implement this functionality making an API call
   };
 </script>
 
-<button
+<IconButton
   on:click={toggleFavorite}
+  {size}
+  icon={favorite ? 'mdi:cards-heart' : 'mdi:cards-heart-outline'}
+  tooltipLabel={favorite ? 'Remove from your library' : 'Save to your library'}
   class="{favorite
     ? 'text-primary'
     : 'text-gray-500 hover:text-white'} transition"
->
-  <Icon
-    icon={favorite ? 'mdi:cards-heart' : 'mdi:cards-heart-outline'}
-    width={size}
-    height={size}
-  />
-</button>
+></IconButton>
