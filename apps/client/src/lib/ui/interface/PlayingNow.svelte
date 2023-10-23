@@ -3,11 +3,10 @@
 
   import Icon from '@iconify/svelte';
   import CardArtistDetails from './CardArtistDetails.svelte';
-  import SkeletonLoader from '../SkeletonLoader.svelte';
+  import ImageSkeleton from '$lib/ui/components/ImageSkeleton.svelte';
 
-  let trackCoverLoaded = false;
   let albumName = 'Lowkey tech';
-  let trackCover =
+  let coverSrc =
     'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/22ee671f-2c0a-48dd-9c70-4ff5b5092538/dfmm32g-e1749540-d01f-40e0-934c-930c389a57d7.jpg/v1/fill/w_894,h_894,q_70,strp/anime_girl_made_by_nature_by_ratzbyrats_dfmm32g-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcLzIyZWU2NzFmLTJjMGEtNDhkZC05YzcwLTRmZjViNTA5MjUzOFwvZGZtbTMyZy1lMTc0OTU0MC1kMDFmLTQwZTAtOTM0Yy05MzBjMzg5YTU3ZDcuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.4XfuROd9iw67yBpHHHK3otVOaINFTyXznkERdEE1Brg';
   let trackName = 'Keep Going';
   let author = 'Stephan Jolk';
@@ -45,7 +44,7 @@
 
   // onMount(() => {
   //   setTimeout(() => {
-  //     trackCoverLoaded = true;
+  //     coverSrcLoaded = true;
   //   }, 500);
   // });
 </script>
@@ -74,25 +73,18 @@
   </div>
 
   <div class="flex flex-col">
-    <div class="relative w-full overflow-hidden rounded-lg">
-      <img
-        src={trackCover}
-        alt="track cover"
-        class="z-10 h-full w-full object-cover"
-        on:load={() => (trackCoverLoaded = true)}
-      />
-      {#if !trackCoverLoaded}
-        <SkeletonLoader width="100%" height="100%" class="top-0 z-20" />
-      {/if}
-    </div>
+    <ImageSkeleton
+      src={coverSrc}
+      alt="Testing stuff"
+      class="relative h-[300px] w-full overflow-hidden rounded-lg"
+    />
     <div class="flex items-center">
       <div class="my-4">
         <a href="/" class="hover:underline">
-          <h2 class="mb-2 font-inter text-2xl font-bold text-white">
+          <h2 class="font-inter mb-2 text-2xl font-bold text-white">
             {trackName}
           </h2>
         </a>
-
         <a href="#" class="hover:underline">
           <span class="font-manrope font-semibold text-gray-500">{author}</span>
         </a>

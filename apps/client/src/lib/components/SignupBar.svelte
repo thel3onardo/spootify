@@ -1,11 +1,11 @@
 <script>
-  import Button from './Button.svelte';
+  import Button from '../ui/components/button/Button.svelte';
 </script>
 
 <div
   class="flex w-full items-center justify-between bg-gradient-to-r from-pink-500 to-blue-500 px-4 py-3"
 >
-  <div class="select-none font-manrope">
+  <div class="font-manrope select-none">
     <p class="text-xs font-semibold uppercase tracking-wider">
       preview of spootify
     </p>

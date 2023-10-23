@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Button from '$lib/components/Button.svelte';
-  import FormInput from '$lib/components/FormInput.svelte';
+  import Button from '$lib/ui/components/button/Button.svelte';
+  import FormInput from '$lib/ui/components/form/FormInput.svelte';
 
   let password = '';
   let credential = '';
@@ -37,7 +37,7 @@
     </Button>
 
     <a href="/accounts/signup">
-      <span class="text-manrope font-xl text-white underline hover:text-primary"
+      <span class="text-manrope font-xl hover:text-primary text-white underline"
         >Forgot my password</span
       >
     </a>

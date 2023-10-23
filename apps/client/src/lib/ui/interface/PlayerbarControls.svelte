@@ -3,7 +3,7 @@
   import { createEventDispatcher } from 'svelte';
 
   import Icon from '@iconify/svelte';
-  import IconButton from '../IconButton.svelte';
+  import IconButton from '../components/button/IconButton.svelte';
 
   const dispatcher = createEventDispatcher();
   const {
@@ -65,7 +65,7 @@
   </div>
 
   <div
-    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-bold text-gray-500"
+    class="font-manrope mt-3 flex w-full max-w-[700px] items-center text-xs font-bold text-gray-500"
   >
     <span>{currentTime}</span>
     <span
@@ -75,7 +75,7 @@
       <span class="block h-[4px] w-full rounded bg-gray-500/40">
         <span
           use:melt={$range}
-          class="h-[4px] rounded bg-white group-hover:bg-primary"
+          class="group-hover:bg-primary h-[4px] rounded bg-white"
         />
       </span>
       <span

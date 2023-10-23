@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
-  import Button from '../Button.svelte';
+  import Button from '../components/button/Button.svelte';
   import { onMount } from 'svelte';
 
   let navEl: HTMLElement;
@@ -21,7 +21,7 @@
 
 <div
   bind:this={navEl}
-  class="sticky -top-1 z-20 flex w-full items-center justify-between px-6 py-2 transition duration-500"
+  class="sticky -top-1 z-20 flex w-full items-center justify-between px-6 py-2 transition duration-300"
   style="--bgColor: {bgColor}"
 >
   <div class="flex items-center gap-x-2 text-white">

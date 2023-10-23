@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PlayButton from '../PlayButton.svelte';
+  import PlayButton from '../../ui/components/button/PlayButton.svelte';
 
   export let coverUrl: string,
     coverAlt: string,

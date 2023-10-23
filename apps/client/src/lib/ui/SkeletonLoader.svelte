@@ -1,17 +1,4 @@
-<script lang="ts">
-  import { onMount } from 'svelte';
-
-  export let width: string, height: string;
-
-  onMount(() => {
-    console.log(width, height);
-  });
-</script>
-
-<div
-  style="width: {width}; height: {height}"
-  class="skeleton bg-gray-900 {$$props.class}"
-></div>
+<div class="skeleton h-full w-full bg-gray-900 {$$props.class}" />
 
 <style>
   @keyframes shimmer {
@@ -40,7 +27,7 @@
       rgba(51, 51, 51, 0.5) 60%,
       rgba(51, 51, 51, 0) 100%
     );
-    animation: shimmer 5s infinite;
+    animation: shimmer 2s infinite;
     content: '';
   }
 </style>

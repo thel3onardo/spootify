@@ -3,7 +3,7 @@
   import PlaylistItem from '$lib/components/home/PlaylistItem.svelte';
   import Sim from '$lib/components/home/Sim.svelte';
   import { HomeSections } from '$lib/data/home';
-  import Navbar from '$lib/components/layout/Navbar.svelte';
+  import Navbar from '$lib/ui/interface/Navbar.svelte';
 
   let currentColor = '';
   let currentTime = new Date().getHours();

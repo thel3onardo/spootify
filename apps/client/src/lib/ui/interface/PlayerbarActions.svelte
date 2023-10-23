@@ -1,7 +1,7 @@
 <script lang="ts">
   import { playingNowMenuVisible } from '$lib/stores/layout';
 
-  import IconButton from '../IconButton.svelte';
+  import IconButton from '../components/button/IconButton.svelte';
 
   const handleTogglePlayingNowMenu = () => {
     $playingNowMenuVisible = !$playingNowMenuVisible;

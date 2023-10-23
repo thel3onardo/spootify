@@ -1,8 +1,7 @@
 <script lang="ts">
   import GenreItem from '$lib/components/GenreItem.svelte';
-  import SkeletonLoader from '$lib/components/SkeletonLoader.svelte';
   import Sim from '$lib/components/home/Sim.svelte';
-  import Navbar from '$lib/components/layout/Navbar.svelte';
+  import Navbar from '$lib/ui/interface/Navbar.svelte';
   import Icon from '@iconify/svelte';
 
   const categories = [

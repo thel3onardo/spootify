@@ -2,9 +2,8 @@
   import { playingNowMenuVisible } from '$lib/stores/layout';
 
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
-  import Playerbar from '$lib/components/layout/Playerbar.svelte';
-  import Navbar from '$lib/components/layout/Navbar.svelte';
-  import PlayingNow from '$lib/components/layout/PlayingNow.svelte';
+  import Playerbar from '$lib/ui/interface/Playerbar.svelte';
+  import PlayingNow from '$lib/ui/interface/PlayingNow.svelte';
 </script>
 
 <div

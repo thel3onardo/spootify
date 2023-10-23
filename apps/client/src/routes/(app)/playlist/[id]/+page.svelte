@@ -3,13 +3,13 @@
   import { onMount } from 'svelte';
   import { FastAverageColor } from 'fast-average-color';
 
-  import PlayButton from '$lib/components/PlayButton.svelte';
+  import PlayButton from '$lib/ui/components/button/PlayButton.svelte';
   import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
   import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
   import TracksList from '$lib/components/collection/TracksList.svelte';
   import FilterBar from '$lib/components/IconSearchbar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
-  import Navbar from '$lib/components/layout/Navbar.svelte';
+  import Navbar from '$lib/ui/interface/Navbar.svelte';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;

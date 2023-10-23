@@ -1,7 +1,7 @@
 <script lang="ts">
   import PlayerbarControls from './PlayerbarControls.svelte';
   import PlayerbarActions from './PlayerbarActions.svelte';
-  import FavoriteIcon from '../FavoriteIcon.svelte';
+  import FavoriteButton from '../components/button/FavoriteButton.svelte';
 
   import { currentTrack } from '$lib/stores/track';
 
@@ -51,7 +51,7 @@
       <h3 class="mb-0.5 font-semibold">Hope</h3>
       <p class="text-xs font-medium text-white/70">Old sea bridge</p>
     </div>
-    <FavoriteIcon
+    <FavoriteButton
       favorite={$currentTrack.favorite}
       trackId={$currentTrack.id}
       size="1.2rem"

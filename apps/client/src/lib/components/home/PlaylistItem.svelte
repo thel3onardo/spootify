@@ -1,5 +1,5 @@
 <script lang="ts">
-  import PlayButton from '../PlayButton.svelte';
+  import PlayButton from '../../ui/components/button/PlayButton.svelte';
   import { fade } from 'svelte/transition';
 
   export let name: string;
