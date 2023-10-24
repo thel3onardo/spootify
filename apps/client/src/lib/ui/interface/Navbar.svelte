@@ -1,7 +1,6 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
-  import Button from '../components/button/Button.svelte';
   import { onMount } from 'svelte';
+  import Button from '../components/button/Button.svelte';
   import IconButton from '../components/button/IconButton.svelte';
 
   let navEl: HTMLElement;
@@ -43,9 +42,9 @@
     <slot name="content" />
   </div>
   {#if loggedIn}
-    <div class="flex">
+    <div class="font-inter flex">
       <Button href="/register" rounded="md" variant="dark" class="px-7 py-3">
-        <span class="font-semibold text-gray-500">Sign up</span>
+        <span class="font-semibold text-white">Sign up</span>
       </Button>
       <Button href="/login" rounded="3xl" variant="light" class="px-7 py-3">
         <span class="font-semibold">Log in</span>

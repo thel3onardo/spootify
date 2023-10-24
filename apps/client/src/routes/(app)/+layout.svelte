@@ -12,9 +12,9 @@
   <div class="grid grid-cols-[min-content_1fr] gap-x-2">
     <Sidebar />
     <div
-      class="relative grid h-full grid-cols-[1fr_min-content] grid-rows-1 gap-x-2 overflow-x-hidden rounded-lg"
+      class="relative grid h-full grid-cols-[1fr_min-content] grid-rows-1 overflow-x-hidden"
     >
-      <div class="relative overflow-y-scroll">
+      <div class="relative overflow-y-scroll rounded-lg">
         <slot />
       </div>
 
