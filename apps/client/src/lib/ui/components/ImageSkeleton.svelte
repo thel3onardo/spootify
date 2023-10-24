@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import SkeletonLoader from '../SkeletonLoader.svelte';
+  import SkeletonLoader from './SkeletonLoader.svelte';
 
   export let src: string, alt: string;
 
@@ -13,8 +13,6 @@
 
     img.src = src;
     loading = true;
-
-    console.log({ loading });
 
     img.onload = () => {
       loading = false;

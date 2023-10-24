@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { fly } from 'svelte/transition';
-  import { createDropdownMenu, melt } from '@melt-ui/svelte';
 
   import Button from '../components/button/Button.svelte';
   import IconButton from '../components/button/IconButton.svelte';
   import DropdownMenu from '$lib/ui/components/DropdownMenu.svelte';
+
+  import { NAVBAR_ICONS_SIZE } from '$lib/constants';
 
   let navEl: HTMLElement;
   let loggedIn = false;
@@ -16,10 +16,6 @@
     { id: 4, label: 'Logout' },
   ];
 
-  const {
-    elements: { menu, item, trigger },
-    states: { open: profileMenuOpen },
-  } = createDropdownMenu({ positioning: { placement: 'bottom-end' } });
   const observer = new IntersectionObserver(
     ([e]) =>
       e.target.classList.toggle(`bg-[${bgColor}]`, e.intersectionRatio < 1),
@@ -41,15 +37,15 @@
   <div class="flex items-center gap-x-3 text-white">
     <!-- TODO: implement functionality to those buttons below -->
     <IconButton
-      icon="material-symbols:arrow-back-ios-new-rounded"
-      size="1.15rem"
-      class="rounded-full bg-black p-2"
+      icon="ic:round-arrow-back-ios"
+      size={NAVBAR_ICONS_SIZE.ARROWS}
+      class="rounded-full bg-gray-950 p-2"
       tooltipLabel="Go back"
     />
     <IconButton
-      icon="material-symbols:arrow-forward-ios-rounded"
-      size="1.15rem"
-      class="rounded-full bg-black p-2"
+      icon="ic:round-arrow-forward-ios"
+      size={NAVBAR_ICONS_SIZE.ARROWS}
+      class="rounded-full bg-gray-950 p-2"
       tooltipLabel="Go forward"
     />
 
@@ -67,20 +63,20 @@
     {:else}
       <IconButton
         icon="ph:bell"
-        size="1.35rem"
+        size={NAVBAR_ICONS_SIZE.OTHER}
         tooltipLabel="Notifications"
         class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
       />
       <IconButton
         icon="ion:people-outline"
-        size="1.35rem"
+        size={NAVBAR_ICONS_SIZE.OTHER}
         tooltipLabel="Friend activity"
         class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
       />
       <DropdownMenu class="min-w-[150px] rounded bg-gray-800 p-1 text-white">
         <IconButton
           icon="material-symbols:person-2-outline"
-          size="1.35rem"
+          size={NAVBAR_ICONS_SIZE.OTHER}
           tooltipLabel="Leonardo"
           class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
           slot="trigger"
@@ -89,7 +85,6 @@
         <ul slot="options" class="font-manrope text-sm font-medium">
           {#each profileMenuOptions as option, index}
             <li
-              use:melt={$item}
               class="p-3 font-semibold hover:bg-gray-500/10 {index ===
               profileMenuOptions.length - 1
                 ? 'border-t border-gray-500/30'
