@@ -6,6 +6,7 @@
   export let coverUrl: string;
   export let coverAlt: string;
 
+  //TODO: implement this logic using pure CSS
   let playBtnVisible = false;
 
   const togglePlayButtonVisible = () => {

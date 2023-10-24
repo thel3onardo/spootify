@@ -1,6 +1,6 @@
 <script lang="ts">
   import GenreItem from '$lib/components/GenreItem.svelte';
-  import Sim from '$lib/components/home/Sim.svelte';
+  import MediaCard from '$lib/ui/components/MediaCard.svelte';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
   import Icon from '@iconify/svelte';
 
@@ -157,6 +157,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -164,6 +165,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -171,6 +173,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -178,6 +181,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -185,6 +189,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -192,6 +197,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -199,6 +205,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -206,6 +213,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
     {
       name: 'Sad musics',
@@ -213,6 +221,7 @@
       coverUrl:
         'https://i.etsystatic.com/39894181/r/il/402563/4851877899/il_fullxfull.4851877899_87cc.jpg',
       coverAlt: 'yeah',
+      href: '/',
     },
   ];
 
@@ -247,12 +256,14 @@
     <section class="overflow-hidden">
       <h1 class="font-inter text-2xl font-bold">Recent searches</h1>
       <div class="my-4 flex gap-x-6 overflow-hidden">
-        {#each recentSearches as item}
-          <Sim
-            name={item.name}
-            description={item.description}
-            coverUrl={item.coverUrl}
-            coverAlt={item.coverAlt}
+        {#each recentSearches as { name, description, coverUrl, coverAlt, href }}
+          <MediaCard
+            {name}
+            {description}
+            {coverUrl}
+            {coverAlt}
+            {href}
+            showDeleteBtn
           />
         {/each}
       </div>

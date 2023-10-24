@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import PlaylistItem from '$lib/components/home/PlaylistItem.svelte';
-  import Sim from '$lib/components/home/Sim.svelte';
+  import MediaCard from '$lib/ui/components/MediaCard.svelte';
   import { HomeSections } from '$lib/data/home';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
 
@@ -111,27 +111,30 @@
         </div>
         <div class="flex gap-x-4">
           <div>
-            <Sim
+            <MediaCard
               name="Chill mix"
               description="Artist"
               coverAlt="s"
               coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+              href="/"
             />
           </div>
           <div>
-            <Sim
+            <MediaCard
               name="Chill mix"
               description="Artist"
               coverAlt="s"
               coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+              href="/"
             />
           </div>
           <div>
-            <Sim
+            <MediaCard
               name="Chill mix"
               description="Artist"
               coverAlt="s"
               coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+              href="/"
             />
           </div>
         </div>
