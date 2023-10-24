@@ -20,16 +20,10 @@
     on:click={emitClick}
     class="{hoverBg
       ? 'rounded-full p-2 transition hover:bg-gray-100/20'
-      : ''} flex select-none items-center"
+      : ''} flex select-none items-center {$$props.class}"
   >
     <!-- TODO: draggable="false" seems not to be working here -->
-    <Icon
-      {icon}
-      width={size}
-      height={size}
-      class={$$props.class}
-      draggable="false"
-    />
+    <Icon {icon} width={size} height={size} draggable="false" />
     <slot />
   </button>
 </Tooltip>

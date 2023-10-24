@@ -77,10 +77,10 @@
 </svelte:head>
 
 <div
-  class="flex min-h-full flex-col bg-gradient-to-b from-[#780000]/20 to-gray-950"
+  class="flex min-h-full flex-col bg-gradient-to-b from-[#db2777]/20 to-gray-950 to-30% px-6"
 >
   <Navbar />
-  <div class="px-8 pt-8">
+  <div class="pt-2">
     <header>
       <h1 class="font-inter mb-6 text-3xl font-bold text-white">
         {greetingsMessage}
