@@ -7,6 +7,7 @@
   export let name: string;
   export let coverUrl: string;
   export let coverAlt: string;
+  export let href: string = '/';
 
   //TODO: implement this logic using pure CSS
   let playBtnVisible = false;
@@ -30,7 +31,8 @@
   });
 </script>
 
-<div
+<a
+  {href}
   class="flex h-[80px] overflow-hidden rounded-md bg-white/10 transition hover:bg-white/20"
   on:mouseenter={togglePlayButtonVisible}
   on:mouseleave={togglePlayButtonVisible}
@@ -48,8 +50,8 @@
 
     {#if playBtnVisible}
       <div in:fade={{ duration: 250 }} out:fade={{ duration: 100 }}>
-        <PlayButton size="1.6rem" />
+        <PlayButton size="1.6rem" preventDefault />
       </div>
     {/if}
   </div>
-</div>
+</a>

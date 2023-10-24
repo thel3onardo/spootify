@@ -4,11 +4,12 @@
   import MediaCard from '$lib/ui/components/MediaCard.svelte';
   import { HomeSections } from '$lib/data/home';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
+  import { user } from '$lib/stores/user';
 
   let bgColor = '';
   let defaultBgColor = '#9f1239';
   let currentTime = new Date().getHours();
-  let greetingsMessage = '';
+  let greetingMessage = '';
 
   let latestAlbums = [
     {
@@ -51,15 +52,16 @@
   let latestAlbumsColors: string[] = [];
 
   const getCurrentTime = () => {
+    //TODO: implement this correctly, using nationalization
     if (currentTime > 0 && currentTime <= 12) {
-      greetingsMessage = 'Bom dia';
+      greetingMessage = 'Bom dia';
     }
     if (currentTime >= 12 && currentTime <= 18) {
-      greetingsMessage = 'Boa tarde';
+      greetingMessage = `Boa tarde, ${$user.name}`;
     }
 
     if (currentTime >= 18 && currentTime <= 24) {
-      greetingsMessage = 'Boa noite';
+      greetingMessage = 'Boa noite';
     }
   };
 
@@ -90,7 +92,7 @@
   <div class="px-6 pt-2">
     <header>
       <h1 class="font-inter mb-6 text-3xl font-bold text-white">
-        {greetingsMessage}
+        {greetingMessage}
       </h1>
       <div
         class="grid max-w-[1400px] grid-cols-1 grid-rows-2 gap-4 xl:grid-cols-2 2xl:grid-cols-3"
