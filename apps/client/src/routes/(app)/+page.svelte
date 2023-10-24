@@ -5,7 +5,8 @@
   import { HomeSections } from '$lib/data/home';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
 
-  let currentColor = '';
+  let bgColor = '';
+  let defaultBgColor = '#9f1239';
   let currentTime = new Date().getHours();
   let greetingsMessage = '';
 
@@ -13,46 +14,41 @@
     {
       id: 1,
       name: 'What',
-      coverImage:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkYblOXqWFZFm4tHwTgwXm3zJ_pHeugSfHEg&usqp=CAU',
+      coverImage: '/anime-girl.jpg',
       coverAlt: '',
     },
     {
       id: 2,
       name: 'What',
-      coverImage:
-        'https://cdn.oneesports.vn/cdn-data/sites/4/2023/03/Anime_BlueLock_YorichiIsagi_2-1024x576-1.jpg',
+      coverImage: '/anime-girl.jpeg',
       coverAlt: '',
     },
     {
       id: 3,
       name: 'What',
-      coverImage:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkYblOXqWFZFm4tHwTgwXm3zJ_pHeugSfHEg&usqp=CAU',
+      coverImage: '/anime-girl.jpg',
       coverAlt: '',
     },
     {
       id: 1,
       name: 'What',
-      coverImage:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkYblOXqWFZFm4tHwTgwXm3zJ_pHeugSfHEg&usqp=CAU',
+      coverImage: '/anime-girl.jpg',
       coverAlt: '',
     },
     {
       id: 2,
       name: 'What',
-      coverImage:
-        'https://cdn.oneesports.vn/cdn-data/sites/4/2023/03/Anime_BlueLock_YorichiIsagi_2-1024x576-1.jpg',
+      coverImage: '/anime-girl.jpeg',
       coverAlt: '',
     },
     {
       id: 3,
       name: 'What',
-      coverImage:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkYblOXqWFZFm4tHwTgwXm3zJ_pHeugSfHEg&usqp=CAU',
+      coverImage: '/anime-girl.jpg',
       coverAlt: '',
     },
   ];
+  let latestAlbumsColors: string[] = [];
 
   const getCurrentTime = () => {
     if (currentTime > 0 && currentTime <= 12) {
@@ -67,8 +63,17 @@
     }
   };
 
+  const setBgColor = (color: string) => {
+    bgColor = color;
+  };
+
+  const setColor = (colorHex: any, id: number) => {
+    latestAlbumsColors[id] = colorHex;
+  };
+
   onMount(() => {
     getCurrentTime();
+    setBgColor(defaultBgColor);
   });
 </script>
 
@@ -76,11 +81,13 @@
   <title>Spootify - Home</title>
 </svelte:head>
 
-<div
-  class="flex min-h-full flex-col bg-gradient-to-b from-[#db2777]/20 to-gray-950 to-30% px-6"
->
+<div class="isolate flex min-h-full flex-col bg-gray-950">
   <Navbar />
-  <div class="pt-2">
+  <div
+    style="--color: {bgColor}"
+    class="gradient absolute top-0 -z-10 h-[400px] w-full transition-all duration-700"
+  />
+  <div class="px-6 pt-2">
     <header>
       <h1 class="font-inter mb-6 text-3xl font-bold text-white">
         {greetingsMessage}
@@ -89,11 +96,17 @@
         class="grid max-w-[1400px] grid-cols-1 grid-rows-2 gap-4 xl:grid-cols-2 2xl:grid-cols-3"
       >
         {#each latestAlbums as album}
-          <PlaylistItem
-            name={album.name}
-            coverUrl={album.coverImage}
-            coverAlt={album.coverAlt}
-          />
+          <div
+            on:mouseenter={() => setBgColor(latestAlbumsColors[album.id])}
+            on:mouseleave={() => setBgColor(defaultBgColor)}
+          >
+            <PlaylistItem
+              name={album.name}
+              coverUrl={album.coverImage}
+              coverAlt={album.coverAlt}
+              on:genColorReady={(e) => setColor(e.detail, album.id)}
+            />
+          </div>
         {/each}
       </div>
     </header>
@@ -142,3 +155,10 @@
     {/each}
   </div>
 </div>
+
+<style>
+  .gradient {
+    background-color: var(--color);
+    background-image: linear-gradient(rgb(18, 18, 18, 0.4) 0%, #121212 95%);
+  }
+</style>

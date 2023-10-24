@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { FastAverageColor } from 'fast-average-color';
   import PlayButton from '../../ui/components/button/PlayButton.svelte';
   import { fade } from 'svelte/transition';
+  import { createEventDispatcher, onMount } from 'svelte';
 
   export let name: string;
   export let coverUrl: string;
@@ -8,10 +10,24 @@
 
   //TODO: implement this logic using pure CSS
   let playBtnVisible = false;
+  let coverImage: HTMLImageElement;
 
+  const dispatcher = createEventDispatcher();
   const togglePlayButtonVisible = () => {
     playBtnVisible = !playBtnVisible;
   };
+  const genCoverAverageColor = async () => {
+    const fac = new FastAverageColor();
+    const color = await fac.getColorAsync(coverImage, {
+      width: 200,
+      height: 200,
+    });
+    dispatcher('genColorReady', color.hex);
+  };
+
+  onMount(() => {
+    genCoverAverageColor();
+  });
 </script>
 
 <div
@@ -20,7 +36,12 @@
   on:mouseleave={togglePlayButtonVisible}
 >
   <div class="h-full w-[100px] shadow-lg">
-    <img src={coverUrl} alt={coverAlt} class="h-full w-full object-cover" />
+    <img
+      bind:this={coverImage}
+      src={coverUrl}
+      alt={coverAlt}
+      class="h-full w-full object-cover"
+    />
   </div>
   <div class="flex w-full items-center justify-between p-4 py-5">
     <h3 class="font-inter text-lg font-semibold text-white">{name}</h3>

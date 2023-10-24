@@ -20,9 +20,9 @@
   export let bgColor = '#121212';
 </script>
 
-<div
+<nav
   bind:this={navEl}
-  class="sticky -top-1 z-20 flex w-full items-center justify-between py-2 transition duration-300"
+  class="sticky -top-1 z-20 flex w-full items-center justify-between px-6 py-2 transition duration-300"
   style="--bgColor: {bgColor}"
 >
   <div class="flex items-center gap-x-3 text-white">
@@ -52,4 +52,4 @@
       </Button>
     </div>
   {/if}
-</div>
+</nav>
