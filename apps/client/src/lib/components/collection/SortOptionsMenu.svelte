@@ -9,7 +9,7 @@
   }
 
   const {
-    elements: { menu, item, trigger, arrow },
+    elements: { menu, item, trigger },
   } = createDropdownMenu({ positioning: { placement: 'right-start' } });
 
   let sortOptions = [
@@ -38,7 +38,7 @@
 <div
   use:melt={$menu}
   transition:fade
-  class="right-0 w-[200px] rounded bg-gray-800 p-2 font-manrope text-white"
+  class="font-manrope right-0 w-[200px] rounded bg-gray-800 p-2 text-white"
 >
   <div class="my-2 px-2">
     <span class="select-none text-xs font-bold text-gray-500">Sort by</span>
