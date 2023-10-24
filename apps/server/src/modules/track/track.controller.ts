@@ -20,6 +20,7 @@ export async function createTrackHandler(
   reply: FastifyReply,
 ) {
   const track = await createTrack(reply, request.body);
+
   reply.code(201).send({ track });
 }
 
