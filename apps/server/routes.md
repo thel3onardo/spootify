@@ -4,3 +4,6 @@
 
 - Info about the current track
 - Some infos about the artist
+
+//auth and artist users only
+/api/collection/create

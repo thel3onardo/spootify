@@ -1,15 +1,17 @@
 import fastify from "fastify";
 import fastifyEnv from "@fastify/env";
+import fastifyJwt from "@fastify/jwt";
 
 import prismaPlugin from "./plugins/prisma";
 import envConfig from "./config/env";
 
 import trackRoutes from "./modules/track/track.route";
 import authRoutes from "./modules/auth/auth.route";
+import collectionRoutes from "./modules/collection/collection.route";
 
 import { trackSchemas } from "./modules/track/track.schema";
 import { authSchemas } from "./modules/auth/auth.schema";
-import fastifyJwt from "@fastify/jwt";
+import { collectionSchemas } from "./modules/collection/collection.schema";
 
 const server = fastify({
   logger: {
@@ -20,7 +22,12 @@ const server = fastify({
 });
 
 async function main() {
-  for (const schema of [...trackSchemas, ...authSchemas]) {
+  //TODO: abstract this away, please
+  for (const schema of [
+    ...trackSchemas,
+    ...authSchemas,
+    ...collectionSchemas,
+  ]) {
     server.addSchema(schema);
   }
 
@@ -39,6 +46,7 @@ async function main() {
     (app, _, done) => {
       trackRoutes(app);
       authRoutes(app);
+      collectionRoutes(app);
 
       done();
     },
