@@ -60,6 +60,7 @@ export const loginUserHandler = async (
     return rep.code(400).send({ message: "Wrong password" });
   }
 
-  //TODO: return jwt token
-  rep.code(200).send({ user: { email: user.email, id: user.id } });
+  const token = await rep.jwtSign({ userId: user.id });
+
+  rep.code(200).send({ token });
 };

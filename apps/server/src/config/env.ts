@@ -2,7 +2,7 @@ declare module "fastify" {
   interface FastifyInstance {
     config: {
       PORT: number;
-      JWT_TOKEN: string;
+      JWT_SECRET: string;
     };
   }
 }

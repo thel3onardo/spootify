@@ -6,8 +6,10 @@ import envConfig from "./config/env";
 
 import trackRoutes from "./modules/track/track.route";
 import authRoutes from "./modules/auth/auth.route";
+
 import { trackSchemas } from "./modules/track/track.schema";
 import { authSchemas } from "./modules/auth/auth.schema";
+import fastifyJwt from "@fastify/jwt";
 
 const server = fastify({
   logger: {
@@ -25,6 +27,12 @@ async function main() {
   //plugins
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
+  server.register(fastifyJwt, {
+    secret: server.config.JWT_SECRET,
+    sign: {
+      expiresIn: "10m",
+    },
+  });
 
   //routes
   server.register(
