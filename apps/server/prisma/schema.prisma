@@ -16,9 +16,6 @@ model User {
   name  String?
   tracks Track[]
 
-  authSession Session[]
-  key Key[]
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -48,21 +45,4 @@ model Track {
   updatedAt DateTime @updatedAt
 
   @@map("tracks")
-}
-
-model Session {
-  id String @id @unique
-  userId Int
-  activeExpires BigInt
-  idleExpires BigInt
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model Key {
-  id String @id @unique
-  hashedPassword String?
-  userId Int
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
