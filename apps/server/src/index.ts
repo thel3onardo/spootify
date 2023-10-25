@@ -1,6 +1,8 @@
 import fastify from "fastify";
+import fastifyEnv from "@fastify/env";
+
 import prismaPlugin from "./plugins/prisma";
-import "dotenv/config";
+import envConfig from "./config/env";
 
 import trackRoutes from "./modules/track/track.route";
 import authRoutes from "./modules/auth/auth.route";
@@ -21,7 +23,8 @@ async function main() {
   }
 
   //plugins
-  server.register(prismaPlugin);
+  await server.register(prismaPlugin);
+  await server.register(fastifyEnv, envConfig);
 
   //routes
   server.register(
@@ -34,7 +37,7 @@ async function main() {
     { prefix: "/api" },
   );
 
-  server.listen({ port: Number(process.env.PORT) || 4000 }, async (err) => {
+  server.listen({ port: server.config.PORT || 4000 }, async (err) => {
     if (err) {
       server.log.error(err);
       process.exit(1);
