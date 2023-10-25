@@ -16,7 +16,10 @@ const getTrackResponseSchema = z.object({
 export type CreateTrackInput = z.infer<typeof createTrackSchema>;
 export type GetTrackResponse = z.infer<typeof getTrackResponseSchema>;
 
-export const { schemas: trackSchemas, $ref } = buildJsonSchemas({
-  createTrackSchema,
-  getTrackResponseSchema,
-});
+export const { schemas: trackSchemas, $ref } = buildJsonSchemas(
+  {
+    createTrackSchema,
+    getTrackResponseSchema,
+  },
+  { $id: "trackSchema" },
+);

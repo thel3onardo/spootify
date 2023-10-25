@@ -1,8 +1,15 @@
 import fastify from "fastify";
+import fastifyEnv from "@fastify/env";
+
 import prismaPlugin from "./plugins/prisma";
+import envConfig from "./config/env";
+
 import trackRoutes from "./modules/track/track.route";
-import "dotenv/config";
+import authRoutes from "./modules/auth/auth.route";
+
 import { trackSchemas } from "./modules/track/track.schema";
+import { authSchemas } from "./modules/auth/auth.schema";
+import fastifyJwt from "@fastify/jwt";
 
 const server = fastify({
   logger: {
@@ -13,24 +20,32 @@ const server = fastify({
 });
 
 async function main() {
-  for (const schema of [...trackSchemas]) {
+  for (const schema of [...trackSchemas, ...authSchemas]) {
     server.addSchema(schema);
   }
 
   //plugins
-  server.register(prismaPlugin);
+  await server.register(prismaPlugin);
+  await server.register(fastifyEnv, envConfig);
+  server.register(fastifyJwt, {
+    secret: server.config.JWT_SECRET,
+    sign: {
+      expiresIn: "10m",
+    },
+  });
 
   //routes
   server.register(
     (app, _, done) => {
       trackRoutes(app);
+      authRoutes(app);
 
       done();
     },
     { prefix: "/api" },
   );
 
-  server.listen({ port: Number(process.env.PORT) || 4000 }, async (err) => {
+  server.listen({ port: server.config.PORT || 4000 }, async (err) => {
     if (err) {
       server.log.error(err);
       process.exit(1);
