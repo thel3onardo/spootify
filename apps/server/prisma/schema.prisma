@@ -34,9 +34,9 @@ model Collection {
   id String @id @default(cuid())
   name String
   coverImage String @map("cover_img")
-  bio String?
+  description String?
 
-  tracks Track[]
+  tracks TrackOnCollection[]
 
   author User @relation(fields: [authorId], references: [id])
   authorId Int @map("author_id")
@@ -45,13 +45,11 @@ model Collection {
 }
 
 model Track {
-  id String @id @default(cuid())
+  id Int @id @default(autoincrement()) 
   name String
-  
   coverImage String @map("cover_img")
   
-  collection Collection @relation(fields: [collectionId], references: [id])
-  collectionId String @map("collection_id")
+  collections TrackOnCollection[]
 
   author User @relation(fields: [authorId], references: [id])
   authorId Int @map("author_id")
@@ -60,4 +58,15 @@ model Track {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("tracks")
+}
+
+model TrackOnCollection {
+  track Track @relation(fields: [trackId], references: [id])
+  collection Collection @relation(fields: [collectionId], references: [id])
+  trackId Int @map("track_id")
+  collectionId String @map("collection_id")
+  addedAt DateTime @default(now()) @map("added_at")
+
+  @@id([trackId, collectionId])
+  @@map("track_on_collection")
 }

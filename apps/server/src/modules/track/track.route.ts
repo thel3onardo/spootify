@@ -1,21 +1,25 @@
 import { FastifyInstance } from "fastify";
 import {
   getTrackHandler,
-  createTrackHandler,
+  createTrack,
   deleteTrackHandler,
+  addTrackToCollectionById,
 } from "./track.controller";
 import { $ref } from "./track.schema";
 
 async function trackRoutes(server: FastifyInstance) {
   server.post(
-    "/track/create",
+    "/track",
     { schema: { body: $ref("createTrackSchema") } },
-    createTrackHandler,
+    createTrack,
   );
-
-  server.get("/track/:uuid", getTrackHandler);
-  server.get("/track", getTrackHandler);
+  server.get("/track/:id", getTrackHandler);
   server.delete("/track/:id", deleteTrackHandler);
+  server.post(
+    "/track/collection/:collectionId",
+    { schema: { body: $ref("addTrackToCollectionSchema") } },
+    addTrackToCollectionById,
+  );
 }
 
 export default trackRoutes;

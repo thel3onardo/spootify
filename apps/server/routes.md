@@ -6,4 +6,7 @@
 - Some infos about the artist
 
 //auth and artist users only
-/api/collection/create
+POST /api/collection/create
+GET /api/collection/:cuid
+DELETE /api/collection/:cuid
+PATCH /api/collection/:cuid
