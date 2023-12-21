@@ -11,16 +11,16 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  passwordHash String @map("password_hash")
-  name  String?
+  id           Int     @id @default(autoincrement())
+  email        String  @unique
+  passwordHash String  @map("password_hash")
+  name         String?
 
-  coverImage String? @map("cover_img")
+  coverImage   String? @map("cover_img")
   profileImage String? @map("profile_img")
 
   collections Collection[]
-  tracks Track[]
+  tracks      Track[]
 
   artist Boolean
 
@@ -31,28 +31,29 @@ model User {
 }
 
 model Collection {
-  id String @id @default(cuid())
-  name String
-  coverImage String @map("cover_img")
+  id          String  @id @default(cuid())
+  name        String
+  coverImage  String  @map("cover_img")
   description String?
 
   tracks TrackOnCollection[]
 
-  author User @relation(fields: [authorId], references: [id])
-  authorId Int @map("author_id")
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int  @map("author_id")
 
   @@map("collections")
 }
 
 model Track {
-  id Int @id @default(autoincrement()) 
-  name String
+  id         Int    @id @default(autoincrement())
+  name       String
   coverImage String @map("cover_img")
-  
+  audioUrl   String @map("audio_url")
+
   collections TrackOnCollection[]
 
-  author User @relation(fields: [authorId], references: [id])
-  authorId Int @map("author_id")
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int  @map("author_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -61,11 +62,11 @@ model Track {
 }
 
 model TrackOnCollection {
-  track Track @relation(fields: [trackId], references: [id])
-  collection Collection @relation(fields: [collectionId], references: [id])
-  trackId Int @map("track_id")
-  collectionId String @map("collection_id")
-  addedAt DateTime @default(now()) @map("added_at")
+  track        Track      @relation(fields: [trackId], references: [id])
+  collection   Collection @relation(fields: [collectionId], references: [id])
+  trackId      Int        @map("track_id")
+  collectionId String     @map("collection_id")
+  addedAt      DateTime   @default(now()) @map("added_at")
 
   @@id([trackId, collectionId])
   @@map("track_on_collection")

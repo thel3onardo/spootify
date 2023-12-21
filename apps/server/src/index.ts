@@ -3,6 +3,7 @@ import fastifyEnv from "@fastify/env";
 import fastifyJwt from "@fastify/jwt";
 
 import prismaPlugin from "./plugins/prisma";
+import multipart from "@fastify/multipart";
 import envConfig from "./config/env";
 
 import trackRoutes from "./modules/track/track.route";
@@ -34,6 +35,7 @@ async function main() {
   //plugins
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
+  server.register(multipart, { attachFieldsToBody: "keyValues" });
   server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,
     sign: {

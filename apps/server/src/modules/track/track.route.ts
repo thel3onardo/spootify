@@ -4,6 +4,7 @@ import {
   createTrack,
   deleteTrackHandler,
   addTrackToCollectionById,
+  testStuff,
 } from "./track.controller";
 import { $ref } from "./track.schema";
 
@@ -20,6 +21,13 @@ async function trackRoutes(server: FastifyInstance) {
     { schema: { body: $ref("addTrackToCollectionSchema") } },
     addTrackToCollectionById,
   );
+
+  // server.delete(
+  //   "/track/collection/:collectionId",
+  //   removeTrackFromCollectionById,
+  // );
+
+  server.get("/track/test", testStuff);
 }
 
 export default trackRoutes;

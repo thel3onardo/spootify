@@ -5,6 +5,7 @@ import {
   GetTrackResponse,
 } from "./track.schema";
 import { Prisma } from "@prisma/client";
+import { Client, Storage } from "node-appwrite";
 
 export async function getTrackHandler(
   request: FastifyRequest<{ Params: { id: number }; Body: GetTrackResponse }>,
@@ -20,15 +21,56 @@ export async function createTrack(
   req: FastifyRequest<{ Body: CreateTrackInput }>,
   rep: FastifyReply,
 ) {
+  // const bucketID = "658337af15a76d0214a2";
+  // const projectID = "658336c3b2210d7d3669";
+
+  // const client = new Client()
+  //   .setEndpoint("https://cloud.appwrite.io/v1")
+  //   .setProject(projectID);
+
+  // const storage = new Storage(client);
+  // const file = await storage.createFile(
+  //   bucketID,
+  //   ID.unique(),
+  //   InputFile.fromBuffer(req.body.coverImageFile, "cover"),
+  // );
+  // const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketID}/files/${file.$id}/view?project=${projectID}`;
+
+  const imageUrl =
+    "https://cloud.appwrite.io/v1/storage/buckets/658337af15a76d0214a2/files/65835baf48e08cc11998/view?project=658336c3b2210d7d3669&mode=admin";
+  const audioUrl =
+    "https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin";
+
   try {
-    const track = await rep.server.prisma.track.create({
-      data: req.body,
+    await rep.server.prisma.track.create({
+      data: {
+        coverImage: imageUrl,
+        audioUrl,
+        name: req.body.name,
+        authorId: 1,
+      },
     });
 
-    rep.status(201).send({ message: "Track created successfully" });
-  } catch (error) {
-    rep.status(500).send({ error });
+    rep.status(201).send({ message: "New track successfully created!" });
+  } catch (err) {
+    req.log.error(err);
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2003") {
+        return rep
+          .status(401)
+          .send({ error: "There is no user with the userID value provided." });
+      }
+
+      return rep.status(401).send({ error: err.message });
+    }
+
+    rep.status(500).send({ error: err });
   }
+
+  rep.status(200).send({
+    body: imageUrl,
+  });
 }
 
 export async function deleteTrackHandler(
@@ -37,6 +79,21 @@ export async function deleteTrackHandler(
 ) {
   // const { id } = request.params;
   // reply.code(200).send({ id });
+}
+
+export async function testStuff(req: FastifyRequest, rep: FastifyReply) {
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject("658336c3b2210d7d3669");
+  const storage = new Storage(client);
+  const preview = await storage.getFilePreview(
+    "658337af15a76d0214a2",
+    "2321",
+    200,
+    200,
+  );
+
+  rep.status(200).send({ preview });
 }
 
 export async function addTrackToCollectionById(
@@ -56,7 +113,6 @@ export async function addTrackToCollectionById(
         collectionId,
       },
     });
-
     rep
       .status(201)
       .send({ status: "success", message: "Song added to collection" });
@@ -76,3 +132,21 @@ export async function addTrackToCollectionById(
 
   rep.status(200).send({ status: "success", collectionId });
 }
+
+// export async function removeTrackFromCollectionById(
+//   req: FastifyRequest<{
+//     Params: { collectionId: string };
+//     Body: { trackId: number };
+//   }>,
+//   rep: FastifyReply,
+// ) {
+//   const { collectionId } = req.params;
+//   const { trackId } = req.body;
+
+//   await rep.server.prisma.trackOnCollection.delete({
+//     where: {
+//       collectionId,
+//       trackId,
+//     },
+//   });
+// }

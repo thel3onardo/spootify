@@ -91,7 +91,7 @@
   />
   <div class="px-6 pt-2">
     <header>
-      <h1 class="font-inter mb-6 text-3xl font-bold text-white">
+      <h1 class="mb-6 font-inter text-3xl font-bold text-white">
         {greetingMessage}
       </h1>
       <div

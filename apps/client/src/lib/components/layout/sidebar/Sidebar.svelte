@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+
   import Icon from '@iconify/svelte';
   import SidebarMyLibrary from './SidebarMyLibrary.svelte';
 
