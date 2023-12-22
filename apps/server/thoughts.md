@@ -14,4 +14,8 @@ _/api/user/collections_
 _/api/user/collections?favorites=true&privates=false_
 _/api/user/collections_ -> returns all users playlists, including private and public ones
 
-I will have another table for favorite collections?
+A collection can cover:
+
+- Playlist
+- Liked Songs
+- Albums

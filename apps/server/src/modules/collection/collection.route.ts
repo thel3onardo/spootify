@@ -14,7 +14,7 @@ function collectionRoutes(server: FastifyInstance) {
     updateCollectionById,
   );
   server.post(
-    "/collection/new",
+    "/collection",
     { schema: { body: $ref("createCollectionSchema") } },
     createCollection,
   );
