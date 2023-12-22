@@ -4,6 +4,12 @@ A collection can have more than one contributor. Should I classify all of them a
 
     Being a "contributor" grants the permission to make cruds of tracks inside the collection
 
+A collection can cover:
+
+- Playlist
+- Liked Songs
+- Albums
+
 ### User
 
 An endpoint for recovering the user's playlists created should exist. Example:
@@ -13,9 +19,3 @@ _/api/user/collections_
 
 _/api/user/collections?favorites=true&privates=false_
 _/api/user/collections_ -> returns all users playlists, including private and public ones
-
-A collection can cover:
-
-- Playlist
-- Liked Songs
-- Albums

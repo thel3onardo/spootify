@@ -1,7 +1,9 @@
 import { FastifyInstance } from "fastify";
 import {
+  addTrackToCollection,
   createCollection,
   getColletionById,
+  removeTrackFromCollectionById,
   updateCollectionById,
 } from "./collection.controller";
 import { $ref } from "./collection.schema";
@@ -12,6 +14,12 @@ function collectionRoutes(server: FastifyInstance) {
     "/collection/:id",
     { schema: { body: $ref("updateCollectionSchema") } },
     updateCollectionById,
+  );
+  //TODO: implement schema validation for this one.
+  server.post("/collection/:collectionID/add-track", addTrackToCollection);
+  server.delete(
+    "/collection/:collectionID/remove-track/:trackID",
+    removeTrackFromCollectionById,
   );
   server.post(
     "/collection",

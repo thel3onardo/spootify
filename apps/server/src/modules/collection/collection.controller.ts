@@ -25,6 +25,75 @@ export async function createCollection(
   }
 }
 
+export const addTrackToCollection = async (
+  req: FastifyRequest<{
+    Params: { collectionID: string };
+    Body: { trackID: number };
+  }>,
+  rep: FastifyReply,
+) => {
+  const { collectionID } = req.params;
+  const { trackID } = req.body;
+
+  try {
+    const track = await rep.server.prisma.collection.update({
+      where: {
+        id: collectionID,
+      },
+      data: {
+        tracks: {
+          connect: {
+            id: trackID,
+          },
+        },
+      },
+    });
+
+    rep
+      .status(201)
+      .send({ message: "Track added to playlist", newTrackID: track.id });
+  } catch (err) {
+    rep.log.error(err);
+
+    //TODO: handle errors more effectively
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2025") {
+        rep
+          .status(400)
+          .send({ error: "Track with specified ID does not exist." });
+      }
+    }
+  }
+};
+
+export const removeTrackFromCollectionById = async (
+  req: FastifyRequest<{ Params: { trackID: string; collectionID: string } }>,
+  rep: FastifyReply,
+) => {
+  const { trackID, collectionID } = req.params;
+
+  try {
+    await rep.server.prisma.collection.update({
+      where: {
+        id: collectionID,
+      },
+      data: {
+        tracks: {
+          disconnect: {
+            id: Number(trackID),
+          },
+        },
+      },
+    });
+
+    rep.status(204);
+  } catch (err) {
+    rep.log.error(err);
+
+    rep.status(500).send({ error: err });
+  }
+};
+
 export async function getColletionById(
   req: FastifyRequest<{ Params: { id: string } }>,
   rep: FastifyReply,
@@ -35,15 +104,12 @@ export async function getColletionById(
     where: {
       id,
     },
+
     select: {
       id: true,
       name: true,
       description: true,
-      tracks: {
-        select: {
-          track: true,
-        },
-      },
+      tracks: true,
     },
   });
 
@@ -57,7 +123,7 @@ export async function getColletionById(
     return rep.status(404).send({ status: "No collection found" });
   }
 
-  rep.status(200).send({ data: collection, count });
+  rep.status(200).send({ data: { ...collection, count } });
 }
 
 export async function updateCollectionById(
