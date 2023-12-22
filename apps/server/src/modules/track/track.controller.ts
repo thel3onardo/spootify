@@ -5,16 +5,62 @@ import {
   GetTrackResponse,
 } from "./track.schema";
 import { Prisma } from "@prisma/client";
-import { Client, Storage } from "node-appwrite";
+import { Client, Storage, ID, InputFile } from "node-appwrite";
 
-export async function getTrackHandler(
-  request: FastifyRequest<{ Params: { id: number }; Body: GetTrackResponse }>,
-  reply: FastifyReply,
+export async function getTrackByID(
+  req: FastifyRequest<{ Params: { id: number }; Body: GetTrackResponse }>,
+  rep: FastifyReply,
 ) {
-  // const { uuid } = request.params;
-  // const track = await getTrackById(reply, uuid);
-  // if (!track) reply.code(404).send({ error: "Track not found" });
-  // reply.code(200).send({ data: track });
+  const { id } = req.params;
+
+  try {
+    const result = await rep.server.prisma.track.findFirstOrThrow({
+      where: {
+        id: Number(id),
+      },
+      select: {
+        name: true,
+        coverImage: true,
+        createdAt: true,
+        updatedAt: true,
+        audioUrl: false,
+        author: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    rep.status(200).send({ status: "success", data: result });
+  } catch (err) {
+    req.log.error(err);
+    rep.status(500).send({ error: err });
+  }
+}
+
+export async function getTrackAudioByID(
+  req: FastifyRequest<{ Params: { id: number } }>,
+  rep: FastifyReply,
+) {
+  const { id } = req.params;
+
+  try {
+    const result = await rep.server.prisma.track.findFirstOrThrow({
+      where: {
+        id: Number(id),
+      },
+      select: {
+        audioUrl: true,
+      },
+    });
+
+    rep.status(200).send({ status: "success", data: result?.audioUrl });
+  } catch (err) {
+    req.log.error(err);
+    rep.status(500).send({ error: err });
+  }
 }
 
 export async function createTrack(
@@ -23,24 +69,21 @@ export async function createTrack(
 ) {
   // const bucketID = "658337af15a76d0214a2";
   // const projectID = "658336c3b2210d7d3669";
-
   // const client = new Client()
   //   .setEndpoint("https://cloud.appwrite.io/v1")
   //   .setProject(projectID);
-
   // const storage = new Storage(client);
   // const file = await storage.createFile(
   //   bucketID,
   //   ID.unique(),
-  //   InputFile.fromBuffer(req.body.coverImageFile, "cover"),
+  //   InputFile.fromBuffer(req.body.audioFile.data, "travis"),
   // );
+  // rep.log.info({ file });
   // const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketID}/files/${file.$id}/view?project=${projectID}`;
-
   const imageUrl =
     "https://cloud.appwrite.io/v1/storage/buckets/658337af15a76d0214a2/files/65835baf48e08cc11998/view?project=658336c3b2210d7d3669&mode=admin";
   const audioUrl =
     "https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin";
-
   try {
     await rep.server.prisma.track.create({
       data: {
@@ -50,29 +93,22 @@ export async function createTrack(
         authorId: 1,
       },
     });
-
     rep.status(201).send({ message: "New track successfully created!" });
   } catch (err) {
     req.log.error(err);
-
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2003") {
         return rep
           .status(401)
           .send({ error: "There is no user with the userID value provided." });
       }
-
       return rep.status(401).send({ error: err.message });
     }
-
     rep.status(500).send({ error: err });
   }
-
-  rep.status(200).send({
-    body: imageUrl,
-  });
 }
 
+//TODO: implement function below
 export async function deleteTrackHandler(
   request: FastifyRequest<{ Params: { id: number } }>,
   rep: FastifyReply,
