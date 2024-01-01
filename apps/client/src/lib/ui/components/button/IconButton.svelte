@@ -4,6 +4,7 @@
   import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
+
   const emitClick = (e: Event) => {
     dispatch('click', e);
   };

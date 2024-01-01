@@ -1,9 +1,14 @@
 <script lang="ts">
   import { playingNowMenuVisible } from '$lib/stores/layout';
+  import { trackStore } from '$lib/stores/track';
 
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
   import Playerbar from '$lib/ui/interface/Playerbar.svelte';
   import PlayingNow from '$lib/ui/interface/PlayingNow.svelte';
+
+  let playing = false;
+
+  $: playing = Boolean($trackStore.audioElement);
 </script>
 
 <div

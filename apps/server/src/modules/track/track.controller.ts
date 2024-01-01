@@ -1,9 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import {
-  AddTrackToCollection,
-  CreateTrackInput,
-  GetTrackResponse,
-} from "./track.schema";
+import { CreateTrackInput, GetTrackResponse } from "./track.schema";
 import { Prisma } from "@prisma/client";
 import { Client, Storage, ID, InputFile } from "node-appwrite";
 
@@ -132,42 +128,42 @@ export async function testStuff(req: FastifyRequest, rep: FastifyReply) {
   rep.status(200).send({ preview });
 }
 
-export async function addTrackToCollectionById(
-  req: FastifyRequest<{
-    Params: { collectionId: string };
-    Body: AddTrackToCollection;
-  }>,
-  rep: FastifyReply,
-) {
-  const { collectionId } = req.params;
-  const { trackId } = req.body;
+// export async function addTrackToCollectionById(
+//   req: FastifyRequest<{
+//     Params: { collectionId: string };
+//     Body: AddTrackToCollection;
+//   }>,
+//   rep: FastifyReply,
+// ) {
+//   const { collectionId } = req.params;
+//   const { trackId } = req.body;
 
-  try {
-    await rep.server.prisma.trackOnCollection.create({
-      data: {
-        trackId,
-        collectionId,
-      },
-    });
-    rep
-      .status(201)
-      .send({ status: "success", message: "Song added to collection" });
-  } catch (error) {
-    rep.log.error(error);
+//   try {
+//     await rep.server.prisma.trackOnCollection.create({
+//       data: {
+//         trackId,
+//         collectionId,
+//       },
+//     });
+//     rep
+//       .status(201)
+//       .send({ status: "success", message: "Song added to collection" });
+//   } catch (error) {
+//     rep.log.error(error);
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
-        rep.status(409).send({ error: "Track already exists in collection" });
-      }
+//     if (error instanceof Prisma.PrismaClientKnownRequestError) {
+//       if (error.code === "P2002") {
+//         rep.status(409).send({ error: "Track already exists in collection" });
+//       }
 
-      return rep.status(500).send({ error: error.message });
-    }
+//       return rep.status(500).send({ error: error.message });
+//     }
 
-    rep.status(500).send({ error });
-  }
+//     rep.status(500).send({ error });
+//   }
 
-  rep.status(200).send({ status: "success", collectionId });
-}
+//   rep.status(200).send({ status: "success", collectionId });
+// }
 
 // export async function removeTrackFromCollectionById(
 //   req: FastifyRequest<{

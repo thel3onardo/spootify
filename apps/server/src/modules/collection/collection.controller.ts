@@ -104,18 +104,18 @@ export async function getColletionById(
     where: {
       id,
     },
-
     select: {
       id: true,
       name: true,
       description: true,
-      tracks: true,
-    },
-  });
-
-  const count = await rep.server.prisma.collection.count({
-    where: {
-      id,
+      tracks: {
+        select: {
+          id: true,
+          name: true,
+          coverImage: true,
+          authorId: true,
+        },
+      },
     },
   });
 
@@ -123,7 +123,7 @@ export async function getColletionById(
     return rep.status(404).send({ status: "No collection found" });
   }
 
-  rep.status(200).send({ data: { ...collection, count } });
+  rep.status(200).send({ data: collection });
 }
 
 export async function updateCollectionById(

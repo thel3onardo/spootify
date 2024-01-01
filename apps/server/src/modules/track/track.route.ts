@@ -2,7 +2,6 @@ import { FastifyInstance } from "fastify";
 import {
   createTrack,
   deleteTrackHandler,
-  addTrackToCollectionById,
   testStuff,
   getTrackAudioByID,
   getTrackByID,
@@ -18,16 +17,6 @@ async function trackRoutes(server: FastifyInstance) {
   server.get("/track/:id", getTrackByID);
   server.get("/track/audio/:id", getTrackAudioByID);
   server.delete("/track/:id", deleteTrackHandler);
-  server.post(
-    "/track/collection/:collectionId",
-    { schema: { body: $ref("addTrackToCollectionSchema") } },
-    addTrackToCollectionById,
-  );
-
-  // server.delete(
-  //   "/track/collection/:collectionId",
-  //   removeTrackFromCollectionById,
-  // );
 
   server.get("/track/test", testStuff);
 }

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createSlider, melt } from '@melt-ui/svelte';
   import { createEventDispatcher } from 'svelte';
+  import { secondsToMinutes } from '$lib/utils';
 
   import Icon from '@iconify/svelte';
   import IconButton from '../components/button/IconButton.svelte';
@@ -19,8 +20,8 @@
 
   export let playing: Boolean,
     progressValue: number,
-    currentTime: string,
-    duration: string;
+    currentTime: number,
+    duration: number;
 </script>
 
 <div class="flex grow flex-col items-center justify-center">
@@ -67,7 +68,7 @@
   <div
     class="font-manrope mt-3 flex w-full max-w-[700px] items-center text-xs font-bold text-gray-500"
   >
-    <span>{currentTime}</span>
+    <span>{secondsToMinutes(currentTime)}</span>
     <span
       use:melt={$root}
       class="group relative mx-3 flex h-[10px] w-full grow items-center"
@@ -83,6 +84,6 @@
         class="block h-3 w-3 rounded-full bg-white focus:ring-4 focus:ring-black/40"
       />
     </span>
-    <span>{duration}</span>
+    <span>{secondsToMinutes(duration)}</span>
   </div>
 </div>

@@ -1,6 +1,17 @@
 import { writable } from 'svelte/store';
 
-export let currentTrack = writable({
-  id: 234234,
+interface IState {
+  id: number;
+  favorite: boolean;
+  audioEl: HTMLAudioElement | null;
+  currentTime: number;
+}
+
+const trackStore = writable<IState>({
+  id: 23092,
   favorite: true,
+  audioEl: null,
+  currentTime: 0,
 });
+
+export { trackStore };
