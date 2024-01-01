@@ -63,6 +63,9 @@ export async function createTrack(
   req: FastifyRequest<{ Body: CreateTrackInput }>,
   rep: FastifyReply,
 ) {
+  const file = req.body.audioFile.data;
+  req.log.info({ file });
+
   // const bucketID = "658337af15a76d0214a2";
   // const projectID = "658336c3b2210d7d3669";
   // const client = new Client()
