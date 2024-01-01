@@ -19,7 +19,6 @@ export async function getTrackByID(
         coverImage: true,
         createdAt: true,
         updatedAt: true,
-        audioUrl: false,
         author: {
           select: {
             id: true,
@@ -40,19 +39,28 @@ export async function getTrackAudioByID(
   req: FastifyRequest<{ Params: { id: number } }>,
   rep: FastifyReply,
 ) {
-  const { id } = req.params;
+  const params = req.params;
+  const id = Number(params.id);
 
   try {
     const result = await rep.server.prisma.track.findFirstOrThrow({
       where: {
-        id: Number(id),
+        id,
       },
       select: {
-        audioUrl: true,
+        TrackAudio: {
+          where: {
+            trackId: id,
+          },
+          select: {
+            audioUrl: true,
+            duration: true,
+          },
+        },
       },
     });
 
-    rep.status(200).send({ status: "success", data: result?.audioUrl });
+    rep.status(200).send({ status: "success", data: result.TrackAudio });
   } catch (err) {
     req.log.error(err);
     rep.status(500).send({ error: err });
@@ -84,14 +92,22 @@ export async function createTrack(
   const audioUrl =
     "https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin";
   try {
-    await rep.server.prisma.track.create({
+    const track = await rep.server.prisma.track.create({
       data: {
         coverImage: imageUrl,
-        audioUrl,
         name: req.body.name,
         authorId: 1,
       },
     });
+
+    await rep.server.prisma.trackAudio.create({
+      data: {
+        trackId: track.id,
+        audioUrl,
+        duration: 200,
+      },
+    });
+
     rep.status(201).send({ message: "New track successfully created!" });
   } catch (err) {
     req.log.error(err);

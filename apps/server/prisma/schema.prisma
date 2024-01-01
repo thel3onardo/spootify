@@ -46,10 +46,11 @@ model Collection {
 }
 
 model Track {
-  id         Int    @id @default(autoincrement())
+  id         Int    @id @unique @default(autoincrement())
   name       String
   coverImage String @map("cover_img")
-  audioUrl   String @map("audio_url")
+
+  TrackAudio TrackAudio?
 
   collections       Collection[]
   TrackOnCollection TrackOnCollection[]
@@ -72,4 +73,16 @@ model TrackOnCollection {
 
   @@id([trackId, collectionId])
   @@map("track_on_collection")
+}
+
+model TrackAudio {
+  id Int @id @default(autoincrement())
+
+  track   Track @relation(fields: [trackId], references: [id])
+  trackId Int   @unique @map("track_id")
+
+  audioUrl String @map("audio_url")
+  duration Int
+
+  @@map("tracks_audios")
 }
