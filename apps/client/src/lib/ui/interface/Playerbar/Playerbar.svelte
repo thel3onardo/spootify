@@ -3,7 +3,7 @@
   import PlayerbarActions from './PlayerbarActions.svelte';
   import FavoriteButton from '$lib/ui/components/button/FavoriteButton.svelte';
 
-  import { trackStore } from '$lib/stores/track';
+  import { trackStore, updateTrackCurrentTime } from '$lib/stores/track';
 
   let playing = false;
   //TODO: no any here
@@ -24,10 +24,6 @@
     return interval;
   };
 
-  const setTrackDuration = (value: any) => {
-    console.log({ value });
-  };
-
   const togglePlay = () => {
     if (!$trackStore.audioEl) return;
 
@@ -38,6 +34,12 @@
     }
     $trackStore.audioEl.pause();
     playing = false;
+  };
+
+  const setTrackTime = (e: CustomEvent) => {
+    const percentageValue = e.detail.value;
+
+    updateTrackCurrentTime(percentageValue);
   };
 
   $: playing ? setProgressBarInterval() : clearInterval(interval);
@@ -63,11 +65,11 @@
   </div>
   <PlayerbarControls
     on:pause={togglePlay}
+    on:setTrackTime={setTrackTime}
     {playing}
     progressValue={progressBarPercentage}
     currentTime={$trackStore.currentTime}
     duration={$trackStore.totalTime}
-    on:newValue={setTrackDuration}
   />
   <PlayerbarActions />
 </div>

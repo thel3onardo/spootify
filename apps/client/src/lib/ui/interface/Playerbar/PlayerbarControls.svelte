@@ -7,8 +7,19 @@
 
   const dispatcher = createEventDispatcher();
 
-  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({ next }) => {
-    dispatcher('newValue', ...next);
+  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
+    curr,
+    next,
+  }) => {
+    //TODO: maybe one of the two value below can be NaN and cause bugs.
+    const currentTime = Math.floor(curr[0]);
+    const nextTime = Math.floor(next[0]);
+
+    if (nextTime !== currentTime + 1 && nextTime !== currentTime) {
+      dispatcher('setTrackTime', {
+        value: next[0],
+      });
+    }
 
     return next;
   };

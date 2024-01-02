@@ -26,10 +26,24 @@ const setTrack = (body: { url: string; duration: number }) => {
   });
 };
 
+const updateTrackCurrentTime = (percentageValue: number) => {
+  trackStore.update((track) => {
+    if (!track.audioEl) return { ...track };
+
+    const trackSecondsByPercentage = Math.floor(
+      (percentageValue / 100) * track.totalTime,
+    );
+
+    track.audioEl.currentTime = trackSecondsByPercentage;
+
+    return { ...track };
+  });
+};
+
 const updateCurrentTime = (newTime: number) => {
   trackStore.update((track) => {
     return { ...track, currentTime: newTime };
   });
 };
 
-export { setTrack, trackStore, updateCurrentTime };
+export { setTrack, trackStore, updateCurrentTime, updateTrackCurrentTime };

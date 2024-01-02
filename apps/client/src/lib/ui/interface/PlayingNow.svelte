@@ -41,12 +41,6 @@
     document.removeEventListener('mouseup', handleMouseUp);
     document.removeEventListener('mousemove', handleMouseMove);
   };
-
-  // onMount(() => {
-  //   setTimeout(() => {
-  //     coverSrcLoaded = true;
-  //   }, 500);
-  // });
 </script>
 
 <div
