@@ -2,31 +2,50 @@
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import { playingNowMenuVisible } from '$lib/stores/layout';
-  import { trackStore, setMute } from '$lib/stores/track';
+  import { createEventDispatcher, onMount } from 'svelte';
 
-  let volumeMuted = false;
+  const dispatcher = createEventDispatcher();
+
   let iconSize: '1.2rem';
 
+  export let muted: boolean, sliderValue: number;
+
+  //TODO: This should be converted to a top-level function
   const togglePlayingNowMenu = () => {
     $playingNowMenuVisible = !$playingNowMenuVisible;
   };
 
-  const setTrackVolume: CreateSliderProps['onValueChange'] = ({ next }) => {
-    $trackStore.audioEl.volume = next[0] / 100;
+  const emitNewVolume = (value: number) => {
+    dispatcher('newVolume', {
+      volume: value,
+    });
+  };
+
+  const emitMute = () => {
+    dispatcher('mute', true);
+  };
+
+  const emitUnmute = () => {
+    dispatcher('unmute', true);
+  };
+
+  const setVolume: CreateSliderProps['onValueChange'] = ({ next }) => {
+    emitNewVolume(next[0]);
 
     return next;
   };
 
   const {
     elements: { root, range, thumb },
+    states: { value },
   } = createSlider({
-    defaultValue: [40],
+    defaultValue: [sliderValue],
     max: 100,
     orientation: 'horizontal',
-    onValueChange: setTrackVolume,
+    onValueChange: setVolume,
   });
 
-  $: volumeMuted = $trackStore.audioEl.volume === 0;
+  $: value.set([sliderValue * 100]);
 </script>
 
 <div class="flex gap-x-4 text-gray-500">
@@ -60,13 +79,11 @@
   <div class="relative flex items-center gap-x-3">
     <IconButton
       tooltipLabel="Mute"
-      icon={volumeMuted
-        ? 'solar:volume-cross-linear'
-        : 'solar:volume-loud-linear'}
+      icon={muted ? 'solar:volume-cross-linear' : 'solar:volume-loud-linear'}
       size={iconSize}
       hoverBg
       class="hover:text-white"
-      on:click={() => setMute(!volumeMuted)}
+      on:click={muted ? emitUnmute() : emitMute()}
     />
 
     <span

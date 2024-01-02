@@ -1,19 +1,10 @@
 <script lang="ts">
   import { playingNowMenuVisible } from '$lib/stores/layout';
-  import { trackStore } from '$lib/stores/track';
+  import { currentTrack } from '$lib/stores/track';
 
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
   import Playerbar from '$lib/ui/interface/Playerbar/Playerbar.svelte';
   import PlayingNow from '$lib/ui/interface/PlayingNow.svelte';
-  import { onMount } from 'svelte';
-
-  let playerBarVisible = false;
-
-  $: playerBarVisible = Boolean($trackStore.audioEl?.src);
-
-  onMount(() => {
-    console.log({ audio: $trackStore.audioEl.src });
-  });
 </script>
 
 <div
@@ -33,7 +24,7 @@
       {/if}
     </div>
   </div>
-  {#if playerBarVisible}
+  {#if $currentTrack}
     <Playerbar />
   {/if}
 </div>

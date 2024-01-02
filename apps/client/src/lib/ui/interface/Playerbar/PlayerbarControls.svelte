@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import Icon from '@iconify/svelte';
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { secondsToMinutes } from '$lib/utils';
-  import { trackStore } from '$lib/stores/track';
 
   const dispatcher = createEventDispatcher();
 
+  //TODO: this is gonna be removed
   const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
     curr,
     next,
@@ -37,7 +37,10 @@
 
   $: sliderValue.set([progressValue]);
 
-  export let progressValue: number;
+  export let progressValue: number,
+    duration: number,
+    currentTime: number,
+    playing: boolean;
 </script>
 
 <div class="flex grow flex-col items-center justify-center">
@@ -56,13 +59,11 @@
         class="hover:text-white"
       />
       <button
-        on:click={() => dispatcher('pause')}
+        on:click={() => dispatcher('togglePlay')}
         class="cursor-pointer select-none rounded-full bg-white p-1 text-black"
       >
         <Icon
-          icon={$trackStore.playing
-            ? 'ic:round-pause'
-            : 'ic:baseline-play-arrow'}
+          icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
           width="1.8rem"
           height="1.8rem"
           draggable="false"
@@ -86,7 +87,7 @@
   <div
     class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-medium text-gray-500"
   >
-    <span>{secondsToMinutes($trackStore.currentTime)}</span>
+    <span>{secondsToMinutes(currentTime)}</span>
     <span
       use:melt={$root}
       class="group relative mx-3 flex h-[10px] w-full grow items-center"
@@ -102,6 +103,6 @@
         class="block h-3 w-3 rounded-full bg-white focus:ring-4 focus:ring-black/40"
       />
     </span>
-    <span>{secondsToMinutes($trackStore.totalTime)}</span>
+    <span>{secondsToMinutes(duration)}</span>
   </div>
 </div>

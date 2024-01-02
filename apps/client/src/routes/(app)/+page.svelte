@@ -7,6 +7,7 @@
   import { user } from '$lib/stores/user';
   import Button from '$lib/ui/components/button/Button.svelte';
   import { setTrack } from '$lib/stores/track';
+  import { fetchTrackById } from '$lib/repositories/audio';
 
   let bgColor = '';
   let defaultBgColor = '#9f1239';
@@ -77,13 +78,21 @@
 
   const playMusic = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/track/23/audio', {
-        method: 'get',
-      });
-      const data = await res.json();
+      const data = await fetchTrackById(19);
+      const { id, favorite, coverImage, author, ...other } = data.data;
 
-      setTrack({ url: data.data.audioUrl, duration: data.data.duration });
+      console.log({ other });
+
+      //@ts-ignore
+      setTrack({
+        id,
+        favorite,
+        coverImage,
+        author,
+        audio: other.TrackAudio,
+      });
     } catch (err) {
+      //TODO: implement toast
       console.error(err);
     }
   };

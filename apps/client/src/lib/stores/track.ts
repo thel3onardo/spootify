@@ -1,74 +1,41 @@
 import { writable } from 'svelte/store';
 
-interface IState {
+interface ITrack {
   id: number;
   favorite: boolean;
-  audioEl: HTMLAudioElement;
-  currentTime: number;
-  totalTime: number;
-  playing: boolean;
+  name: string;
+  author: string;
+  coverImage: string;
+  audio: {
+    audioUrl: string;
+    duration: number;
+  };
 }
 
-const trackStore = writable<IState>({
-  id: 23092,
-  favorite: true,
-  audioEl: new Audio(),
-  currentTime: 0,
-  totalTime: 0,
-  playing: false,
-});
+export const currentTrack = writable<ITrack | null>(null);
 
-const setTrack = (body: { url: string; duration: number }) => {
-  trackStore.update((track) => {
-    if (track.audioEl) {
-      track.audioEl.src = body.url;
-    }
-
-    return { ...track, totalTime: body.duration };
+export const setTrack = ({
+  id,
+  name,
+  author,
+  favorite,
+  coverImage,
+  audio,
+}: ITrack) => {
+  currentTrack.update((track) => {
+    return {
+      id,
+      name,
+      author,
+      favorite,
+      coverImage,
+      audio,
+    };
   });
 };
 
-const updateTrackCurrentTime = (percentageValue: number) => {
-  trackStore.update((track) => {
-    if (!track.audioEl) return { ...track };
-
-    const trackSecondsByPercentage = Math.floor(
-      (percentageValue / 100) * track.totalTime,
-    );
-
-    console.log({ trackSecondsByPercentage });
-
-    track.audioEl.currentTime = trackSecondsByPercentage;
-
-    return { ...track };
+export const removeTrack = () => {
+  currentTrack.update((track) => {
+    return null;
   });
-};
-
-const updateCurrentTime = (newTime: number) => {
-  trackStore.update((track) => {
-    return { ...track, currentTime: newTime };
-  });
-};
-
-const setMute = (muted: boolean) => {
-  trackStore.update((track) => {
-    track.audioEl.volume = muted ? 0 : 1;
-
-    return { ...track };
-  });
-};
-
-const setPlaying = (playing: boolean) => {
-  trackStore.update((track) => {
-    return { ...track, playing };
-  });
-};
-
-export {
-  setTrack,
-  trackStore,
-  updateCurrentTime,
-  updateTrackCurrentTime,
-  setMute,
-  setPlaying,
 };
