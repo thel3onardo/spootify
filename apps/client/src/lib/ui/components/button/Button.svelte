@@ -1,9 +1,13 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
   type VariantList = Record<string, string>;
   type VariantKeyProp = keyof typeof variantList;
 
   type RoundedList = Record<string, string>;
   type RoundedKeyProp = keyof typeof roundedList;
+
+  const dispatch = createEventDispatcher();
 
   const variantList = {
     light: 'bg-white shadow-lg text-gray-900',

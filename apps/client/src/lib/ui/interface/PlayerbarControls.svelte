@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createSlider, melt } from '@melt-ui/svelte';
+  import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import { createEventDispatcher } from 'svelte';
   import { secondsToMinutes } from '$lib/utils';
 
@@ -7,13 +7,24 @@
   import IconButton from '../components/button/IconButton.svelte';
 
   const dispatcher = createEventDispatcher();
+
+  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
+    curr,
+    next,
+  }) => {
+    dispatcher('newValue', ...next);
+
+    return next;
+  };
+
   const {
     elements: { root, range, thumb },
     states: { value },
   } = createSlider({
-    defaultValue: [50],
+    defaultValue: [0],
     max: 100,
     step: 1,
+    onValueChange: emitNewSliderValue,
   });
 
   $: value.set([progressValue]);

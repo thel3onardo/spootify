@@ -1,28 +1,22 @@
-import { trackStore } from '$lib/stores/track';
+import { trackStore, updateCurrentTime } from '$lib/stores/track';
 
 export const initializePlayer = () => {
   const audio = new Audio();
 
+  //check for volume value in localStorage
   audio.volume = 0.25;
-  audio.src =
-    'https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin';
-
-  audio.addEventListener('loadedmetadata', () => {
-    console.log('metadata loaded');
-    console.log({ metadataDuraiton: audio.duration });
-  });
 
   audio.addEventListener('canplaythrough', () => {
-    console.log('canplaythrough');
-    console.log({ duration: audio.duration });
     trackStore.update((track) => {
       return { ...track, audioEl: audio };
     });
   });
 
   audio.addEventListener('timeupdate', () => {
-    trackStore.update((track) => {
-      return { ...track, currentTime: audio.currentTime };
-    });
+    updateCurrentTime(audio.currentTime)
   });
+
+  trackStore.update((track) => {
+    return { ...track, audioEl: audio }
+  })
 };

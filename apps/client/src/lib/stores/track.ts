@@ -5,6 +5,7 @@ interface IState {
   favorite: boolean;
   audioEl: HTMLAudioElement | null;
   currentTime: number;
+  totalTime: number;
 }
 
 const trackStore = writable<IState>({
@@ -12,6 +13,23 @@ const trackStore = writable<IState>({
   favorite: true,
   audioEl: null,
   currentTime: 0,
+  totalTime: 0,
 });
 
-export { trackStore };
+const setTrack = (body: { url: string; duration: number }) => {
+  trackStore.update((track) => {
+    if (track.audioEl) {
+      track.audioEl.src = body.url;
+    }
+
+    return { ...track, totalTime: body.duration };
+  });
+};
+
+const updateCurrentTime = (newTime: number) => {
+  trackStore.update((track) => {
+    return { ...track, currentTime: newTime };
+  });
+};
+
+export { trackStore, setTrack, updateCurrentTime };

@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateTrackInput, GetTrackResponse } from "./track.schema";
 import { Prisma } from "@prisma/client";
+import { parseBuffer } from "music-metadata";
 import { Client, Storage, ID, InputFile } from "node-appwrite";
 
 export async function getTrackByID(
@@ -71,26 +72,41 @@ export async function createTrack(
   req: FastifyRequest<{ Body: CreateTrackInput }>,
   rep: FastifyReply,
 ) {
-  const file = req.body.audioFile.data;
-  req.log.info({ file });
+  const audioFile = req.body.audioFile;
 
-  // const bucketID = "658337af15a76d0214a2";
-  // const projectID = "658336c3b2210d7d3669";
-  // const client = new Client()
-  //   .setEndpoint("https://cloud.appwrite.io/v1")
-  //   .setProject(projectID);
-  // const storage = new Storage(client);
-  // const file = await storage.createFile(
-  //   bucketID,
-  //   ID.unique(),
-  //   InputFile.fromBuffer(req.body.audioFile.data, "travis"),
-  // );
-  // rep.log.info({ file });
-  // const imageUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketID}/files/${file.$id}/view?project=${projectID}`;
+  const bucketID = "658337c8dfcbd522bb9e";
+  const projectID = "658336c3b2210d7d3669";
+
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject(projectID)
+    .setKey(
+      "deadc5291a1415771c87923de066f3eba71f3c12cd85e528ecf17e96b63433f10f77d0ab13203cae1038702ad371c9abbf1f1981d555f7d280427b6b6b4057cc55d1e931f91cff1ce04d0dd189353cf7f931b2b8a91572d25284bccb5e3e4c60c6b56a2c9d5352af6db7a5639c81e390e7cdfffd9c8798ca3ba996db2a902d56",
+    );
+
+  const storage = new Storage(client);
+
+  const file = await storage.createFile(
+    bucketID,
+    ID.unique(),
+    InputFile.fromBuffer(audioFile.data, req.body.name),
+  );
+
+  rep.log.info({ file });
+
+  const audioUrl = `https://cloud.appwrite.io/v1/storage/buckets/${bucketID}/files/${file.$id}/view?project=${projectID}`;
+
+  //get audioFile duration
+  const parsedAudioFile = await parseBuffer(
+    audioFile.data,
+    { mimeType: "audio/mpeg" },
+    { duration: true },
+  );
+
   const imageUrl =
     "https://cloud.appwrite.io/v1/storage/buckets/658337af15a76d0214a2/files/65835baf48e08cc11998/view?project=658336c3b2210d7d3669&mode=admin";
-  const audioUrl =
-    "https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin";
+  // const audioUrl =
+  //   "https://cloud.appwrite.io/v1/storage/buckets/658337c8dfcbd522bb9e/files/658339eebe6c1ebff7c3/view?project=658336c3b2210d7d3669&mode=admin";
   try {
     const track = await rep.server.prisma.track.create({
       data: {
@@ -104,13 +120,14 @@ export async function createTrack(
       data: {
         trackId: track.id,
         audioUrl,
-        duration: 200,
+        duration: parsedAudioFile.format.duration ?? 0,
       },
     });
 
     rep.status(201).send({ message: "New track successfully created!" });
   } catch (err) {
     req.log.error(err);
+
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2003") {
         return rep

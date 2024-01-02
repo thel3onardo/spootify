@@ -6,16 +6,16 @@
   import { trackStore } from '$lib/stores/track';
 
   let playing = false;
+  //TODO: no any here
   let interval: any;
-
   let progressBarPercentage = 0;
 
   const updateProgressBarPercentage = () => {
     if (!$trackStore.audioEl) return;
-    let percentage =
-      $trackStore.audioEl.currentTime / $trackStore.audioEl.duration;
+    const percentage =
+      ($trackStore.audioEl.currentTime / $trackStore.audioEl.duration) * 100;
 
-    progressBarPercentage = percentage * 100;
+    progressBarPercentage = percentage;
   };
 
   const setProgressBarInterval = () => {
@@ -24,8 +24,13 @@
     return interval;
   };
 
+  const setTrackDuration = (value: any) => {
+    console.log({ value });
+  };
+
   const togglePlay = () => {
     if (!$trackStore.audioEl) return;
+
     if ($trackStore.audioEl.paused) {
       $trackStore.audioEl.play();
       playing = true;
@@ -60,8 +65,9 @@
     on:pause={togglePlay}
     {playing}
     progressValue={progressBarPercentage}
-    currentTime={$trackStore.audioEl?.currentTime}
-    duration={$trackStore.audioEl?.duration}
+    currentTime={$trackStore.currentTime}
+    duration={$trackStore.totalTime}
+    on:newValue={setTrackDuration}
   />
   <PlayerbarActions />
 </div>

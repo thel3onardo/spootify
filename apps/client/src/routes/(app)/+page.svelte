@@ -5,6 +5,8 @@
   import { HomeSections } from '$lib/data/home';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
   import { user } from '$lib/stores/user';
+  import Button from '$lib/ui/components/button/Button.svelte';
+  import { setTrack } from '$lib/stores/track';
 
   let bgColor = '';
   let defaultBgColor = '#9f1239';
@@ -73,6 +75,19 @@
     latestAlbumsColors[id] = colorHex;
   };
 
+  const playMusic = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/api/track/23/audio', {
+        method: 'get',
+      });
+      const data = await res.json();
+
+      setTrack({ url: data.data.audioUrl, duration: data.data.duration });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   onMount(() => {
     getCurrentTime();
     setBgColor(defaultBgColor);
@@ -91,7 +106,7 @@
   />
   <div class="px-6 pt-2">
     <header>
-      <h1 class="mb-6 font-inter text-3xl font-bold text-white">
+      <h1 class="font-inter mb-6 text-3xl font-bold text-white">
         {greetingMessage}
       </h1>
       <div
@@ -155,6 +170,10 @@
         </div>
       </section>
     {/each}
+
+    <button on:click={playMusic}>
+      <Button variant="primary" rounded="xl">Play music</Button>
+    </button>
   </div>
 </div>
 

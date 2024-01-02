@@ -15,7 +15,7 @@ async function trackRoutes(server: FastifyInstance) {
     createTrack,
   );
   server.get("/track/:id", getTrackByID);
-  server.get("/track/audio/:id", getTrackAudioByID);
+  server.get("/track/:id/audio", getTrackAudioByID);
   server.delete("/track/:id", deleteTrackHandler);
 
   server.get("/track/test", testStuff);
