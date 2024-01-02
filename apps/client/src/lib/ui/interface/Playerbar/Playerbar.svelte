@@ -10,22 +10,7 @@
   let duration = 0;
   let playing = false;
   let volume = 0;
-
-  //TODO: no any here
-  let interval: any;
   let progressBarPercentage = 0;
-
-  const updateProgressBarPercentage = () => {
-    const percentage = (currentTime / duration) * 100;
-
-    progressBarPercentage = percentage;
-  };
-
-  const setProgressBarInterval = () => {
-    interval = setInterval(updateProgressBarPercentage, 1000);
-
-    return interval;
-  };
 
   const setupAudioListeners = () => {
     audio.addEventListener('canplaythrough', () => {
@@ -86,6 +71,9 @@
 
   $: $currentTrack ? setAudioSrc($currentTrack.audio.audioUrl) : '';
   $: duration = $currentTrack ? $currentTrack.audio.duration : 0;
+  $: progressBarPercentage =
+    duration !== 0 ? Math.floor((currentTime / duration) * 100) : 0;
+  $: console.log({ progressBarPercentage });
 </script>
 
 {#if $currentTrack}

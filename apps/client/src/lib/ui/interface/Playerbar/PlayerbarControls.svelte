@@ -1,38 +1,38 @@
 <script lang="ts">
-  import { createEventDispatcher, onMount } from 'svelte';
   import Icon from '@iconify/svelte';
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { secondsToMinutes } from '$lib/utils';
+  import { createEventDispatcher } from 'svelte';
 
   const dispatcher = createEventDispatcher();
 
   //TODO: this is gonna be removed
-  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
-    curr,
-    next,
-  }) => {
-    //TODO: maybe one of the two value below can be NaN and cause bugs.
-    const currentTime = Math.floor(curr[0]);
-    const nextTime = Math.floor(next[0]);
+  // const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
+  //   curr,
+  //   next,
+  // }) => {
+  //   //TODO: maybe one of the two value below can be NaN and cause bugs.
+  //   const currentTime = Math.floor(curr[0]);
+  //   const nextTime = Math.floor(next[0]);
 
-    if (nextTime !== currentTime + 1 && nextTime !== currentTime) {
-      dispatcher('setTrackTime', {
-        value: next[0],
-      });
-    }
+  //   if (nextTime !== currentTime + 1 && nextTime !== currentTime) {
+  //     dispatcher('setTrackTime', {
+  //       value: next[0],
+  //     });
+  //   }
 
-    return next;
-  };
+  //   return next;
+  // };
 
   const {
     elements: { root, range, thumb },
     states: { value: sliderValue },
   } = createSlider({
-    defaultValue: [0],
+    defaultValue: [50],
     max: 100,
     step: 1,
-    onValueChange: emitNewSliderValue,
+    disabled: true,
   });
 
   $: sliderValue.set([progressValue]);
