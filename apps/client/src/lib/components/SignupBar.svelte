@@ -5,7 +5,7 @@
 <div
   class="flex w-full items-center justify-between bg-gradient-to-r from-pink-500 to-blue-500 px-4 py-3"
 >
-  <div class="font-manrope select-none">
+  <div class="select-none font-manrope">
     <p class="text-xs font-semibold uppercase tracking-wider">
       preview of spootify
     </p>

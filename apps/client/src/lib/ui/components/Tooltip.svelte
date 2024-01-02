@@ -26,7 +26,7 @@
     class="z-10 select-none rounded-lg bg-gray-800 text-white"
   >
     <div use:melt={$arrow} />
-    <p class="font-manrope px-3 py-1 text-xs font-semibold text-white">
+    <p class="px-3 py-1 font-manrope text-xs font-semibold text-white">
       {label}
     </p>
   </div>

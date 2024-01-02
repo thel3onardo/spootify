@@ -32,4 +32,4 @@ const updateCurrentTime = (newTime: number) => {
   });
 };
 
-export { trackStore, setTrack, updateCurrentTime };
+export { setTrack, trackStore, updateCurrentTime };

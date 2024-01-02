@@ -37,7 +37,7 @@
     </Button>
 
     <a href="/accounts/signup">
-      <span class="text-manrope font-xl hover:text-primary text-white underline"
+      <span class="text-manrope font-xl text-white underline hover:text-primary"
         >Forgot my password</span
       >
     </a>

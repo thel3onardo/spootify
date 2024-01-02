@@ -49,10 +49,10 @@
         bind:this={coverImage}
       />
     </div>
-    <div class="font-manrope ml-6 basis-3/4">
+    <div class="ml-6 basis-3/4 font-manrope">
       <p class="mb-2 text-sm font-semibold">Playlist</p>
       <h1
-        class="font-inter mb-6 text-6xl font-bold tracking-tighter xl:text-8xl"
+        class="mb-6 font-inter text-6xl font-bold tracking-tighter xl:text-8xl"
       >
         {data.name}
       </h1>

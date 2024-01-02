@@ -52,7 +52,7 @@
     <slot name="content" />
   </div>
 
-  <div class="font-inter flex items-center gap-x-3">
+  <div class="flex items-center gap-x-3 font-inter">
     {#if loggedIn}
       <Button href="/register" rounded="md" variant="dark" class="px-7 py-3">
         <span class="font-semibold text-white">Sign up</span>

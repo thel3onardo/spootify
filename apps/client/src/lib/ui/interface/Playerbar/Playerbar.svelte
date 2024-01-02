@@ -1,7 +1,7 @@
 <script lang="ts">
   import PlayerbarControls from './PlayerbarControls.svelte';
   import PlayerbarActions from './PlayerbarActions.svelte';
-  import FavoriteButton from '../components/button/FavoriteButton.svelte';
+  import FavoriteButton from '$lib/ui/components/button/FavoriteButton.svelte';
 
   import { trackStore } from '$lib/stores/track';
 
@@ -51,14 +51,14 @@
         alt="Music cover's"
       />
     </div>
-    <div class="font-manrope text-sm">
+    <div class="mr-6 font-manrope text-sm">
       <h3 class="mb-0.5 font-semibold">Hope</h3>
       <p class="text-xs font-medium text-white/70">Old sea bridge</p>
     </div>
     <FavoriteButton
       favorite={$trackStore.favorite}
       trackId={$trackStore.id}
-      size="1.2rem"
+      size="1.3rem"
     />
   </div>
   <PlayerbarControls

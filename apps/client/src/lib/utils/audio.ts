@@ -13,10 +13,10 @@ export const initializePlayer = () => {
   });
 
   audio.addEventListener('timeupdate', () => {
-    updateCurrentTime(audio.currentTime)
+    updateCurrentTime(audio.currentTime);
   });
 
   trackStore.update((track) => {
-    return { ...track, audioEl: audio }
-  })
+    return { ...track, audioEl: audio };
+  });
 };

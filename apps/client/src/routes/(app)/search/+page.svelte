@@ -236,7 +236,7 @@
   <Navbar bgColor="#121212">
     <form
       slot="content"
-      class="hover:bg-gray-850 group ml-4 flex items-center rounded-3xl border border-transparent bg-gray-900 px-3 text-white hover:border-gray-800"
+      class="group ml-4 flex items-center rounded-3xl border border-transparent bg-gray-900 px-3 text-white hover:border-gray-800 hover:bg-gray-850"
     >
       <Icon
         icon="ph:magnifying-glass"
@@ -248,7 +248,7 @@
         bind:value={searchValue}
         type="text"
         placeholder="What do you want to listen to?"
-        class="font-manrope h-full w-full bg-transparent py-3 text-sm font-medium outline-none placeholder:text-white/40"
+        class="h-full w-full bg-transparent py-3 font-manrope text-sm font-medium outline-none placeholder:text-white/40"
       />
     </form>
   </Navbar>
@@ -269,7 +269,7 @@
       </div>
     </section>
     <section class="mt-6">
-      <h1 class="font-inter mb-4 text-2xl font-bold">Browse all</h1>
+      <h1 class="mb-4 font-inter text-2xl font-bold">Browse all</h1>
       <div class="grid gap-6 xl:grid-cols-4 2xl:grid-cols-9">
         {#each categories as { name, rgbColor, redirectUrl, categoryCover }}
           <GenreItem {name} {rgbColor} {redirectUrl} {categoryCover} />

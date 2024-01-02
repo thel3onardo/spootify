@@ -81,7 +81,7 @@
     <div class="flex items-center">
       <div class="my-4">
         <a href="/" class="hover:underline">
-          <h2 class="font-inter mb-2 text-2xl font-bold text-white">
+          <h2 class="mb-2 font-inter text-2xl font-bold text-white">
             {trackName}
           </h2>
         </a>

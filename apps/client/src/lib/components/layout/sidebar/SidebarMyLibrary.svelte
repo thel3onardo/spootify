@@ -235,7 +235,7 @@
       size="1.5rem"
       class="transition hover:text-white"
     >
-      <span class="text-md font-inter ml-2 font-semibold">Your library</span>
+      <span class="text-md ml-2 font-inter font-semibold">Your library</span>
     </IconButton>
     <div class="flex gap-x-1">
       <IconButton

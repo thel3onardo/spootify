@@ -37,7 +37,7 @@
     </div>
 
     <div class="mt-4">
-      <h2 class="font-inter mb-1 font-bold text-white">{name}</h2>
+      <h2 class="mb-1 font-inter font-bold text-white">{name}</h2>
       <p class="font-manrope text-sm font-semibold text-gray-500">
         {description}
       </p>

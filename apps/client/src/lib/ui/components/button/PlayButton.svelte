@@ -14,7 +14,7 @@
 </script>
 
 <button
-  class="bg-primary hover:shadow-primary/10 rounded-full p-2 transition hover:scale-105 hover:shadow-xl active:scale-95 {$$props.class}"
+  class="rounded-full bg-primary p-2 transition hover:scale-105 hover:shadow-xl hover:shadow-primary/10 active:scale-95 {$$props.class}"
   on:click={emitClick}
 >
   <Icon

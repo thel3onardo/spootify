@@ -1,17 +1,13 @@
 <script lang="ts">
-  import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import { createEventDispatcher } from 'svelte';
-  import { secondsToMinutes } from '$lib/utils';
-
   import Icon from '@iconify/svelte';
-  import IconButton from '../components/button/IconButton.svelte';
+  import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
+  import IconButton from '$lib/ui/components/button/IconButton.svelte';
+  import { secondsToMinutes } from '$lib/utils';
 
   const dispatcher = createEventDispatcher();
 
-  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
-    curr,
-    next,
-  }) => {
+  const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({ next }) => {
     dispatcher('newValue', ...next);
 
     return next;
@@ -38,10 +34,10 @@
 <div class="flex grow flex-col items-center justify-center">
   <div class="flex items-center gap-x-6 text-gray-500">
     <IconButton
-      icon="fe:random"
+      icon="ph:shuffle-bold"
       tooltipLabel="Random"
       class="hover:text-white"
-      size="1.5rem"
+      size="1.3rem"
     />
 
     <div class="mx-4 flex items-center gap-x-6">
@@ -69,15 +65,15 @@
     </div>
 
     <IconButton
-      icon="mdi:repeat-variant"
+      icon="ph:repeat-bold"
       tooltipLabel="Repeat"
       class="hover:text-white"
-      size="1.5rem"
+      size="1.3rem"
     />
   </div>
 
   <div
-    class="font-manrope mt-3 flex w-full max-w-[700px] items-center text-xs font-bold text-gray-500"
+    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-bold text-gray-500"
   >
     <span>{secondsToMinutes(currentTime)}</span>
     <span
@@ -87,7 +83,7 @@
       <span class="block h-[4px] w-full rounded bg-gray-500/40">
         <span
           use:melt={$range}
-          class="group-hover:bg-primary h-[4px] rounded bg-white"
+          class="h-[4px] rounded bg-white group-hover:bg-primary"
         />
       </span>
       <span
