@@ -49,13 +49,13 @@
   <div class="group flex items-center gap-x-4">
     <div class="h-[60px] w-[60px] overflow-hidden rounded">
       <img
-        src="https://wallpapers-clan.com/wp-content/uploads/2023/01/aesthetic-anime-girl-pfp-9.jpg"
+        src="https://upload.wikimedia.org/wikipedia/pt/4/48/Utopia_-_Travis_Scott.png"
         alt="Music cover's"
       />
     </div>
     <div class="mr-6 font-manrope text-sm">
-      <h3 class="mb-0.5 font-semibold">Hope</h3>
-      <p class="text-xs font-medium text-white/70">Old sea bridge</p>
+      <h3 class="mb-0.5 font-semibold">SIRENS</h3>
+      <p class="text-xs font-medium text-white/70">Travis Scott</p>
     </div>
     <FavoriteButton
       favorite={$trackStore.favorite}

@@ -5,10 +5,15 @@
   import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
   import Playerbar from '$lib/ui/interface/Playerbar/Playerbar.svelte';
   import PlayingNow from '$lib/ui/interface/PlayingNow.svelte';
+  import { onMount } from 'svelte';
 
-  let playing = false;
+  let playerBarVisible = false;
 
-  $: playing = Boolean($trackStore.audioElement);
+  $: playerBarVisible = Boolean($trackStore.audioEl?.src);
+
+  onMount(() => {
+    console.log({ audio: $trackStore.audioEl.src });
+  });
 </script>
 
 <div
@@ -28,5 +33,7 @@
       {/if}
     </div>
   </div>
-  <Playerbar />
+  {#if playerBarVisible}
+    <Playerbar />
+  {/if}
 </div>
