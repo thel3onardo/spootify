@@ -4,7 +4,10 @@ interface ITrack {
   id: number;
   favorite: boolean;
   name: string;
-  author: string;
+  author: {
+    id: number;
+    name: string;
+  };
   coverImage: string;
   audio: {
     audioUrl: string;

@@ -1,14 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+  import { currentTrack } from '$lib/stores/track';
   import PlayerbarControls from './PlayerbarControls.svelte';
   import PlayerbarActions from './PlayerbarActions.svelte';
   import FavoriteButton from '$lib/ui/components/button/FavoriteButton.svelte';
-  import { currentTrack } from '$lib/stores/track';
-  import { onMount } from 'svelte';
 
   let audio = new Audio();
   let currentTime = 0;
-  //TODO: duration should be defined with value from API
-  let duration = $currentTrack?.audio.duration;
+  let duration = 0;
   let playing = false;
   let volume = 0;
 
@@ -45,6 +44,10 @@
       playing = false;
     });
 
+    audio.addEventListener('abort', () => {
+      playing = false;
+    });
+
     audio.addEventListener('volumechange', (e) => {
       volume = audio.volume;
     });
@@ -54,6 +57,10 @@
     //TODO: get this from localStorage
     audio.volume = 0.4;
     volume = 0.4;
+  };
+
+  const setAudioSrc = (src: string) => {
+    audio.src = src;
   };
 
   const togglePlay = () => {
@@ -75,11 +82,10 @@
   onMount(() => {
     setupAudioListeners();
     setupInitialVolume();
-
-    if ($currentTrack) {
-      audio.src = $currentTrack.audio.audioUrl;
-    }
   });
+
+  $: $currentTrack ? setAudioSrc($currentTrack.audio.audioUrl) : '';
+  $: duration = $currentTrack ? $currentTrack.audio.duration : 0;
 </script>
 
 {#if $currentTrack}
@@ -87,13 +93,15 @@
     <div class="group flex items-center gap-x-4">
       <div class="h-[60px] w-[60px] overflow-hidden rounded">
         <img
-          src="https://upload.wikimedia.org/wikipedia/pt/4/48/Utopia_-_Travis_Scott.png"
-          alt="Music cover's"
+          src={$currentTrack.coverImage}
+          alt={`${$currentTrack.name} cover's`}
         />
       </div>
       <div class="mr-6 font-manrope text-sm">
-        <h3 class="mb-0.5 font-semibold">SIRENS</h3>
-        <p class="text-xs font-medium text-white/70">Travis Scottt</p>
+        <h3 class="mb-0.5 font-semibold">{$currentTrack.name}</h3>
+        <p class="text-xs font-medium text-white/70">
+          {$currentTrack.author.name}
+        </p>
       </div>
       <FavoriteButton
         favorite={$currentTrack.favorite}

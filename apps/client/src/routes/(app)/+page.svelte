@@ -76,19 +76,19 @@
     latestAlbumsColors[id] = colorHex;
   };
 
-  const playMusic = async () => {
+  const playMusic = async (trackId: number) => {
     try {
-      const data = await fetchTrackById(19);
-      const { id, favorite, coverImage, author, ...other } = data.data;
+      const data = await fetchTrackById(trackId);
+      const { id, name, favorite, coverImage, author, ...other } = data.data;
 
-      console.log({ other });
-
+      //TODO: implement this with response data typed
       //@ts-ignore
       setTrack({
         id,
         favorite,
         coverImage,
         author,
+        name,
         audio: other.TrackAudio,
       });
     } catch (err) {
@@ -180,8 +180,12 @@
       </section>
     {/each}
 
-    <button on:click={playMusic}>
+    <button on:click={() => playMusic(19)}>
       <Button variant="primary" rounded="xl">Play music</Button>
+    </button>
+
+    <button on:click={() => playMusic(25)}>
+      <Button variant="primary" rounded="xl">Play music 2</Button>
     </button>
   </div>
 </div>
