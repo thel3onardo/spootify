@@ -25,5 +25,5 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 'latest',
   },
-  ignorePatterns: ['node_modules'],
+  ignorePatterns: ['node_modules', 'src-tauri/target'],
 };
