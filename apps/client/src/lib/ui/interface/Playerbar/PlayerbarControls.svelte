@@ -4,6 +4,7 @@
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { secondsToMinutes } from '$lib/utils';
+  import { trackStore } from '$lib/stores/track';
 
   const dispatcher = createEventDispatcher();
 
@@ -26,7 +27,7 @@
 
   const {
     elements: { root, range, thumb },
-    states: { value },
+    states: { value: sliderValue },
   } = createSlider({
     defaultValue: [0],
     max: 100,
@@ -34,12 +35,9 @@
     onValueChange: emitNewSliderValue,
   });
 
-  $: value.set([progressValue]);
+  $: sliderValue.set([progressValue]);
 
-  export let playing: Boolean,
-    progressValue: number,
-    currentTime: number,
-    duration: number;
+  export let progressValue: number;
 </script>
 
 <div class="flex grow flex-col items-center justify-center">
@@ -62,7 +60,9 @@
         class="cursor-pointer select-none rounded-full bg-white p-1 text-black"
       >
         <Icon
-          icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
+          icon={$trackStore.playing
+            ? 'ic:round-pause'
+            : 'ic:baseline-play-arrow'}
           width="1.8rem"
           height="1.8rem"
           draggable="false"
@@ -84,9 +84,9 @@
   </div>
 
   <div
-    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-bold text-gray-500"
+    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-medium text-gray-500"
   >
-    <span>{secondsToMinutes(currentTime)}</span>
+    <span>{secondsToMinutes($trackStore.currentTime)}</span>
     <span
       use:melt={$root}
       class="group relative mx-3 flex h-[10px] w-full grow items-center"
@@ -102,6 +102,6 @@
         class="block h-3 w-3 rounded-full bg-white focus:ring-4 focus:ring-black/40"
       />
     </span>
-    <span>{secondsToMinutes(duration)}</span>
+    <span>{secondsToMinutes($trackStore.totalTime)}</span>
   </div>
 </div>

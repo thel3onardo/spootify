@@ -25,15 +25,11 @@
   };
 
   const togglePlay = () => {
-    if (!$trackStore.audioEl) return;
-
-    if ($trackStore.audioEl.paused) {
+    if (!$trackStore.playing) {
       $trackStore.audioEl.play();
-      playing = true;
       return;
     }
     $trackStore.audioEl.pause();
-    playing = false;
   };
 
   const setTrackTime = (e: CustomEvent) => {
@@ -42,7 +38,7 @@
     updateTrackCurrentTime(percentageValue);
   };
 
-  $: playing ? setProgressBarInterval() : clearInterval(interval);
+  $: $trackStore.playing ? setProgressBarInterval() : clearInterval(interval);
 </script>
 
 <div class="flex items-center justify-between gap-x-12 px-4 py-2">
@@ -66,10 +62,7 @@
   <PlayerbarControls
     on:pause={togglePlay}
     on:setTrackTime={setTrackTime}
-    {playing}
     progressValue={progressBarPercentage}
-    currentTime={$trackStore.currentTime}
-    duration={$trackStore.totalTime}
   />
   <PlayerbarActions />
 </div>

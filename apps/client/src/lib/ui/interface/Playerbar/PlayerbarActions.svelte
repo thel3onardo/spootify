@@ -2,17 +2,16 @@
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import { playingNowMenuVisible } from '$lib/stores/layout';
-  import { trackStore } from '$lib/stores/track';
+  import { trackStore, setMute } from '$lib/stores/track';
 
-  let volumeMuted = true;
+  let volumeMuted = false;
+  let iconSize: '1.2rem';
 
   const togglePlayingNowMenu = () => {
     $playingNowMenuVisible = !$playingNowMenuVisible;
   };
 
   const setTrackVolume: CreateSliderProps['onValueChange'] = ({ next }) => {
-    if (!$trackStore.audioEl) return;
-
     $trackStore.audioEl.volume = next[0] / 100;
 
     return next;
@@ -26,6 +25,8 @@
     orientation: 'horizontal',
     onValueChange: setTrackVolume,
   });
+
+  $: volumeMuted = $trackStore.audioEl.volume === 0;
 </script>
 
 <div class="flex gap-x-4 text-gray-500">
@@ -33,7 +34,7 @@
     on:click={togglePlayingNowMenu}
     tooltipLabel="Playing now"
     icon="solar:headphones-round-sound-bold"
-    size="1.35rem"
+    size={iconSize}
     hoverBg
     class="hover:text-white"
   />
@@ -42,7 +43,7 @@
     on:click={() => ''}
     tooltipLabel="Lyrics"
     icon="solar:notification-unread-lines-outline"
-    size="1.35rem"
+    size={iconSize}
     hoverBg
     class="hover:text-white"
   />
@@ -51,7 +52,7 @@
     on:click={() => ''}
     tooltipLabel="Help"
     icon="solar:question-square-linear"
-    size="1.35rem"
+    size={iconSize}
     hoverBg
     class="hover:text-white"
   />
@@ -62,9 +63,10 @@
       icon={volumeMuted
         ? 'solar:volume-cross-linear'
         : 'solar:volume-loud-linear'}
-      size="1.35rem"
+      size={iconSize}
       hoverBg
       class="hover:text-white"
+      on:click={() => setMute(!volumeMuted)}
     />
 
     <span

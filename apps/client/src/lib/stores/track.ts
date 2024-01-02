@@ -3,17 +3,19 @@ import { writable } from 'svelte/store';
 interface IState {
   id: number;
   favorite: boolean;
-  audioEl: HTMLAudioElement | null;
+  audioEl: HTMLAudioElement;
   currentTime: number;
   totalTime: number;
+  playing: boolean;
 }
 
 const trackStore = writable<IState>({
   id: 23092,
   favorite: true,
-  audioEl: null,
+  audioEl: new Audio(),
   currentTime: 0,
   totalTime: 0,
+  playing: false,
 });
 
 const setTrack = (body: { url: string; duration: number }) => {
@@ -34,6 +36,8 @@ const updateTrackCurrentTime = (percentageValue: number) => {
       (percentageValue / 100) * track.totalTime,
     );
 
+    console.log({ trackSecondsByPercentage });
+
     track.audioEl.currentTime = trackSecondsByPercentage;
 
     return { ...track };
@@ -46,4 +50,25 @@ const updateCurrentTime = (newTime: number) => {
   });
 };
 
-export { setTrack, trackStore, updateCurrentTime, updateTrackCurrentTime };
+const setMute = (muted: boolean) => {
+  trackStore.update((track) => {
+    track.audioEl.volume = muted ? 0 : 1;
+
+    return { ...track };
+  });
+};
+
+const setPlaying = (playing: boolean) => {
+  trackStore.update((track) => {
+    return { ...track, playing };
+  });
+};
+
+export {
+  setTrack,
+  trackStore,
+  updateCurrentTime,
+  updateTrackCurrentTime,
+  setMute,
+  setPlaying,
+};
