@@ -16,6 +16,7 @@ export async function getTrackByID(
         id: Number(id),
       },
       select: {
+        id: true,
         name: true,
         coverImage: true,
         createdAt: true,
@@ -26,10 +27,19 @@ export async function getTrackByID(
             name: true,
           },
         },
+        TrackAudio: {
+          select: {
+            audioUrl: true,
+            duration: true,
+          },
+        },
       },
     });
 
-    rep.status(200).send({ status: "success", data: result });
+    //TODO: remove mock data
+    rep
+      .status(200)
+      .send({ status: "success", data: { ...result, favorite: true } });
   } catch (err) {
     req.log.error(err);
     rep.status(500).send({ error: err });
