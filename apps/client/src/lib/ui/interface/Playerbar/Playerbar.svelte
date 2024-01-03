@@ -79,7 +79,7 @@
 </script>
 
 {#if $currentTrack}
-  <div class="flex items-center justify-between gap-x-12 px-4 py-2">
+  <div class="flex items-center justify-between gap-x-12 px-4 py-2 select-none">
     <div class="group flex items-center gap-x-4">
       <div class="h-[60px] w-[60px] overflow-hidden rounded">
         <img

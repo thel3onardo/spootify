@@ -11,7 +11,7 @@
 
   export let icon: string,
     tooltipLabel: string,
-    size = '1.25rem',
+    iconSize = '1.25rem',
     hoverBg = false;
 </script>
 
@@ -20,11 +20,11 @@
   <button
     on:click={emitClick}
     class="{hoverBg
-      ? 'rounded-full p-2 transition hover:bg-gray-100/20'
+      ? 'rounded-full transition hover:bg-gray-100/20'
       : ''} flex select-none items-center {$$props.class}"
   >
     <!-- TODO: draggable="false" seems not to be working here -->
-    <Icon {icon} width={size} height={size} draggable="false" />
+    <Icon {icon} width={iconSize} height={iconSize} draggable="false" />
     <slot />
   </button>
 </Tooltip>

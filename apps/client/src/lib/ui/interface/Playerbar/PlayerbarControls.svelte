@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
   import { createSlider, melt, type CreateSliderProps } from '@melt-ui/svelte';
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import { secondsToMinutes } from '$lib/utils';
@@ -7,23 +6,9 @@
 
   const dispatcher = createEventDispatcher();
 
-  //TODO: this is gonna be removed
-  // const emitNewSliderValue: CreateSliderProps['onValueChange'] = ({
-  //   curr,
-  //   next,
-  // }) => {
-  //   //TODO: maybe one of the two value below can be NaN and cause bugs.
-  //   const currentTime = Math.floor(curr[0]);
-  //   const nextTime = Math.floor(next[0]);
-
-  //   if (nextTime !== currentTime + 1 && nextTime !== currentTime) {
-  //     dispatcher('setTrackTime', {
-  //       value: next[0],
-  //     });
-  //   }
-
-  //   return next;
-  // };
+  const emitTogglePlay = () => {
+    dispatcher('togglePlay');
+  };
 
   const {
     elements: { root, range, thumb },
@@ -52,27 +37,23 @@
       size="1.3rem"
     />
 
-    <div class="mx-4 flex items-center gap-x-6">
+    <div class="mx-2 flex items-center gap-x-4">
       <IconButton
         icon="fluent:arrow-previous-12-filled"
         tooltipLabel="Previous"
-        class="hover:text-white"
+        class="hover:text-white p-2"
       />
-      <button
-        on:click={() => dispatcher('togglePlay')}
-        class="cursor-pointer select-none rounded-full bg-white p-1 text-black"
-      >
-        <Icon
-          icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
-          width="1.8rem"
-          height="1.8rem"
-          draggable="false"
-        />
-      </button>
+      <IconButton
+        on:click={emitTogglePlay}
+        tooltipLabel="Toggle play"
+        class="p-1 select-none rounded-full bg-white text-black cursor-default active:scale-90 transition"
+        icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
+        iconSize="1.5rem"
+      />
       <IconButton
         icon="fluent:arrow-next-12-filled"
         tooltipLabel="Next"
-        class="hover:text-white"
+        class="hover:text-white p-1"
       />
     </div>
 
@@ -80,12 +61,11 @@
       icon="ph:repeat-bold"
       tooltipLabel="Repeat"
       class="hover:text-white"
-      size="1.3rem"
     />
   </div>
 
   <div
-    class="mt-3 flex w-full max-w-[700px] items-center font-manrope text-xs font-semibold text-gray-500"
+    class="mt-2 flex w-full max-w-[700px] items-center font-manrope text-xs font-semibold text-gray-500"
   >
     <span>{secondsToMinutes(currentTime)}</span>
     <span
