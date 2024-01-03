@@ -8,6 +8,7 @@
   import Button from '$lib/ui/components/button/Button.svelte';
   import { setTrack } from '$lib/stores/track';
   import { fetchTrackById } from '$lib/repositories/audio';
+  import { addToast } from '$lib/ui/components/Toast.svelte';
 
   let bgColor = '';
   let defaultBgColor = '#9f1239';

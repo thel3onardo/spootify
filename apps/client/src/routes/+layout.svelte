@@ -14,6 +14,10 @@
   import 'simplebar/dist/simplebar.css';
 
   import '../app.css';
+
+  import Toast from '$lib/ui/components/Toast.svelte';
 </script>
+
+<Toast />
 
 <slot />

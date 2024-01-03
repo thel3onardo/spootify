@@ -24,11 +24,10 @@
 
   export let variant: VariantKeyProp,
     rounded: RoundedKeyProp,
-    block = false,
-    href: string | null = null;
+    block = false;
 </script>
 
-<svelte:element this={href ? 'a' : 'button'} {href} data-sveltekit-preload-data>
+<button on:click={() => dispatch('click')}>
   <div
     class="{variantList[variant]} {roundedList[rounded]} {block
       ? 'w-full'
@@ -36,4 +35,4 @@
   >
     <slot />
   </div>
-</svelte:element>
+</button>
