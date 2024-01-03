@@ -31,6 +31,7 @@
 
     audio.addEventListener('abort', () => {
       playing = false;
+      currentTime = 0;
     });
 
     audio.addEventListener('volumechange', (e) => {
@@ -71,9 +72,10 @@
 
   $: $currentTrack ? setAudioSrc($currentTrack.audio.audioUrl) : '';
   $: duration = $currentTrack ? $currentTrack.audio.duration : 0;
+
+  //TODO: this is not satisfying, it's not going 1 + 1 sec
   $: progressBarPercentage =
     duration !== 0 ? Math.floor((currentTime / duration) * 100) : 0;
-  $: console.log({ progressBarPercentage });
 </script>
 
 {#if $currentTrack}
