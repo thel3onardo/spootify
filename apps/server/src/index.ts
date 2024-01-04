@@ -10,10 +10,12 @@ import envConfig from "./config/env";
 import trackRoutes from "./modules/track/track.route";
 import authRoutes from "./modules/auth/auth.route";
 import collectionRoutes from "./modules/collection/collection.route";
+import userRoutes from "./modules/user/user.routes";
 
 import { trackSchemas } from "./modules/track/track.schema";
 import { authSchemas } from "./modules/auth/auth.schema";
 import { collectionSchemas } from "./modules/collection/collection.schema";
+import { userSchemas } from "./modules/user/user.schema";
 
 const server = fastify({
   logger: {
@@ -29,6 +31,7 @@ async function main() {
     ...trackSchemas,
     ...authSchemas,
     ...collectionSchemas,
+    ...userSchemas,
   ]) {
     server.addSchema(schema);
   }
@@ -51,6 +54,7 @@ async function main() {
       trackRoutes(app);
       authRoutes(app);
       collectionRoutes(app);
+      userRoutes(app);
 
       done();
     },

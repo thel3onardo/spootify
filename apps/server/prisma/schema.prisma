@@ -24,10 +24,21 @@ model User {
 
   artist Boolean
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  Session   Session[]
+  Key       Key[]
 
   @@map("users")
+}
+
+model Artist {
+  id       Int    @id @unique @default(autoincrement())
+  email    String @unique
+  password String
+  name     String
+
+  @@map("artists")
 }
 
 model Collection {
@@ -85,4 +96,23 @@ model TrackAudio {
   duration Int
 
   @@map("tracks_audios")
+}
+
+model Session {
+  id             String @id @unique
+  user_id        Int
+  active_expires BigInt
+  idle_expires   BigInt
+  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+}
+
+model Key {
+  id              String  @id @unique
+  hashed_password String?
+  user_id         Int
+  user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
 }
