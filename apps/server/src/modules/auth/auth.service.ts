@@ -1,5 +1,5 @@
-import { PrismaClientValidationError } from "../../../prisma/generated-client/runtime/library";
-import { Prisma, PrismaClient } from "../../../prisma/generated-client";
+import { PrismaClientValidationError } from "@prisma/client/runtime/library";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { LoginUserInput } from "./auth.schema";
 
 export const registerUser = async (
