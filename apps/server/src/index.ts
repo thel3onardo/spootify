@@ -2,10 +2,10 @@ import fastify from "fastify";
 import fastifyEnv from "@fastify/env";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCors from "@fastify/cors";
-
-import prismaPlugin from "./plugins/prisma";
 import fileUpload from "fastify-file-upload";
-import envConfig from "./config/env";
+
+import { prismaPlugin } from "./plugins/prisma";
+import { envConfig } from "./config/env";
 
 import trackRoutes from "./modules/track/track.route";
 import authRoutes from "./modules/auth/auth.route";
@@ -26,7 +26,7 @@ const server = fastify({
 });
 
 async function main() {
-  //TODO: abstract this away, please
+  //TODO: abstract this away, pleasee
   for (const schema of [
     ...trackSchemas,
     ...authSchemas,

@@ -21,10 +21,10 @@ const schema = {
   },
 };
 
-const config = {
+const envConfig = {
   confKey: "config",
   schema,
   dotenv: true,
 };
 
-export default config;
+export { envConfig };

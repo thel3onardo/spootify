@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateTrackInput, GetTrackResponse } from "./track.schema";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../../prisma/generated-client";
 import { parseBuffer } from "music-metadata";
 import { Client, Storage, ID, InputFile } from "node-appwrite";
 

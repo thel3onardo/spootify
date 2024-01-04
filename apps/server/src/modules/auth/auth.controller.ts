@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { LoginUserInput, RegisterUserInput } from "./auth.schema";
 import { BCRYPT_SALT_ROUNDS } from "./constants";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
+import { PrismaClientKnownRequestError } from "../../../prisma/generated-client/runtime/library";
 
 export const registerUserHandler = async (
   req: FastifyRequest<{ Body: RegisterUserInput }>,

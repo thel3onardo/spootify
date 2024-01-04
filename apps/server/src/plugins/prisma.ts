@@ -1,6 +1,6 @@
 import { FastifyPluginAsync } from "fastify";
 import { initializePrisma } from "../config/prisma";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../prisma/generated-client";
 import fastifyPlugin from "fastify-plugin";
 
 declare module "fastify" {
@@ -21,4 +21,4 @@ const prismaPlugin: FastifyPluginAsync = fastifyPlugin(async (server) => {
   });
 });
 
-export default prismaPlugin;
+export { prismaPlugin };

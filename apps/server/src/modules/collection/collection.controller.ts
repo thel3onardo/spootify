@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateCollection, UpdateCollection } from "./collection.schema";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../../prisma/generated-client";
 
 export async function createCollection(
   req: FastifyRequest<{ Body: CreateCollection }>,
