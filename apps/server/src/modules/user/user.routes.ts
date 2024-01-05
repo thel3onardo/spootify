@@ -1,12 +1,20 @@
 import { FastifyInstance } from "fastify";
 import { $ref } from "./user.schema";
-import { signUpUser } from "./user.controller";
+import {
+  signUpWithCredentials,
+  signInWithCredentials,
+} from "./user.controller";
 
 async function trackRoutes(server: FastifyInstance) {
   server.post(
     "/auth/user/signup",
     { schema: { body: $ref("signUpUser") } },
-    signUpUser,
+    signUpWithCredentials,
+  );
+  server.post(
+    "/auth/user/signin",
+    { schema: { body: $ref("signInUser") } },
+    signInWithCredentials,
   );
 }
 
