@@ -4,6 +4,7 @@ import {
   signUpWithCredentials,
   signInWithCredentials,
   signOut,
+  getUser,
 } from "./user.controller";
 import { authHook } from "../../hooks/auth";
 
@@ -19,6 +20,7 @@ async function trackRoutes(server: FastifyInstance) {
     signInWithCredentials,
   );
   server.post("/auth/user/signout", { preHandler: [authHook] }, signOut);
+  server.get("/user", { preHandler: authHook }, getUser);
 }
 
 export default trackRoutes;

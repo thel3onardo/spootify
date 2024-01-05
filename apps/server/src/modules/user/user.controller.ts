@@ -107,3 +107,14 @@ export const signOut = async (req: FastifyRequest, rep: FastifyReply) => {
     rep.status(500).send({ err });
   }
 };
+
+export const getUser = async (req: FastifyRequest, rep: FastifyReply) => {
+  const session = rep.server.session;
+  if (!session) return;
+
+  rep.log.info({ session });
+
+  const user = await auth.getUser(session?.user.userId);
+
+  rep.status(200).send({ status: "success", data: user });
+};
