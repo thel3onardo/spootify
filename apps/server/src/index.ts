@@ -3,6 +3,7 @@ import fastifyEnv from "@fastify/env";
 import fastifyJwt from "@fastify/jwt";
 import fastifyCors from "@fastify/cors";
 import fileUpload from "fastify-file-upload";
+import fastifyCookie from "@fastify/cookie";
 
 import { prismaPlugin } from "./plugins/prisma";
 import { envConfig } from "./config/env";
@@ -40,6 +41,10 @@ async function main() {
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
   await server.register(fastifyCors);
+  server.register(fastifyCookie, {
+    hook: "onRequest",
+    parseOptions: {},
+  });
   server.register(fileUpload);
   server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,
