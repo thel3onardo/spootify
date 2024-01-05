@@ -19,7 +19,7 @@
 <Tooltip label={tooltipLabel}>
   <button
     on:click={emitClick}
-    class="{hoverBg
+    class="p-1 {hoverBg
       ? 'rounded-full transition hover:bg-gray-100/20'
       : ''} flex select-none items-center {$$props.class}"
   >
