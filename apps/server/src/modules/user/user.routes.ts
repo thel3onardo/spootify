@@ -3,6 +3,7 @@ import { $ref } from "./user.schema";
 import {
   signUpWithCredentials,
   signInWithCredentials,
+  signOut,
 } from "./user.controller";
 
 async function trackRoutes(server: FastifyInstance) {
@@ -11,6 +12,7 @@ async function trackRoutes(server: FastifyInstance) {
     { schema: { body: $ref("signUpUser") } },
     signUpWithCredentials,
   );
+  server.post("/auth/user/signout", signOut);
   server.post(
     "/auth/user/signin",
     { schema: { body: $ref("signInUser") } },

@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { loginUserHandler, registerUserHandler } from "./auth.controller";
 import { $ref } from "./auth.schema";
+import { signOut } from "../user/user.controller";
 
 async function authRoutes(server: FastifyInstance) {
   server.post(
@@ -13,6 +14,7 @@ async function authRoutes(server: FastifyInstance) {
     { schema: { body: $ref("loginUserSchema") } },
     loginUserHandler,
   );
+  server.post("/auth/signout", signOut);
   server.get("/auth", registerUserHandler);
 }
 

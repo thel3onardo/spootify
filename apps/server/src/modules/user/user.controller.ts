@@ -31,8 +31,6 @@ export const signUpWithCredentials = async (
       attributes: {},
     });
 
-    rep.log.info({ session });
-
     return rep
       .status(201)
       .setCookie("auth_session", session.sessionId, {
@@ -91,5 +89,27 @@ export const signInWithCredentials = async (
     }
 
     rep.status(500).send({ status: "Unknown error", message: e });
+  }
+};
+
+export const signOut = async (req: FastifyRequest, rep: FastifyReply) => {
+  try {
+    //TODO: maybe get sessionId from rep.server.sessionId
+
+    const sessionId = req.cookies["auth_session"];
+
+    if (!sessionId) {
+      return rep.status(500).send({ message: "No auth cookie provided" });
+    }
+
+    await auth.invalidateSession(sessionId);
+
+    //send no content and delete cookie
+    rep.status(204).setCookie("auth_session", "", {
+      path: "/",
+      expires: new Date("Thu, 01 Jan 1970 00:00:00"),
+    });
+  } catch (err) {
+    rep.status(500).send({ err });
   }
 };
