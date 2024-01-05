@@ -42,6 +42,11 @@ export async function getTrackByID(
       .send({ status: "success", data: { ...result, favorite: true } });
   } catch (err) {
     req.log.error(err);
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2025") {
+        return rep.status(404).send({ message: "Track not found" });
+      }
+    }
     rep.status(500).send({ error: err });
   }
 }

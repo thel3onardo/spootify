@@ -2,10 +2,14 @@ import { z } from "zod";
 import { buildJsonSchemas } from "fastify-zod";
 
 const signUpUser = z.object({
-  email: z.string().email(),
+  email: z
+    .string()
+    .email({ message: "Invalid email. Expected: test@test.com" }),
   password: z.string(),
-  name: z.string(),
-  birthDate: z.string().datetime(),
+  name: z.string().min(2).max(24),
+  birthDate: z
+    .string()
+    .datetime({ message: "Invalid birthDate. Expected: ISO 8601 format" }),
 });
 
 const signInUser = z.object({
