@@ -29,6 +29,7 @@
 
 <form class="flex flex-col text-[#888888] {$$props.class}">
   <label for={name} class="font-manrope mb-2 text-xs font-bold">{label}</label>
+
   <div class="relative">
     <input
       id={name}
