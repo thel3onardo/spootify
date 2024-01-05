@@ -10,10 +10,5 @@ export const authHook = async (req: FastifyRequest, rep: FastifyReply) => {
 
   const session = await auth.getSession(sessionId);
 
-  console.log({ hasDecorator: rep.server.hasDecorator("session") });
-  console.log({ session });
-
-  rep.log.info("requestSession", rep.server.session);
-
   rep.server.session = session;
 };

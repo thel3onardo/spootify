@@ -94,17 +94,11 @@ export const signInWithCredentials = async (
 
 export const signOut = async (req: FastifyRequest, rep: FastifyReply) => {
   try {
-    //TODO: maybe get sessionId from rep.server.sessionId
-
-    const sessionId = req.cookies["auth_session"];
-
-    if (!sessionId) {
-      return rep.status(500).send({ message: "No auth cookie provided" });
-    }
+    const sessionId = rep.server.session?.sessionId;
+    if (!sessionId) return;
 
     await auth.invalidateSession(sessionId);
 
-    //send no content and delete cookie
     rep.status(204).setCookie("auth_session", "", {
       path: "/",
       expires: new Date("Thu, 01 Jan 1970 00:00:00"),
