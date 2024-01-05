@@ -1,11 +1,7 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: [
-    'plugin:svelte/recommended',
-    'plugin:tailwindcss/recommended',
-    'plugin:prettier/recommended',
-  ],
-  plugins: ['tailwindcss', 'prettier', '@typescript-eslint'],
+  extends: ['plugin:svelte/recommended', 'plugin:prettier/recommended'],
+  plugins: ['@typescript-eslint', 'prettier'],
   root: true,
   env: {
     es6: true,
