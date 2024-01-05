@@ -11,10 +11,10 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
-  email        String  @unique
-  passwordHash String  @map("password_hash")
-  name         String?
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  birthDate DateTime @db.DateTime()
 
   coverImage   String? @map("cover_img")
   profileImage String? @map("profile_img")
@@ -22,12 +22,11 @@ model User {
   collections Collection[]
   tracks      Track[]
 
-  artist Boolean
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
-  Session   Session[]
-  Key       Key[]
+  Session Session[]
+  Key     Key[]
 
   @@map("users")
 }
@@ -50,8 +49,8 @@ model Collection {
   tracks            Track[]
   TrackOnCollection TrackOnCollection[]
 
-  author   User @relation(fields: [authorId], references: [id])
-  authorId Int  @map("author_id")
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @map("author_id")
 
   @@map("collections")
 }
@@ -66,8 +65,8 @@ model Track {
   collections       Collection[]
   TrackOnCollection TrackOnCollection[]
 
-  author   User @relation(fields: [authorId], references: [id])
-  authorId Int  @map("author_id")
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @map("author_id")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -100,7 +99,7 @@ model TrackAudio {
 
 model Session {
   id             String @id @unique
-  user_id        Int
+  user_id        String
   active_expires BigInt
   idle_expires   BigInt
   user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
@@ -111,7 +110,7 @@ model Session {
 model Key {
   id              String  @id @unique
   hashed_password String?
-  user_id         Int
+  user_id         String
   user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])

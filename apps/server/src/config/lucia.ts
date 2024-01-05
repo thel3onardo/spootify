@@ -10,6 +10,7 @@ export const auth = lucia({
     user: "user",
     key: "key",
     session: "session",
+    artist: "artist",
   }),
 });
 
