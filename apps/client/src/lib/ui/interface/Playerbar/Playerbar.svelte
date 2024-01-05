@@ -79,7 +79,7 @@
 </script>
 
 {#if $currentTrack}
-  <div class="flex items-center justify-between gap-x-12 px-4 py-2 select-none">
+  <div class="flex select-none items-center justify-between gap-x-12 px-4 py-2">
     <div class="group flex items-center gap-x-4">
       <div class="h-[60px] w-[60px] overflow-hidden rounded">
         <img
@@ -87,7 +87,7 @@
           alt={`${$currentTrack.name} cover's`}
         />
       </div>
-      <div class="mr-6 font-manrope text-sm">
+      <div class="font-manrope mr-6 text-sm">
         <h3 class="mb-0.5 font-semibold">{$currentTrack.name}</h3>
         <p class="text-xs font-medium text-white/70">
           {$currentTrack.author.name}

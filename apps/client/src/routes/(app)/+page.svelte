@@ -1,56 +1,55 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import PlaylistItem from '$lib/components/home/PlaylistItem.svelte';
-  import MediaCard from '$lib/ui/components/MediaCard.svelte';
-  import { HomeSections } from '$lib/data/home';
-  import Navbar from '$lib/ui/interface/Navbar.svelte';
-  import { user } from '$lib/stores/user';
-  import Button from '$lib/ui/components/button/Button.svelte';
-  import { setTrack } from '$lib/stores/track';
-  import { fetchTrackById } from '$lib/repositories/audio';
-  import { addToast } from '$lib/ui/components/Toast.svelte';
+  import { onMount } from "svelte";
+  import PlaylistItem from "$lib/components/home/PlaylistItem.svelte";
+  import MediaCard from "$lib/ui/components/MediaCard.svelte";
+  import { HomeSections } from "$lib/data/home";
+  import Navbar from "$lib/ui/interface/Navbar.svelte";
+  import { user } from "$lib/stores/user";
+  import Button from "$lib/ui/components/button/Button.svelte";
+  import { setTrack } from "$lib/stores/track";
+  import { fetchTrackById } from "$lib/repositories/audio";
 
-  let bgColor = '';
-  let defaultBgColor = '#9f1239';
+  let bgColor = "";
+  let defaultBgColor = "#9f1239";
   let currentTime = new Date().getHours();
-  let greetingMessage = '';
+  let greetingMessage = "";
 
   let latestAlbums = [
     {
       id: 1,
-      name: 'What',
-      coverImage: '/anime-girl.jpg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpg",
+      coverAlt: "",
     },
     {
       id: 2,
-      name: 'What',
-      coverImage: '/anime-girl.jpeg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpeg",
+      coverAlt: "",
     },
     {
       id: 3,
-      name: 'What',
-      coverImage: '/anime-girl.jpg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpg",
+      coverAlt: "",
     },
     {
       id: 1,
-      name: 'What',
-      coverImage: '/anime-girl.jpg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpg",
+      coverAlt: "",
     },
     {
       id: 2,
-      name: 'What',
-      coverImage: '/anime-girl.jpeg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpeg",
+      coverAlt: "",
     },
     {
       id: 3,
-      name: 'What',
-      coverImage: '/anime-girl.jpg',
-      coverAlt: '',
+      name: "What",
+      coverImage: "/anime-girl.jpg",
+      coverAlt: "",
     },
   ];
   let latestAlbumsColors: string[] = [];
@@ -58,14 +57,14 @@
   const getCurrentTime = () => {
     //TODO: implement this correctly, using nationalization
     if (currentTime > 0 && currentTime <= 12) {
-      greetingMessage = 'Bom dia';
+      greetingMessage = "Bom dia";
     }
     if (currentTime >= 12 && currentTime <= 18) {
       greetingMessage = `Boa tarde, ${$user.name}`;
     }
 
     if (currentTime >= 18 && currentTime <= 24) {
-      greetingMessage = 'Boa noite';
+      greetingMessage = "Boa noite";
     }
   };
 
@@ -188,6 +187,8 @@
     <button on:click={() => playMusic(25)}>
       <Button variant="primary" rounded="xl">Play music 2</Button>
     </button>
+
+    <a href="/accounts/sign-in">login</a>
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Icon from '@iconify/svelte';
-  import { createCheckbox, melt } from '@melt-ui/svelte';
-  import { scale } from 'svelte/transition';
+  import Icon from "@iconify/svelte";
+  import { createCheckbox, melt } from "@melt-ui/svelte";
+  import { scale } from "svelte/transition";
 
   export let disabled = false,
     value: boolean,
@@ -25,7 +25,7 @@
     <button
       use:melt={$root}
       id="checkbox"
-      class="text-primary flex h-6 w-6 appearance-none items-center justify-center rounded-lg bg-gray-950 hover:opacity-75"
+      class="flex h-6 w-6 appearance-none items-center justify-center rounded-lg bg-gray-950 text-primary hover:opacity-75"
     >
       {#if $isChecked}
         <div transition:scale={{ duration: 200, opacity: 0 }}>
@@ -37,7 +37,7 @@
           />
         </div>
       {/if}
-      <input use:melt={$input} bind:value />
+      <input use:melt={$input} />
     </button>
 
     <label class="ml-2 text-sm text-gray-500" for="checkbox">{label}</label>
