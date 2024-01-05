@@ -2,6 +2,7 @@
   import Icon from '@iconify/svelte';
 
   type AutoComplete = 'on' | 'off';
+  type InputMode = 'text' | 'numeric';
 
   let passwordVisible = false;
 
@@ -21,25 +22,39 @@
     name: string,
     password = false,
     value: string,
-    autocomplete: AutoComplete = 'off';
+    autocomplete: AutoComplete = 'off',
+    inputmode: InputMode = 'text',
+    icon: string | null = null;
 </script>
 
-<form class="flex flex-col text-white {$$props.class}">
-  <label for={name} class="mb-2 font-manrope text-xs font-bold">{label}</label>
+<form class="flex flex-col text-[#888888] {$$props.class}">
+  <label for={name} class="font-manrope mb-2 text-xs font-bold">{label}</label>
   <div class="relative">
     <input
       id={name}
-      class="w-full rounded border border-white/40 bg-gray-950 px-3 py-2.5 text-white outline-none transition hover:border-white focus:border-primary"
+      class={`${
+        icon ? 'pl-12 pr-4' : 'px-4'
+      } focus:border-primary w-full rounded-lg border border-gray-900 bg-gray-950 py-3 text-sm text-gray-300 outline-none transition placeholder:text-gray-500 hover:border-gray-700`}
       {type}
       {placeholder}
       {autocomplete}
+      {inputmode}
+      spellcheck="false"
       on:input={handleInput}
     />
+    {#if icon}
+      <Icon
+        {icon}
+        width="1.25rem"
+        height="1.25rem"
+        class="text-gray-[#6d6d6d] absolute left-4 top-3"
+      />
+    {/if}
     {#if password}
       <button
         on:click={togglePasswordVisible}
         on:keydown={togglePasswordVisible}
-        class="absolute right-4 top-1/4 cursor-pointer text-gray-500"
+        class="absolute right-4 top-1/4 cursor-pointer text-[#6d6d6d] hover:text-[#b0b0b0]"
       >
         <Icon
           icon={passwordVisible ? 'mdi:eye-off' : 'mdi:eye'}
