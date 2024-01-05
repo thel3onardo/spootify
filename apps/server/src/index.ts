@@ -37,6 +37,9 @@ async function main() {
     server.addSchema(schema);
   }
 
+  //decorators
+  server.decorate("session", null);
+
   //plugins
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
