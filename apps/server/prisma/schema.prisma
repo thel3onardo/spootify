@@ -43,7 +43,7 @@ model Artist {
 model Collection {
   id          String  @id @default(cuid())
   name        String
-  coverImage  String  @map("cover_img")
+  coverImage  String? @map("cover_img")
   description String?
 
   TrackOnCollection TrackOnCollection[]

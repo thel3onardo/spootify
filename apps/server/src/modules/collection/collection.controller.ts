@@ -11,14 +11,21 @@ export async function createCollection(
   try {
     const collection = await rep.server.prisma.collection.create({
       data,
+      select: {
+        id: true,
+      },
     });
-    rep.status(201).send({ collection });
+    rep
+      .status(201)
+      .send({ status: "success", data: { collectionId: collection.id } });
   } catch (err) {
+    rep.log.error(err);
+
     if (
       err instanceof Prisma.PrismaClientValidationError ||
       err instanceof Prisma.PrismaClientKnownRequestError
     ) {
-      return rep.status(400).send({ err: err.message });
+      return rep.status(500).send({ err: err.message });
     }
 
     rep.status(500).send({ err });

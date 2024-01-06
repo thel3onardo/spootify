@@ -3,15 +3,14 @@ import { buildJsonSchemas } from "fastify-zod";
 
 const createCollectionSchema = z.object({
   name: z.string(),
-  description: z.string(),
-  coverImage: z.string(),
-  authorId: z.number(),
+  authorId: z.string(),
 });
 
 const updateCollectionSchema = z.object({
   name: z.string().optional(),
   description: z.string().optional(),
   coverImage: z.string().optional(),
+  authorId: z.string(),
 });
 
 export type CreateCollection = z.infer<typeof createCollectionSchema>;
