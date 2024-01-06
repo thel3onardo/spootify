@@ -17,7 +17,7 @@
     <img src={coverUrl} alt={coverAlt} class="object-cover" />
   </div>
   <div class="font-manrope font-semibold">
-    <h4 class="text-left text-white">{name}</h4>
+    <h4 class="text-left text-neutral-50">{name}</h4>
     <div class="mt-1 flex items-center">
       {#if pinned}
         <Icon
@@ -27,7 +27,7 @@
           class="mr-1 rotate-45 text-primary"
         />
       {/if}
-      <span class="text-sm text-gray-500">{description}</span>
+      <span class="text-sm text-neutral-400">{description}</span>
     </div>
   </div>
 </a>

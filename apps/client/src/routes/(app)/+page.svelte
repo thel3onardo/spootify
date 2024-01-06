@@ -1,55 +1,58 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import PlaylistItem from "$lib/components/home/PlaylistItem.svelte";
-  import MediaCard from "$lib/ui/components/MediaCard.svelte";
-  import { HomeSections } from "$lib/data/home";
-  import Navbar from "$lib/ui/interface/Navbar.svelte";
-  import { user } from "$lib/stores/user";
-  import Button from "$lib/ui/components/button/Button.svelte";
-  import { setTrack } from "$lib/stores/track";
-  import { fetchTrackById } from "$lib/repositories/audio";
+  import { onMount } from 'svelte';
+  import PlaylistItem from '$lib/components/home/PlaylistItem.svelte';
+  import MediaCard from '$lib/ui/components/MediaCard.svelte';
+  import { HomeSections } from '$lib/data/home';
+  import Navbar from '$lib/ui/interface/Navbar.svelte';
+  import { user } from '$lib/stores/user';
+  import Button from '$lib/ui/components/button/Button.svelte';
+  import { setTrack } from '$lib/stores/track';
+  import { fetchTrackById } from '$lib/repositories/audio';
+  import Link from '$lib/ui/components/Link.svelte';
 
-  let bgColor = "";
-  let defaultBgColor = "#9f1239";
+  let bgColor = '';
+  let defaultBgColor = '#9f1239';
   let currentTime = new Date().getHours();
-  let greetingMessage = "";
+  let greetingMessage = '';
 
   let latestAlbums = [
     {
       id: 1,
-      name: "What",
-      coverImage: "/anime-girl.jpg",
-      coverAlt: "",
+      name: 'Hollow Coves',
+      coverImage:
+        'https://m.media-amazon.com/images/I/81gelNrme5L._UF1000,1000_QL80_.jpg',
+      coverAlt: '',
     },
     {
       id: 2,
-      name: "What",
-      coverImage: "/anime-girl.jpeg",
-      coverAlt: "",
+      name: 'Novo Amor',
+      coverImage:
+        'https://i.scdn.co/image/ab6761610000e5eb6f9004573a721336b343bbd3',
+      coverAlt: '',
     },
     {
       id: 3,
-      name: "What",
-      coverImage: "/anime-girl.jpg",
-      coverAlt: "",
+      name: 'What',
+      coverImage: '/anime-girl.jpg',
+      coverAlt: '',
     },
     {
       id: 1,
-      name: "What",
-      coverImage: "/anime-girl.jpg",
-      coverAlt: "",
+      name: 'What',
+      coverImage: '/anime-girl.jpg',
+      coverAlt: '',
     },
     {
       id: 2,
-      name: "What",
-      coverImage: "/anime-girl.jpeg",
-      coverAlt: "",
+      name: 'What',
+      coverImage: '/anime-girl.jpeg',
+      coverAlt: '',
     },
     {
       id: 3,
-      name: "What",
-      coverImage: "/anime-girl.jpg",
-      coverAlt: "",
+      name: 'What',
+      coverImage: '/anime-girl.jpg',
+      coverAlt: '',
     },
   ];
   let latestAlbumsColors: string[] = [];
@@ -57,14 +60,14 @@
   const getCurrentTime = () => {
     //TODO: implement this correctly, using nationalization
     if (currentTime > 0 && currentTime <= 12) {
-      greetingMessage = "Bom dia";
+      greetingMessage = 'Bom dia';
     }
     if (currentTime >= 12 && currentTime <= 18) {
       greetingMessage = `Boa tarde, ${$user.name}`;
     }
 
     if (currentTime >= 18 && currentTime <= 24) {
-      greetingMessage = "Boa noite";
+      greetingMessage = 'Boa noite';
     }
   };
 
@@ -107,7 +110,7 @@
   <title>Spootify - Home</title>
 </svelte:head>
 
-<div class="isolate flex min-h-full flex-col bg-gray-950">
+<div class="isolate flex min-h-full flex-col bg-neutral-950">
   <Navbar />
   <div
     style="--color: {bgColor}"
@@ -142,17 +145,15 @@
           <h1 class="font-inter text-2xl font-bold text-white">
             {section.title}
           </h1>
-          <a
-            href="/"
-            class="font-manrope text-sm font-bold text-gray-500 underline-offset-1 hover:underline"
-            >Show all</a
+          <Link href="/" class="font-manrope text-sm font-bold text-gray-400"
+            >Show all</Link
           >
         </div>
         <div class="flex gap-x-4">
           <div>
             <MediaCard
-              name="Chill mix"
-              description="Artist"
+              name="lofi beats"
+              description="lofi beats"
               coverAlt="s"
               coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
               href="/"
@@ -160,10 +161,10 @@
           </div>
           <div>
             <MediaCard
-              name="Chill mix"
-              description="Artist"
+              name="These memories"
+              description="Hollow coves"
               coverAlt="s"
-              coverUrl="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/j/i/t/medium-anime-scenery-beautiful-nature-dreamworld-anime-aesthetic-original-imagkzhgbdv9xsgh.jpeg?q=90"
+              coverUrl="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2cc63c39-c53b-4b37-bf1f-a3a3810ad232/dg5716q-ab3e4c46-af05-4607-97be-c5bf33586f08.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJjYzYzYzM5LWM1M2ItNGIzNy1iZjFmLWEzYTM4MTBhZDIzMlwvZGc1NzE2cS1hYjNlNGM0Ni1hZjA1LTQ2MDctOTdiZS1jNWJmMzM1ODZmMDguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6U8z530QiTsaBN6sjQcNYcB6TNNg4B2xD2kO7Y88Jr8"
               href="/"
             />
           </div>
@@ -195,6 +196,6 @@
 <style>
   .gradient {
     background-color: var(--color);
-    background-image: linear-gradient(rgb(18, 18, 18, 0.4) 0%, #121212 95%);
+    background-image: linear-gradient(rgb(18, 18, 18, 0.4) 0%, #0a0a0a 95%);
   }
 </style>

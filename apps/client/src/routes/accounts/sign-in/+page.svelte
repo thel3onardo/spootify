@@ -25,6 +25,7 @@
       if (res.status === 400) {
         return console.log('bad request');
       }
+      //TODO: remove any
     } catch (err: any) {
       console.error(err);
     }
@@ -81,7 +82,7 @@
 
     <svelte:fragment slot="cta-label">Login</svelte:fragment>
 
-    <p slot="footer" class="text-gray-500">
+    <p slot="footer" class="text-sm text-gray-500">
       Does not have an account?
       <Link href="/accounts/sign-up" class="text-gray-200">Sign up</Link>
     </p>

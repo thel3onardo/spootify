@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
+  import Icon from '@iconify/svelte';
 
-  type AutoComplete = "on" | "off";
-  type InputMode = "text" | "numeric";
+  type AutoComplete = 'on' | 'off';
+  type InputMode = 'text' | 'numeric';
 
   let passwordVisible = false;
 
@@ -10,20 +10,20 @@
     passwordVisible = !passwordVisible;
 
     //TODO: there's a way to improve this?
-    type = type === "text" ? "password" : "text";
+    type = type === 'text' ? 'password' : 'text';
   };
   const handleInput = (e: Event) => {
     value = (e.target as HTMLInputElement).value;
   };
 
-  export let type = "text",
+  export let type = 'text',
     placeholder: string,
     label: string,
     name: string,
     password = false,
     value: string,
-    autocomplete: AutoComplete = "off",
-    inputmode: InputMode = "text",
+    autocomplete: AutoComplete = 'off',
+    inputmode: InputMode = 'text',
     icon: string | null = null;
 </script>
 
@@ -34,7 +34,7 @@
     <input
       id={name}
       class={`${
-        icon ? "pl-12 pr-4" : "px-4"
+        icon ? 'pl-12 pr-4' : 'px-4'
       } w-full rounded-lg border border-gray-900 bg-gray-950 py-3 text-sm text-gray-300 outline-none transition placeholder:text-gray-500 hover:border-gray-700 focus:border-primary`}
       {type}
       {placeholder}
@@ -58,7 +58,7 @@
         class="absolute right-4 top-1/4 cursor-pointer text-[#6d6d6d] hover:text-[#b0b0b0]"
       >
         <Icon
-          icon={passwordVisible ? "mdi:eye-off" : "mdi:eye"}
+          icon={passwordVisible ? 'mdi:eye-off' : 'mdi:eye'}
           width="1.3rem"
           height="1.3rem"
         />

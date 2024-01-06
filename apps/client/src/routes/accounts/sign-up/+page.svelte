@@ -10,6 +10,7 @@
     email: '',
     password: '',
     passwordConfirmation: '',
+    acceptedTerms: false,
   };
 </script>
 
@@ -61,12 +62,19 @@
       password
     />
 
-    <Checkbox
-      >Aceito os termos de servico e <Link href="?" class="text-gray-300"
-        >politica de privacidade</Link
+    <Checkbox bind:value={user.acceptedTerms}
+      >I accept the terms of service and <Link href="?" class="text-gray-300"
+        >privacy policy</Link
       ></Checkbox
     >
   </div>
 
   <span slot="cta-label">Register</span>
+
+  <p slot="footer" class="text-sm text-gray-500">
+    Already have an account? <Link
+      href="/accounts/sign-in"
+      class="text-gray-300">Sign in</Link
+    >
+  </p>
 </AuthCardContainer>

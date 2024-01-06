@@ -87,7 +87,7 @@
           alt={`${$currentTrack.name} cover's`}
         />
       </div>
-      <div class="font-manrope mr-6 text-sm">
+      <div class="mr-6 font-manrope text-sm">
         <h3 class="mb-0.5 font-semibold">{$currentTrack.name}</h3>
         <p class="text-xs font-medium text-white/70">
           {$currentTrack.author.name}

@@ -9,7 +9,7 @@
       id: 0,
       name: 'Hollow Coves',
       coverUrl:
-        'https://w0.peakpx.com/wallpaper/181/464/HD-wallpaper-anime-girl-profile-view-choker-short-hair-coat-anime-thumbnail.jpg',
+        'https://m.media-amazon.com/images/I/81idxQqxTlL._UF1000,1000_QL80_.jpg',
       coverAlt: '',
       pinned: true,
       description: 'Playlist - 300 songs',
@@ -226,33 +226,39 @@
 </script>
 
 <div
-  class="flex w-full flex-col overflow-hidden rounded-lg bg-gray-950 backdrop-blur-md"
+  class="flex w-full flex-col overflow-hidden rounded-lg bg-neutral-950 backdrop-blur-md"
 >
-  <div id="my-lib-header" class="flex justify-between px-5 pt-3 text-gray-500">
+  <div
+    id="my-lib-header"
+    class="flex justify-between px-5 pt-3 text-neutral-400"
+  >
     <IconButton
-      icon="solar:music-library-2-bold"
+      icon="solar:playlist-linear"
       tooltipLabel="Collapse your library"
-      size="1.5rem"
+      iconSize="1.75rem"
       class="transition hover:text-white"
     >
-      <span class="text-md ml-2 font-inter font-semibold">Your library</span>
+      <span class="text-md ml-3 font-inter text-base font-semibold"
+        >Your library</span
+      >
     </IconButton>
-    <div class="flex gap-x-1">
+    <div class="flex gap-x-2">
       <IconButton
-        icon="ic:baseline-plus"
+        icon="ph:plus-bold"
         tooltipLabel="Create playlist or folder"
-        size="1.5rem"
+        size="1.75rem"
         hoverBg
       />
       <IconButton
-        icon="material-symbols:arrow-forward"
+        icon="ph:arrow-right-bold"
         tooltipLabel="Expand"
-        size="1.5rem"
+        size="1.75rem"
         hoverBg
       />
     </div>
   </div>
-  <div data-simplebar class="mb-2 mt-2 flex flex-col overflow-y-scroll px-4">
+
+  <div data-simplebar class="my-2 flex flex-col overflow-y-scroll px-4">
     {#if libraryItems !== null}
       <div class="flex flex-col">
         {#each libraryItems as item}

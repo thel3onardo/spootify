@@ -29,7 +29,7 @@
 
 <button
   use:melt={$trigger}
-  class="flex select-none items-center text-gray-500 transition hover:text-white"
+  class="flex select-none items-center text-neutral-400 transition hover:text-white"
 >
   <span class="font-inter text-sm font-medium">{currentOption.label}</span>
   <Icon icon="ic:outline-arrow-drop-down" width="1.5rem" height="1.5rem" />

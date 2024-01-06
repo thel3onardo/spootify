@@ -2,8 +2,8 @@
   import { playingNowMenuVisible } from '$lib/stores/layout';
   import { currentTrack } from '$lib/stores/track';
 
-  import Sidebar from '$lib/components/layout/sidebar/Sidebar.svelte';
-  import Playerbar from '$lib/ui/interface/Playerbar/Playerbar.svelte';
+  import Sidebar from '$lib/ui/interface/sidebar/Sidebar.svelte';
+  import Playerbar from '$lib/ui/interface/playerbar/Playerbar.svelte';
   import PlayingNow from '$lib/ui/interface/PlayingNow.svelte';
 </script>
 

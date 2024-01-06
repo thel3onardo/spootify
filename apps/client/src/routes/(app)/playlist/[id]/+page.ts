@@ -1,4 +1,8 @@
-import type { IPlaylist } from './interfaces';
+export interface IPlaylist {
+  name: string;
+  coverUrl: string;
+  description: string;
+}
 
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {

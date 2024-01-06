@@ -1,8 +1,8 @@
 <script lang="ts">
   import { FastAverageColor } from 'fast-average-color';
-  import PlayButton from '../../ui/components/button/PlayButton.svelte';
-  import { fade } from 'svelte/transition';
+  import { fade, scale } from 'svelte/transition';
   import { createEventDispatcher, onMount } from 'svelte';
+  import PlayButton from '../../ui/components/button/PlayButton.svelte';
 
   export let name: string;
   export let coverUrl: string;
@@ -49,7 +49,7 @@
     <h3 class="font-inter text-lg font-semibold text-white">{name}</h3>
 
     {#if playBtnVisible}
-      <div in:fade={{ duration: 250 }} out:fade={{ duration: 100 }}>
+      <div transition:scale={{ duration: 200, opacity: 0 }}>
         <PlayButton size="1.6rem" preventDefault />
       </div>
     {/if}

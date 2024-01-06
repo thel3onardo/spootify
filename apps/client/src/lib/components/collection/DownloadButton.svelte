@@ -13,6 +13,6 @@
     icon="ph:download-simple-bold"
     width="2rem"
     height="2rem"
-    class="text-gray-500 transition hover:text-white {$$props.class}"
+    class="text-neutral-400 transition hover:text-white {$$props.class}"
   />
 </button>

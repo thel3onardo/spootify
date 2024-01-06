@@ -31,21 +31,21 @@
 
 <nav
   bind:this={navEl}
-  class="sticky -top-1 z-20 flex w-full items-center justify-between px-6 py-4 transition duration-300"
+  class="sticky -top-1 z-50 flex w-full items-center justify-between px-6 py-4 transition duration-300"
   style="--bgColor: {bgColor}"
 >
   <div class="flex items-center gap-x-3 text-white">
     <!-- TODO: implement functionality to those buttons below -->
     <IconButton
-      icon="ic:round-arrow-back-ios"
-      size={NAVBAR_ICONS_SIZE.ARROWS}
-      class="rounded-full bg-gray-950 p-2"
+      icon="ion:ios-arrow-back"
+      iconSize={NAVBAR_ICONS_SIZE.ARROWS}
+      class="rounded-full bg-gray-950/70 p-2.5 hover:bg-gray-950"
       tooltipLabel="Go back"
     />
     <IconButton
-      icon="ic:round-arrow-forward-ios"
-      size={NAVBAR_ICONS_SIZE.ARROWS}
-      class="rounded-full bg-gray-950 p-2"
+      icon="ion:ios-arrow-forward"
+      iconSize={NAVBAR_ICONS_SIZE.ARROWS}
+      class="rounded-full bg-gray-950/70 p-2.5 hover:bg-gray-950"
       tooltipLabel="Go forward"
     />
 
@@ -63,22 +63,22 @@
     {:else}
       <IconButton
         icon="ph:bell"
-        size={NAVBAR_ICONS_SIZE.OTHER}
+        iconSize={NAVBAR_ICONS_SIZE.OTHER}
         tooltipLabel="Notifications"
-        class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
+        class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
       />
       <IconButton
         icon="ion:people-outline"
-        size={NAVBAR_ICONS_SIZE.OTHER}
+        iconSize={NAVBAR_ICONS_SIZE.OTHER}
         tooltipLabel="Friend activity"
-        class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
+        class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
       />
       <DropdownMenu class="min-w-[150px] rounded bg-gray-800 p-1 text-white">
         <IconButton
           icon="material-symbols:person-2-outline"
-          size={NAVBAR_ICONS_SIZE.OTHER}
+          iconSize={NAVBAR_ICONS_SIZE.OTHER}
           tooltipLabel="Leonardo"
-          class="rounded-full bg-gray-900/70 p-1.5 text-white/80 hover:text-white"
+          class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
           slot="trigger"
         />
 

@@ -12,7 +12,7 @@
 </script>
 
 <!--TODO: Add svelte transitions / Implement search filter feature -->
-<div class="text-gray-500">
+<div class="text-neutral-400">
   {#if visible}
     <form
       use:clickOutside

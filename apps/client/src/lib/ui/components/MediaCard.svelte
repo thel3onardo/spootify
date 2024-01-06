@@ -2,30 +2,41 @@
   import Icon from '@iconify/svelte';
   import PlayButton from './button/PlayButton.svelte';
   import { createEventDispatcher } from 'svelte';
+  import { fly } from 'svelte/transition';
 
   export let coverUrl: string,
     coverAlt: string,
     name: string,
     description: string,
-    showPlayBtn = true,
     showDeleteBtn = false,
     href: string;
+
+  let showPlayBtn = false;
 
   const dispatcher = createEventDispatcher();
 
   const emitDeleteBtnClick = () => dispatcher('clickDelete');
   const emitPlayBtnClick = () => dispatcher('clickPlay');
+
+  const toggleShowPlayBtn = () => {
+    showPlayBtn = !showPlayBtn;
+  };
 </script>
 
-<a {href} class="w-full">
+<a
+  {href}
+  class="w-full"
+  on:mouseenter={toggleShowPlayBtn}
+  on:mouseleave={toggleShowPlayBtn}
+>
   <div
-    class="duration-400 group relative flex flex-col rounded-lg bg-gray-900 p-4"
+    class="duration-400 group relative flex flex-col rounded-lg bg-gray-950 p-4 transition-colors duration-300 hover:bg-neutral-800"
   >
     <div class="relative h-[150px] w-[150px] overflow-hidden rounded-md">
       <img src={coverUrl} alt={coverAlt} class="h-full w-full object-cover" />
 
       {#if showPlayBtn}
-        <div class="play-btn hidden group-hover:block">
+        <div transition:fly={{ y: 20, duration: 300, opacity: 0 }}>
           <PlayButton
             on:click={emitPlayBtnClick}
             class="absolute bottom-2 right-2 "
@@ -36,9 +47,9 @@
       {/if}
     </div>
 
-    <div class="mt-4">
-      <h2 class="mb-1 font-inter font-bold text-white">{name}</h2>
-      <p class="font-manrope text-sm font-semibold text-gray-500">
+    <div class="mt-4 text-sm">
+      <h2 class="mb-1 font-inter font-bold text-neutral-50">{name}</h2>
+      <p class="font-manrope font-semibold text-neutral-400">
         {description}
       </p>
     </div>
@@ -58,28 +69,3 @@
     {/if}
   </div>
 </a>
-
-<!-- <style>
-  .play-btn {
-    animation:
-      opacityAnimation 0.45s ease,
-      translateAnimation 0.25s ease;
-  }
-  @keyframes opacityAnimation {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 100%;
-    }
-  }
-
-  @keyframes translateAnimation {
-    from {
-      transform: translateY(10px);
-    }
-    to {
-      transform: translateY(0);
-    }
-  }
-</style> -->

@@ -21,6 +21,6 @@
     icon="ic:baseline-play-arrow"
     width={size}
     height={size}
-    class="text-black"
+    class="text-gray-950"
   />
 </button>
