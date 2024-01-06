@@ -5,11 +5,12 @@
 
   import PlayButton from '$lib/ui/components/button/PlayButton.svelte';
   import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
-  import DownloadButton from '$lib/components/collection/DownloadButton.svelte';
-  import TracksList from '$lib/components/collection/TracksList.svelte';
+  import DownloadButton from '$lib/ui/components/collection/DownloadButton.svelte';
+  import TracksList from '$lib/ui/components/collection/TracksList.svelte';
   import FilterBar from '$lib/components/IconSearchbar.svelte';
-  import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
+  import SortOptionsMenu from '$lib/ui/components/collection/SortOptionsMenu.svelte';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
+  import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
@@ -30,6 +31,7 @@
 
   onMount(() => {
     getAverageColor();
+    console.log({ data });
   });
 
   export let data: IPlaylist;
@@ -43,17 +45,7 @@
     <Navbar />
     <div class="header-gradient absolute top-0 z-10 h-full w-full" />
     <div class="relative z-20 mt-14 flex items-end p-8">
-      <div
-        class="image-shadow h-[232px] max-w-[232px] grow overflow-hidden rounded-lg"
-      >
-        <img
-          crossorigin="anonymous"
-          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2cc63c39-c53b-4b37-bf1f-a3a3810ad232/dg5716q-ab3e4c46-af05-4607-97be-c5bf33586f08.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJjYzYzYzM5LWM1M2ItNGIzNy1iZjFmLWEzYTM4MTBhZDIzMlwvZGc1NzE2cS1hYjNlNGM0Ni1hZjA1LTQ2MDctOTdiZS1jNWJmMzM1ODZmMDguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6U8z530QiTsaBN6sjQcNYcB6TNNg4B2xD2kO7Y88Jr8"
-          alt="Playlists cover"
-          class="h-full w-full object-cover"
-          bind:this={coverImage}
-        />
-      </div>
+      <CollectionImage src={data.coverImage} alt="yey" />
       <div class="ml-6 basis-3/4 font-manrope">
         <p class="mb-2 text-sm font-semibold text-neutral-200">Playlist</p>
         <h1
@@ -61,7 +53,9 @@
         >
           {data.name}
         </h1>
-        <p class="text-sm font-medium text-neutral-300">{data.description}</p>
+        <p class="text-sm font-medium text-neutral-300">
+          {data.description ?? ''}
+        </p>
       </div>
     </div>
   </div>

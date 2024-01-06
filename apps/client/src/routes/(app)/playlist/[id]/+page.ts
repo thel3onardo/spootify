@@ -1,3 +1,5 @@
+import { collectionRepository } from '$lib/repositories/index.js';
+
 export interface IPlaylist {
   name: string;
   coverUrl: string;
@@ -5,15 +7,12 @@ export interface IPlaylist {
 }
 
 /** @type {import('./$types').PageLoad} */
-export function load({ params }) {
-  //TODO: make requisition to get data of playlist
+export async function load({ params }) {
+  const res = await collectionRepository.getCollectionById(params.id);
+  const data = await res.json();
 
-  const data: IPlaylist = {
-    name: 'Musicas curtidas',
-    coverUrl:
-      'https://www.creativefabrica.com/wp-content/uploads/2022/12/01/Anime-Girl-HD-Black-Hair-High-Details-Style-Neon-Red-49761904-1.png',
-    description: 'The biggest songs of 2010s.',
+  //TODO: improve this, data.data seems bad
+  return {
+    ...data.data,
   };
-
-  return data;
 }
