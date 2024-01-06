@@ -1,15 +1,16 @@
 <script lang="ts">
-  import Button from "$lib/ui/components/button/Button.svelte";
-  import SocialAuthButton from "$lib/ui/components/button/SocialAuthButton.svelte";
-  import Checkbox from "$lib/ui/components/form/Checkbox.svelte";
-  import InputText from "$lib/ui/components/form/InputText.svelte";
-  import { fly } from "svelte/transition";
-  import { signIn } from "$lib/repositories/auth";
-  import { addToast } from "$lib/ui/components/Toast.svelte";
-  import { goto } from "$app/navigation";
+  import Button from '$lib/ui/components/button/Button.svelte';
+  import SocialAuthButton from '$lib/ui/components/button/SocialAuthButton.svelte';
+  import Checkbox from '$lib/ui/components/form/Checkbox.svelte';
+  import InputText from '$lib/ui/components/form/InputText.svelte';
+  import { fly } from 'svelte/transition';
+  import { signIn } from '$lib/repositories/auth';
+  import { addToast } from '$lib/ui/components/Toast.svelte';
+  import { goto } from '$app/navigation';
+  import Switch from '$lib/ui/components/form/Switch.svelte';
 
-  let password = "";
-  let email = "";
+  let password = '';
+  let email = '';
   let rememberUser = false;
 
   const login = async () => {
@@ -18,13 +19,13 @@
       if (res.ok) {
         const data = await res.json();
 
-        if (data.status === "success") {
-          return goto("/");
+        if (data.status === 'success') {
+          return goto('/');
         }
       }
 
       if (res.status === 400) {
-        return console.log("bad request");
+        return console.log('bad request');
       }
     } catch (err: any) {
       console.error(err);
@@ -33,9 +34,9 @@
   const what = () => {
     addToast({
       data: {
-        description: "An error happened. Try again.",
-        icon: "heroicons:exclamation-triangle",
-        colorClass: "text-red-500",
+        description: 'An error happened. Try again.',
+        icon: 'heroicons:exclamation-triangle',
+        colorClass: 'text-red-500',
       },
     });
   };
@@ -86,7 +87,7 @@
     />
 
     <div class="mt-6 flex w-full items-center justify-between">
-      <Checkbox label="Remember-me" bind:value={rememberUser} />
+      <Switch bind:value={rememberUser}>Remember-me</Switch>
       <a
         href="/accounts/signup"
         class="text-manrope text-sm text-gray-500 hover:text-primary hover:underline"
