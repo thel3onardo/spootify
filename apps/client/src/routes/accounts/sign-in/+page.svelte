@@ -72,7 +72,7 @@
         password
       />
 
-      <div class="mt-6 flex w-full items-center justify-between">
+      <div class="mt-6 flex w-full items-center justify-between font-medium">
         <Switch bind:value={rememberUser}>Remember-me</Switch>
         <Link href="/accounts/signup" class="text-gray-400"
           >Forgot my password</Link
@@ -84,7 +84,9 @@
 
     <p slot="footer" class="text-sm text-gray-500">
       Does not have an account?
-      <Link href="/accounts/sign-up" class="text-gray-200">Sign up</Link>
+      <Link href="/accounts/sign-up" class="font-medium text-gray-200"
+        >Sign up</Link
+      >
     </p>
   </AuthCardContainer>
 </div>

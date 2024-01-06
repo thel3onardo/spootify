@@ -46,7 +46,6 @@ model Collection {
   coverImage  String  @map("cover_img")
   description String?
 
-  tracks            Track[]
   TrackOnCollection TrackOnCollection[]
 
   author   User   @relation(fields: [authorId], references: [id])
@@ -62,7 +61,6 @@ model Track {
 
   TrackAudio TrackAudio?
 
-  collections       Collection[]
   TrackOnCollection TrackOnCollection[]
 
   author   User   @relation(fields: [authorId], references: [id])

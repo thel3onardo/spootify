@@ -40,14 +40,14 @@ async function main() {
   //decorators
   server.decorate("session", null);
 
-  //plugins
-  await server.register(prismaPlugin);
-  await server.register(fastifyEnv, envConfig);
-  await server.register(fastifyCors);
+  //pluginsa
   server.register(fastifyCookie, {
     hook: "onRequest",
     parseOptions: {},
   });
+  await server.register(prismaPlugin);
+  await server.register(fastifyEnv, envConfig);
+  await server.register(fastifyCors);
   server.register(fileUpload);
   server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,

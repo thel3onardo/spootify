@@ -19,7 +19,7 @@
     }}
     out:fade
   >
-    <div class="mb-8 text-center text-gray-50">
+    <div class="mb-8 text-center font-inter text-gray-50">
       <h1 class="mb-2 text-3xl font-bold">
         <slot name="title" />
       </h1>

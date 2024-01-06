@@ -37,7 +37,7 @@ export const signUpWithCredentials = async (
         path: "/",
         expires: session.activePeriodExpiresAt,
         httpOnly: true,
-        secure: true,
+        secure: false,
       })
       .send({ status: "success", message: "User created successfully" });
   } catch (err) {
@@ -74,7 +74,8 @@ export const signInWithCredentials = async (
         path: "/",
         expires: session.activePeriodExpiresAt,
         httpOnly: true,
-        secure: true,
+        sameSite: "lax",
+        secure: false,
       })
       .send({ status: "success", message: "Authenticated" });
   } catch (e) {

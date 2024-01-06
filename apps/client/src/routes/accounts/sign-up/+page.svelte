@@ -15,11 +15,11 @@
 </script>
 
 <AuthCardContainer>
-  <h1 slot="title">Sign up in Spootify</h1>
+  <svelte:fragment slot="title">Sign up in Spootify</svelte:fragment>
 
-  <p slot="description">
+  <svelte:fragment slot="description">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed aspernatur
-  </p>
+  </svelte:fragment>
 
   <div slot="content" class="flex w-full flex-col gap-y-6">
     <InputText
@@ -63,8 +63,9 @@
     />
 
     <Checkbox bind:value={user.acceptedTerms}
-      >I accept the terms of service and <Link href="?" class="text-gray-300"
-        >privacy policy</Link
+      >I accept the terms of service and <Link
+        href="?"
+        class="font-medium text-neutral-400">privacy policy</Link
       ></Checkbox
     >
   </div>
@@ -74,7 +75,7 @@
   <p slot="footer" class="text-sm text-gray-500">
     Already have an account? <Link
       href="/accounts/sign-in"
-      class="text-gray-300">Sign in</Link
+      class="font-medium text-neutral-400">Sign in</Link
     >
   </p>
 </AuthCardContainer>

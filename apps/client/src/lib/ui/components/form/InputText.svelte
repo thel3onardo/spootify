@@ -28,14 +28,15 @@
 </script>
 
 <form class="flex flex-col text-gray-400 {$$props.class}">
-  <label for={name} class="mb-2 text-xs font-bold">{label}</label>
+  <label for={name} class="mb-2 font-inter text-xs font-semibold">{label}</label
+  >
 
   <div class="relative">
     <input
       id={name}
       class={`${
         icon ? 'pl-12 pr-4' : 'px-4'
-      } w-full rounded-lg border border-gray-900 bg-gray-950 py-3 text-sm text-gray-300 outline-none transition placeholder:text-gray-500 hover:border-gray-700 focus:border-primary`}
+      } w-full rounded-lg border border-gray-900 bg-gray-950 py-3 text-sm font-medium text-neutral-400 outline-none transition placeholder:text-gray-500 hover:border-gray-700 focus:border-primary`}
       {type}
       {placeholder}
       {autocomplete}

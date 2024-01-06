@@ -1,3 +1,5 @@
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -5,7 +7,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
-        manrope: ['Manrope', 'sans-serif'],
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         primary: '#1ED760',
