@@ -3,9 +3,9 @@
   import { fly } from 'svelte/transition';
 
   const {
-    elements: { menu, item, trigger },
+    elements: { menu, trigger },
     states: { open },
-  } = createDropdownMenu({ positioning: { placement: 'bottom-end' } });
+  } = createDropdownMenu({ positioning: { placement: 'bottom-start' } });
 </script>
 
 <div use:melt={$trigger}>
@@ -17,7 +17,7 @@
   <div
     use:melt={$menu}
     transition:fly={{ duration: 300, y: -10 }}
-    class={$$props.class}
+    class="rounded bg-neutral-800 p-1 {$$props.class}"
   >
     <slot name="options" />
   </div>

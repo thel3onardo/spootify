@@ -1,6 +1,7 @@
 <script lang="ts">
   import IconButton from '$lib/ui/components/button/IconButton.svelte';
   import LibraryItem from './LibraryItem.svelte';
+  import CreateFolderOrPlaylist from './CreateFolderOrPlaylist.svelte';
 
   let filterValue = '';
 
@@ -243,12 +244,8 @@
       >
     </IconButton>
     <div class="flex gap-x-2">
-      <IconButton
-        icon="ph:plus-bold"
-        tooltipLabel="Create playlist or folder"
-        size="1.75rem"
-        hoverBg
-      />
+      <CreateFolderOrPlaylist />
+
       <IconButton
         icon="ph:arrow-right-bold"
         tooltipLabel="Expand"

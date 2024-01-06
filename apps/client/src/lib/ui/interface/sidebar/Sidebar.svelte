@@ -2,7 +2,7 @@
   import { page } from '$app/stores';
 
   import Icon from '@iconify/svelte';
-  import SidebarMyLibrary from './Library.svelte';
+  import SidebarMyLibrary from './library/Library.svelte';
 
   const menuOptions = [
     { id: 1, label: 'Home', icon: 'material-symbols:home-rounded', href: '/' },
