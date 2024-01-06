@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { createRadioGroup, melt } from "@melt-ui/svelte";
+  import { createRadioGroup, melt } from '@melt-ui/svelte';
 
   const {
     elements: { root, item, hiddenInput },
     helpers: { isChecked },
   } = createRadioGroup({
-    defaultValue: "default",
+    defaultValue: 'default',
   });
 
   export let options: string[];

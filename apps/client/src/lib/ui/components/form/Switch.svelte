@@ -26,7 +26,7 @@
       <span class="thumb block rounded-full bg-gray-950 transition" />
     </button>
     <label
-      class="leading-none text-gray-500"
+      class="select-none leading-none text-gray-500"
       for="airplane-mode"
       id="airplane-mode-label"
     >
@@ -39,13 +39,13 @@
 
 <style>
   button {
-    --w: 2.75rem;
+    --w: 2.5rem;
     --padding: 0.13rem;
     width: var(--w);
   }
 
   .thumb {
-    --size: 1.2rem;
+    --size: 0.95rem;
     width: var(--size);
     height: var(--size);
     transform: translateX(var(--padding));
