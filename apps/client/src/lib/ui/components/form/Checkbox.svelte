@@ -1,11 +1,10 @@
 <script lang="ts">
-  import Icon from "@iconify/svelte";
-  import { createCheckbox, melt } from "@melt-ui/svelte";
-  import { scale } from "svelte/transition";
+  import Icon from '@iconify/svelte';
+  import { createCheckbox, melt } from '@melt-ui/svelte';
+  import { scale } from 'svelte/transition';
 
   export let disabled = false,
-    value: boolean,
-    label: string;
+    value: boolean;
 
   const {
     elements: { root, input },
@@ -40,6 +39,8 @@
       <input use:melt={$input} />
     </button>
 
-    <label class="ml-2 text-sm text-gray-500" for="checkbox">{label}</label>
+    <label class="ml-2 text-sm text-gray-500" for="checkbox">
+      <slot />
+    </label>
   </div>
 </form>

@@ -1,13 +1,15 @@
 <script lang="ts">
-  import AuthCardContainer from "$lib/ui/auth/AuthCardContainer.svelte";
-  import InputText from "$lib/ui/components/form/InputText.svelte";
-  import RadioGroup from "$lib/ui/components/form/RadioGroup.svelte";
+  import AuthCardContainer from '$lib/ui/auth/AuthCardContainer.svelte';
+  import Link from '$lib/ui/components/Link.svelte';
+  import Checkbox from '$lib/ui/components/form/Checkbox.svelte';
+  import InputText from '$lib/ui/components/form/InputText.svelte';
+  import RadioGroup from '$lib/ui/components/form/RadioGroup.svelte';
 
   let user = {
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
   };
 </script>
 
@@ -59,7 +61,11 @@
       password
     />
 
-    <RadioGroup options={["sim", "nao"]} />
+    <Checkbox
+      >Aceito os termos de servico e <Link href="?" class="text-gray-300"
+        >politica de privacidade</Link
+      ></Checkbox
+    >
   </div>
 
   <span slot="cta-label">Register</span>
