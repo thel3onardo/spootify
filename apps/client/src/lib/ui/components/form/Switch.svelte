@@ -16,7 +16,7 @@
 </script>
 
 <form>
-  <div class="flex items-center">
+  <div class="group flex items-center">
     <button
       use:melt={$root}
       class="relative mr-2 cursor-default rounded-full bg-gray-700 py-[1px] transition-colors data-[state=checked]:bg-primary"
@@ -26,7 +26,7 @@
       <span class="thumb block rounded-full bg-gray-950 transition" />
     </button>
     <label
-      class="select-none leading-none text-gray-500"
+      class="select-none leading-none text-gray-500 group-hover:text-gray-400"
       for="airplane-mode"
       id="airplane-mode-label"
     >
