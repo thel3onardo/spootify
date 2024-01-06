@@ -3,23 +3,23 @@
 </script>
 
 <div
-  class="grid h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr] items-center gap-4 rounded-lg px-4 font-manrope text-sm text-gray-500 hover:bg-gray-500/10"
+  class="grid h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr] items-center gap-4 rounded-lg px-4 font-inter text-sm text-neutral-400 hover:bg-neutral-800"
 >
   <div>
     <span>1</span>
   </div>
-  <div class="flex">
-    <div class="mr-4 h-[40px] w-[40px] overflow-hidden rounded-md">
+  <div class="flex items-center">
+    <div class="mr-4 h-[45px] w-[45px] overflow-hidden rounded-lg">
       <img
-        src="https://wallpapers.com/images/hd/korean-anime-girl-with-pretty-face-vzd720qo9n5de9d1.jpg"
+        src="https://upload.wikimedia.org/wikipedia/pt/5/52/Linkin_in_the_end_single_cover.png"
         class="h-full object-cover"
         alt="#"
       />
     </div>
-    <div>
-      <h4 class="text-base text-white">Morning Tides</h4>
+    <div class="text-sm">
+      <h4 class="mb-0 font-medium text-neutral-50">In The End</h4>
       <span>
-        <a href="/" class="hover:underline">Ketty Perry</a>
+        <a href="/" class="hover:underline">Linkin Park</a>
       </span>
     </div>
   </div>

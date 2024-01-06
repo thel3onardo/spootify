@@ -46,7 +46,7 @@
     />
   </div>
   <div class="flex w-full items-center justify-between p-4 py-5">
-    <h3 class="font-inter text-lg font-semibold text-white">{name}</h3>
+    <h3 class="font-inter text-base font-bold text-white">{name}</h3>
 
     {#if playBtnVisible}
       <div transition:scale={{ duration: 200, opacity: 0 }}>

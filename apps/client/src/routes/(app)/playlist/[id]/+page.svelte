@@ -10,7 +10,6 @@
   import FilterBar from '$lib/components/IconSearchbar.svelte';
   import SortOptionsMenu from '$lib/components/collection/SortOptionsMenu.svelte';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
-  import { back } from '@melt-ui/svelte/internal/helpers';
 
   let backgroundColor: string;
   let coverImage: HTMLImageElement;
@@ -26,14 +25,11 @@
       height: 232,
     });
 
-    console.log({ result });
     backgroundColor = result.hex;
   };
 
   onMount(() => {
     getAverageColor();
-
-    console.log({ backgroundColor });
   });
 
   export let data: IPlaylist;
@@ -52,7 +48,7 @@
       >
         <img
           crossorigin="anonymous"
-          src="https://m.media-amazon.com/images/I/81gelNrme5L._UF1000,1000_QL80_.jpg"
+          src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2cc63c39-c53b-4b37-bf1f-a3a3810ad232/dg5716q-ab3e4c46-af05-4607-97be-c5bf33586f08.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJjYzYzYzM5LWM1M2ItNGIzNy1iZjFmLWEzYTM4MTBhZDIzMlwvZGc1NzE2cS1hYjNlNGM0Ni1hZjA1LTQ2MDctOTdiZS1jNWJmMzM1ODZmMDguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6U8z530QiTsaBN6sjQcNYcB6TNNg4B2xD2kO7Y88Jr8"
           alt="Playlists cover"
           class="h-full w-full object-cover"
           bind:this={coverImage}

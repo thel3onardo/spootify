@@ -1,4 +1,4 @@
 export enum NAVBAR_ICONS_SIZE {
-  ARROWS = '1.2rem',
+  ARROWS = '1rem',
   OTHER = '1.3rem',
 }
