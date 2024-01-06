@@ -34,31 +34,25 @@ export async function createCollection(
 
 export const addTrackToCollection = async (
   req: FastifyRequest<{
-    Params: { collectionID: string };
-    Body: { trackID: number };
+    Params: { collectionId: string };
+    Body: { trackId: number };
   }>,
   rep: FastifyReply,
 ) => {
-  const { collectionID } = req.params;
-  const { trackID } = req.body;
+  const { collectionId } = req.params;
+  const { trackId } = req.body;
 
   try {
-    const track = await rep.server.prisma.collection.update({
-      where: {
-        id: collectionID,
-      },
+    await rep.server.prisma.trackOnCollection.create({
       data: {
-        tracks: {
-          connect: {
-            id: trackID,
-          },
-        },
+        collectionId,
+        trackId,
       },
     });
 
     rep
       .status(201)
-      .send({ message: "Track added to playlist", newTrackID: track.id });
+      .send({ message: `Track ${trackId} added to playlist ${collectionId}` });
   } catch (err) {
     rep.log.error(err);
 
@@ -80,15 +74,11 @@ export const removeTrackFromCollectionById = async (
   const { trackID, collectionID } = req.params;
 
   try {
-    await rep.server.prisma.collection.update({
+    await rep.server.prisma.trackOnCollection.delete({
       where: {
-        id: collectionID,
-      },
-      data: {
-        tracks: {
-          disconnect: {
-            id: Number(trackID),
-          },
+        trackId_collectionId: {
+          trackId: Number(trackID),
+          collectionId: collectionID,
         },
       },
     });
@@ -107,30 +97,50 @@ export async function getColletionById(
 ) {
   const { id } = req.params;
 
-  const collection = await rep.server.prisma.collection.findUnique({
-    where: {
-      id,
-    },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      tracks: {
-        select: {
-          id: true,
-          name: true,
-          coverImage: true,
-          authorId: true,
+  try {
+    const collection = await rep.server.prisma.collection.findUniqueOrThrow({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+      },
+    });
+    const tracks = await rep.server.prisma.trackOnCollection.findMany({
+      where: {
+        collectionId: collection.id,
+      },
+      select: {
+        addedAt: true,
+        track: {
+          select: {
+            id: true,
+            name: true,
+            coverImage: true,
+            author: {
+              select: {
+                name: true,
+              },
+            },
+          },
         },
       },
-    },
-  });
+    });
 
-  if (!collection) {
-    return rep.status(404).send({ status: "No collection found" });
+    rep.status(200).send({ data: { ...collection, tracks } });
+  } catch (err) {
+    rep.log.error(err);
+
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      return rep.status(500).send({ status: "err", message: err.message });
+    }
+
+    rep
+      .status(500)
+      .send({ status: "err", message: "An unknow error happened" });
   }
-
-  rep.status(200).send({ data: collection });
 }
 
 export async function updateCollectionById(

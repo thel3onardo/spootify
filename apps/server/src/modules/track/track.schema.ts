@@ -3,7 +3,7 @@ import { buildJsonSchemas } from "fastify-zod";
 
 const createTrackSchema = z.object({
   name: z.string(),
-  authorID: z.number(),
+  authorID: z.string(),
   coverImageFile: z.any(),
   audioFile: z.any(),
 });

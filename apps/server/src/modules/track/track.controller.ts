@@ -127,7 +127,7 @@ export async function createTrack(
       data: {
         coverImage: imageUrl,
         name: req.body.name,
-        authorId: 1,
+        authorId: req.body.authorID,
       },
     });
 

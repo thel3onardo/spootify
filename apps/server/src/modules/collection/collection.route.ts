@@ -16,7 +16,7 @@ function collectionRoutes(server: FastifyInstance) {
     updateCollectionById,
   );
   //TODO: implement schema validation for this one.
-  server.post("/collection/:collectionID/add-track", addTrackToCollection);
+  server.post("/collection/:collectionId/add-track", addTrackToCollection);
   server.delete(
     "/collection/:collectionID/remove-track/:trackID",
     removeTrackFromCollectionById,
