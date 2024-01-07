@@ -1,13 +1,23 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
+  import { FastAverageColor } from 'fast-average-color';
+  import { createEventDispatcher, onMount } from 'svelte';
 
-  let containerHovered = false;
+  export let src: string,
+    alt: string,
+    shadow = false;
 
-  export let src: string, alt: string;
+  let imageHovered = false;
+
+  const dispatch = createEventDispatcher();
+  const emitOpenDialog = () => {
+    dispatch('openDialog', true);
+  };
 </script>
 
 <div
-  class="image-shadow h-[232px] max-w-[232px] grow overflow-hidden rounded-lg"
+  class:image-shadow={shadow}
+  class="w-full grow overflow-hidden rounded-lg {$$props.class}"
 >
   {#if src}
     <img
@@ -18,11 +28,12 @@
     />
   {:else}
     <button
-      on:mouseenter={() => (containerHovered = true)}
-      on:mouseleave={() => (containerHovered = false)}
-      class="flex h-full w-full items-center justify-center bg-neutral-900 text-neutral-500"
+      on:mouseenter={() => (imageHovered = true)}
+      on:mouseleave={() => (imageHovered = false)}
+      on:click={emitOpenDialog}
+      class="flex h-full w-full cursor-default items-center justify-center bg-neutral-800 text-neutral-500"
     >
-      {#if containerHovered}
+      {#if imageHovered}
         <div class="flex flex-col items-center gap-y-2 text-neutral-50">
           <Icon icon="ph:image" width="3rem" height="3rem" />
           <span class="font-semibold">Choose photo</span>
@@ -33,3 +44,9 @@
     </button>
   {/if}
 </div>
+
+<style>
+  .image-shadow {
+    box-shadow: 0px 0px 5rem 1rem rgba(10, 10, 10, 0.5);
+  }
+</style>
