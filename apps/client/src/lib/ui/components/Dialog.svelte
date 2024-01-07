@@ -1,43 +1,45 @@
 <script lang="ts">
   import { createDialog, melt } from '@melt-ui/svelte';
   import { fade, fly, scale } from 'svelte/transition';
-  import X from './button/X.svelte';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
 
-  const dispatch = createEventDispatcher();
+  import X from './button/X.svelte';
+
   const {
     elements: { overlay, content, title, description, close, portalled },
     states: { open },
   } = createDialog({
     forceVisible: true,
-    defaultOpen: true,
+    defaultOpen: false,
     closeOnOutsideClick: true,
   });
 
-  open.subscribe((openValue) => {
-    if (!openValue) dispatch('close', true);
-  });
+  export let closeIcon = false,
+    visible = false;
 
-  export let closeIcon = false;
+  $: open.set(visible);
 </script>
 
-<div class="" use:melt={$portalled}>
+<div use:melt={$portalled}>
   {#if $open}
     <div
       use:melt={$overlay}
-      class="fixed inset-0 z-50 bg-neutral-950/80 backdrop-blur-sm transition-all"
-      transition:fade={{ duration: 150 }}
+      class="fixed inset-0 z-50 bg-neutral-950/80 transition-all"
+      transition:fade={{ duration: 1000 }}
     />
     <div
+      transition:fly={{ y: 40, opacity: 0 }}
       class="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw]
               max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-neutral-900
               p-8 shadow-lg"
       use:melt={$content}
     >
       {#if closeIcon}
-        <div use:melt={$close}>
-          <X size="1.25rem" class="absolute right-6 top-6 text-neutral-400" />
-        </div>
+        <X
+          on:click={() => (visible = false)}
+          size="1.25rem"
+          class="absolute right-6 top-6 text-neutral-400"
+        />
       {/if}
       <h2
         use:melt={$title}
