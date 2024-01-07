@@ -1,7 +1,6 @@
 <script lang="ts">
   import { createDialog, melt } from '@melt-ui/svelte';
   import { fade, fly, scale } from 'svelte/transition';
-  import { createEventDispatcher, onMount } from 'svelte';
 
   import X from './button/X.svelte';
 
@@ -17,6 +16,11 @@
   export let closeIcon = false,
     visible = false;
 
+  open.subscribe((state) => {
+    //always keep visible sync with state
+    if (state !== visible) visible = state;
+  });
+
   $: open.set(visible);
 </script>
 
@@ -24,22 +28,20 @@
   {#if $open}
     <div
       use:melt={$overlay}
-      class="fixed inset-0 z-50 bg-neutral-950/80 transition-all"
-      transition:fade={{ duration: 1000 }}
+      class="fixed inset-0 z-50 bg-neutral-950/80 backdrop-blur-sm"
+      transition:fade={{ duration: 300 }}
     />
     <div
-      transition:fly={{ y: 40, opacity: 0 }}
+      transition:fly={{ y: 40, opacity: 0, duration: 400 }}
       class="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw]
               max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-neutral-900
               p-8 shadow-lg"
       use:melt={$content}
     >
       {#if closeIcon}
-        <X
-          on:click={() => (visible = false)}
-          size="1.25rem"
-          class="absolute right-6 top-6 text-neutral-400"
-        />
+        <div use:melt={$close}>
+          <X size="1.25rem" class="absolute right-6 top-6 text-neutral-400" />
+        </div>
       {/if}
       <h2
         use:melt={$title}
