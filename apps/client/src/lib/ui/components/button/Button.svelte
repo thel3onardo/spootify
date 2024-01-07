@@ -10,7 +10,7 @@
   const dispatch = createEventDispatcher();
 
   const variantList = {
-    light: 'bg-white shadow-lg text-gray-900',
+    light: 'bg-white shadow-lg text-neutral-900 font-bold px-8 py-3 text-sm',
     dark: 'bg-transparent',
     primary: 'bg-primary text-gray-50 hover:scale-105 transition duration-200',
   } satisfies VariantList;
