@@ -2,12 +2,16 @@
   import Icon from '@iconify/svelte';
   import { FastAverageColor } from 'fast-average-color';
   import { createEventDispatcher, onMount } from 'svelte';
+  import IconButton from '../button/IconButton.svelte';
+  import DropdownMenu from '../DropdownMenu.svelte';
 
   export let src: string,
     alt: string,
-    shadow = false;
+    shadow = false,
+    hasOptions = false;
 
-  let imageHovered = false;
+  let imageHovered = true;
+  let showOptionsMenu = false;
 
   const dispatch = createEventDispatcher();
   const emitOpenDialog = () => {
@@ -17,7 +21,7 @@
 
 <div
   class:image-shadow={shadow}
-  class="w-full grow overflow-hidden rounded-lg {$$props.class}"
+  class="growrounded-lg relative h-full w-full {$$props.class}"
 >
   {#if src}
     <img
@@ -28,16 +32,52 @@
     />
   {:else}
     <button
-      on:mouseenter={() => (imageHovered = true)}
-      on:mouseleave={() => (imageHovered = false)}
       on:click={emitOpenDialog}
-      class="flex h-full w-full cursor-default items-center justify-center bg-neutral-800 text-neutral-500"
+      class="flex h-full w-full cursor-default items-center justify-center rounded-lg bg-neutral-800 text-neutral-500"
     >
       {#if imageHovered}
-        <div class="flex flex-col items-center gap-y-2 text-neutral-50">
+        <div class="flex flex-col items-center text-neutral-50">
           <Icon icon="ph:image" width="3rem" height="3rem" />
-          <span class="font-semibold">Choose photo</span>
+          <span class="text-sm font-semibold text-neutral-400"
+            >Choose photo</span
+          >
         </div>
+
+        {#if hasOptions}
+          <div class="absolute right-3 top-3">
+            <DropdownMenu variant="dark" placement="bottom-end">
+              <button
+                slot="trigger"
+                on:click={() => (showOptionsMenu = true)}
+                class="flex h-8 w-8 cursor-default items-center justify-center rounded-full bg-neutral-900 text-neutral-400 hover:text-neutral-50"
+              >
+                <Icon
+                  icon="solar:menu-dots-bold"
+                  width="1.3rem"
+                  height="1.3rem"
+                />
+              </button>
+              <div class="flex w-[150px] flex-col" slot="options">
+                <button
+                  class="flex items-center gap-x-2 p-2 text-neutral-400 hover:bg-neutral-800"
+                >
+                  <Icon icon="ph:image-light" width="1.2rem" height="1.2rem" />
+                  <span class="text-sm font-medium text-neutral-400"
+                    >Change photo</span
+                  >
+                </button>
+                <button
+                  class="flex items-center gap-x-2 p-2 text-neutral-400 hover:bg-neutral-800"
+                >
+                  <Icon icon="ph:trash-simple" width="1.2rem" height="1.2rem" />
+                  <span class="text-sm font-medium text-neutral-400"
+                    >Remove photo</span
+                  >
+                </button>
+              </div>
+            </DropdownMenu>
+          </div>
+        {/if}
       {:else}
         <Icon icon="ph:music-notes" width="5rem" height="5rem" />
       {/if}
