@@ -106,6 +106,7 @@ export async function getColletionById(
         id: true,
         name: true,
         description: true,
+        coverImage: true,
       },
     });
     const tracks = await rep.server.prisma.trackOnCollection.findMany({

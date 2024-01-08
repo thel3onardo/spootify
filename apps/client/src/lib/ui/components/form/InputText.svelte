@@ -18,7 +18,7 @@
 
   export let type = 'text',
     placeholder: string,
-    label: string,
+    label: string | null = null,
     name: string,
     password = false,
     value: string,
@@ -28,9 +28,11 @@
 </script>
 
 <form class="flex flex-col text-gray-400 {$$props.class}">
-  <label for={name} class="mb-2 font-inter text-xs font-semibold">{label}</label
-  >
-
+  {#if label}
+    <label for={name} class="mb-2 font-inter text-xs font-semibold"
+      >{label}</label
+    >
+  {/if}
   <div class="relative">
     <input
       id={name}

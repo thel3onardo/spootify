@@ -1,12 +1,12 @@
 <script lang="ts">
-  export let cols: number,
-    rows: number,
+  export let cols: number = 0,
+    rows: number = 0,
     label: string | null = null,
     name: string,
     placeholder: string;
 </script>
 
-<form>
+<form class="h-full w-full">
   {#if label}
     <label for={name}>{label}</label>
   {/if}

@@ -40,7 +40,7 @@
   ];
 </script>
 
-<DropdownMenu>
+<DropdownMenu variant="light" placement="bottom-start">
   <svelte:fragment slot="trigger">
     <IconButton
       icon="ph:plus-bold"

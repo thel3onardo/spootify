@@ -1,6 +1,6 @@
 <script lang="ts">
   import { createDialog, melt } from '@melt-ui/svelte';
-  import { fade, fly, scale } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
 
   import X from './button/X.svelte';
 
