@@ -29,7 +29,7 @@
     <button
       on:click={emitClick}
       class={`absolute top-0 hidden h-full w-full cursor-default group-hover:block ${
-        imageSrc ? 'bg-neutral-950/70' : 'bg-neutral-950'
+        imageSrc ? 'bg-neutral-950/70' : 'bg-neutral-800'
       }`}
     >
       <div class="flex flex-col items-center text-neutral-50">

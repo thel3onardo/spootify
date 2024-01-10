@@ -9,10 +9,11 @@
 
   import { collectionRepository } from '$lib/repositories';
 
-  let title: string;
+  let name: string;
   let description: string;
-  //TODO: handle image case
-  let imageFile: HTMLInputElement;
+  let imageFile: FileList;
+  let inputFile: HTMLInputElement;
+  let loading = false;
   let menuOptions = [
     {
       icon: 'ph:image-light',
@@ -34,10 +35,11 @@
   const saveChanges = async () => {
     //TODO: validate fields
     try {
+      loading = true;
       const res = await collectionRepository.editCollection(playlistId, {
-        title,
+        name,
         description,
-        imageFile,
+        coverImage: imageFile[0],
       });
       if (res.ok) {
         const data = await res.json();
@@ -46,6 +48,8 @@
       }
     } catch (err) {
       //TODO: handle errors
+    } finally {
+      loading = false;
     }
   };
 
@@ -54,7 +58,7 @@
   };
 
   const triggerInputFile = () => {
-    imageFile.click();
+    inputFile.click();
   };
 </script>
 
@@ -99,7 +103,7 @@
       </div>
       <div class="flex grow flex-col gap-y-3">
         <InputText
-          bind:value={title}
+          bind:value={name}
           placeholder="New title"
           type="text"
           name="playlist-title"
@@ -118,6 +122,7 @@
         on:click={saveChanges}
         variant="light"
         rounded="full"
+        {loading}
         class="transition hover:scale-105">Save</Button
       >
     </div>
@@ -128,4 +133,10 @@
   </svelte:fragment>
 </Dialog>
 
-<input type="file" bind:this={imageFile} hidden />
+<input
+  type="file"
+  accept="image/*"
+  bind:this={inputFile}
+  bind:files={imageFile}
+  hidden
+/>

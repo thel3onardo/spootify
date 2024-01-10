@@ -65,7 +65,7 @@
         <p class="mb-2 text-sm font-semibold text-neutral-200">Playlist</p>
         <button on:click={data.playlistOwner ? toggleEditDialog : ''}>
           <h1
-            class="mb-6 font-inter text-6xl font-bold tracking-tighter text-neutral-50 lg:text-6xl xl:text-8xl"
+            class="mb-6 text-start font-inter text-6xl font-bold tracking-tighter text-neutral-50 lg:text-6xl xl:text-8xl"
           >
             {data.name}
           </h1>
@@ -93,9 +93,9 @@
   </div>
   <DialogEditDetails
     bind:visible={editDialogVisible}
-    playlistId="ss"
+    playlistId={data.playlistId}
     playlistOwner={data.playlistOwner}
-    coverImageUrl="https://pics.craiyon.com/2023-10-08/33e26a9cfde24b4baa4c1dc325b7cc00.webp"
+    coverImageUrl={data.coverImage}
   />
 </div>
 

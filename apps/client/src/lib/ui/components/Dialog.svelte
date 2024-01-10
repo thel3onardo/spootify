@@ -32,7 +32,7 @@
       transition:fade={{ duration: 300 }}
     />
     <div
-      transition:fly={{ y: 40, opacity: 0, duration: 400 }}
+      transition:fly={{ y: 50, opacity: 0, duration: 400 }}
       class="fixed left-[50%] top-[50%] z-50 max-h-[85vh] w-[90vw]
               max-w-[550px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-neutral-900
               p-8 shadow-lg"

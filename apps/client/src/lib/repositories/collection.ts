@@ -21,22 +21,22 @@ export const getCollectionById = (id: string) => {
 export const editCollection = (
   collectionId: string,
   body: {
-    title: string;
+    name: string;
     description: string;
-    imageFile: File;
+    coverImage: File;
   },
 ) => {
   const form = new FormData();
-  if (body.title) form.append('title', body.title);
+  if (body.name) form.append('name', body.name);
   if (body.description) form.append('description', body.description);
-  if (body.imageFile) form.append('imageFile', body.imageFile);
+  if (body.coverImage) form.append('coverImage', body.coverImage);
+
+  //TODO: remove hard-coded value
+  form.append('authorId', 'c823fe59-1153-4f14-b3ca-83967aaecca5');
 
   return fetch(`http://localhost:5000/api/collection/${collectionId}`, {
     method: 'PATCH',
     body: form,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
   });
 };
 

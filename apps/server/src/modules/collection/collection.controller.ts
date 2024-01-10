@@ -157,19 +157,19 @@ export async function updateCollectionById(
   }
 
   const imageUrl = coverImage
-    ? await getImageUrl(coverImage, rep.server)
+    ? await getImageUrl(coverImage.data, rep.server)
     : null;
-  rep.log.info({ imageUrl });
+
+  const data = imageUrl ? { coverImage: imageUrl, ...body } : { ...body };
+
+  rep.log.info({ data });
 
   try {
     const collection = await rep.server.prisma.collection.update({
       where: {
         id,
       },
-      data: {
-        coverImage: imageUrl ?? "",
-        ...body,
-      },
+      data,
       select: {
         name: true,
         description: true,
@@ -218,7 +218,7 @@ export async function deleteCollectionById() {
 // }
 //
 const getImageUrl = async (image: Buffer, server: any) => {
-  const base64 = Buffer.from(image.data).toString("base64");
+  const base64 = Buffer.from(image).toString("base64");
   const upload = await uploadImage(server, base64, "test");
 
   server.log.info({ upload });
