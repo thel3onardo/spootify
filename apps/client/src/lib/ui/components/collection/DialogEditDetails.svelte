@@ -13,6 +13,18 @@
   let description: string;
   //TODO: handle image case
   let imageFile: HTMLInputElement;
+  let menuOptions = [
+    {
+      icon: 'ph:image-light',
+      label: 'Change photo',
+      onClick: () => triggerInputFile(),
+    },
+    {
+      icon: 'ph:trash-simple',
+      label: 'Remove photo',
+      onClick: () => removePhoto(),
+    },
+  ];
 
   export let playlistId: string,
     coverImageUrl: string,
@@ -36,6 +48,11 @@
       //TODO: handle errors
     }
   };
+
+  const removePhoto = () => {
+    //TODO
+  };
+
   const triggerInputFile = () => {
     imageFile.click();
   };
@@ -65,22 +82,17 @@
               />
             </button>
             <div class="flex w-[150px] flex-col" slot="options">
-              <button
-                class="flex items-center gap-x-2 p-2 text-neutral-400 hover:bg-neutral-800"
-              >
-                <Icon icon="ph:image-light" width="1.2rem" height="1.2rem" />
-                <span class="text-sm font-medium text-neutral-400"
-                  >Change photo</span
+              {#each menuOptions as { icon, onClick, label }}
+                <button
+                  class="flex items-center gap-x-2 p-2 text-neutral-400 hover:bg-neutral-800"
+                  on:click={onClick}
                 >
-              </button>
-              <button
-                class="flex items-center gap-x-2 p-2 text-neutral-400 hover:bg-neutral-800"
-              >
-                <Icon icon="ph:trash-simple" width="1.2rem" height="1.2rem" />
-                <span class="text-sm font-medium text-neutral-400"
-                  >Remove photo</span
-                >
-              </button>
+                  <Icon {icon} width="1.2rem" height="1.2rem" />
+                  <span class="text-sm font-medium text-neutral-400"
+                    >{label}</span
+                  >
+                </button>
+              {/each}
             </div>
           </DropdownMenu>
         </div>
