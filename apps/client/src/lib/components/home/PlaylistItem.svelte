@@ -1,6 +1,6 @@
 <script lang="ts">
   import { FastAverageColor } from 'fast-average-color';
-  import { fade, scale } from 'svelte/transition';
+  import { scale } from 'svelte/transition';
   import { createEventDispatcher, onMount } from 'svelte';
   import PlayButton from '../../ui/components/button/PlayButton.svelte';
 

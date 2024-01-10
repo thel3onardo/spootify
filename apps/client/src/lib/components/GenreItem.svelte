@@ -11,7 +11,9 @@
     class="genre-item relative h-full w-full max-w-[200px] rounded-lg p-3 px-5"
     style="--theme-color: {rgbColor}"
   >
-    <h2 class="font-manrope text-2xl font-bold">{name}</h2>
+    <h2 class="font-manrope text-2xl">
+      {name}
+    </h2>
   </div>
 </a>
 

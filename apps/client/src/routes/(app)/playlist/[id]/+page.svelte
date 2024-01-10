@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { IPlaylist } from './+page';
   import { onMount } from 'svelte';
   import { FastAverageColor } from 'fast-average-color';
 
@@ -10,8 +9,8 @@
   import FilterBar from '$lib/components/IconSearchbar.svelte';
   import SortOptionsMenu from '$lib/ui/components/collection/SortOptionsMenu.svelte';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
-  import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
   import DialogEditDetails from '$lib/ui/components/collection/DialogEditDetails.svelte';
+  import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
 
   let backgroundColor: string;
   let filterValue = '';
@@ -31,13 +30,17 @@
     backgroundColor = hexColor;
   };
 
+  const toggleEditDialog = () => {
+    editDialogVisible = !editDialogVisible;
+  };
+
   onMount(() => {
-    if (data.src) return getAverageColor(data.src);
+    if (data.coverImage) return getAverageColor(data.coverImage);
 
     setBgColor('#525252');
   });
 
-  export let data: IPlaylist;
+  export let data;
 </script>
 
 <div
@@ -48,21 +51,25 @@
     <Navbar />
     <div class="header-gradient absolute top-0 z-10 h-full w-full" />
     <div class="relative z-20 mt-14 flex items-end p-8">
-      <div class="h-[232px] w-full max-w-[232px]">
+      <div
+        class="image-shadow group relative h-[232px] w-full max-w-[232px] overflow-hidden rounded-xl"
+      >
         <CollectionImage
-          on:openDialog={() => (editDialogVisible = true)}
-          src={data.coverImage}
-          alt="yey"
-          shadow
+          on:click={toggleEditDialog}
+          imageSrc={data.coverImage}
+          imageAlt="removethis"
+          playlistOwner={data.playlistOwner}
         />
       </div>
       <div class="font-manrope ml-6 basis-3/4">
         <p class="mb-2 text-sm font-semibold text-neutral-200">Playlist</p>
-        <h1
-          class="mb-6 font-inter text-6xl font-bold tracking-tighter text-neutral-50 lg:text-6xl xl:text-8xl"
-        >
-          {data.name}
-        </h1>
+        <button on:click={data.playlistOwner ? toggleEditDialog : ''}>
+          <h1
+            class="mb-6 font-inter text-6xl font-bold tracking-tighter text-neutral-50 lg:text-6xl xl:text-8xl"
+          >
+            {data.name}
+          </h1>
+        </button>
         <p class="text-sm font-medium text-neutral-300">
           {data.description ?? ''}
         </p>
@@ -87,13 +94,18 @@
   <DialogEditDetails
     bind:visible={editDialogVisible}
     playlistId="ss"
-    coverImageUrl={data.coverImage}
+    playlistOwner={data.playlistOwner}
+    coverImageUrl="https://pics.craiyon.com/2023-10-08/33e26a9cfde24b4baa4c1dc325b7cc00.webp"
   />
 </div>
 
 <style>
   .playlist-page {
     background-color: var(--main-color);
+  }
+
+  .image-shadow {
+    box-shadow: 0px 0px 5rem 1rem rgba(10, 10, 10, 0.5);
   }
 
   .gradient {

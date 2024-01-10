@@ -1,10 +1,7 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import { fade, fly } from 'svelte/transition';
   import Button from '$lib/ui/components/button/Button.svelte';
   import SocialAuthButton from '$lib/ui/components/button/SocialAuthButton.svelte';
-
-  const dispatch = createEventDispatcher();
 </script>
 
 <div
