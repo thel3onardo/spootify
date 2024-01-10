@@ -49,6 +49,7 @@ async function main() {
   await server.register(fastifyEnv, envConfig);
   await server.register(fastifyCors);
   server.register(fileUpload);
+  //TODO: remove jwt
   server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,
     sign: {
