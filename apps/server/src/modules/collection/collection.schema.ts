@@ -9,7 +9,7 @@ const createCollectionSchema = z.object({
 const updateCollectionSchema = z.object({
   name: z.string().optional(),
   description: z.string().optional(),
-  coverImage: z.string().optional(),
+  coverImage: z.any().optional(),
   authorId: z.string(),
 });
 

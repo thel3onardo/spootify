@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateCollection, UpdateCollection } from "./collection.schema";
 import { Prisma } from "@prisma/client";
+import { uploadImage } from "src/utils/storage";
 
 export async function createCollection(
   req: FastifyRequest<{ Body: CreateCollection }>,
@@ -149,11 +150,16 @@ export async function updateCollectionById(
   rep: FastifyReply,
 ) {
   const { id } = req.params;
-  const body = req.body;
+  const { coverImage, ...body } = req.body;
 
   if (Object.keys(body)?.length === 0) {
     rep.status(400).send({ error: "The body cannot be empty" });
   }
+
+  const imageUrl = coverImage
+    ? await getImageUrl(coverImage, rep.server)
+    : null;
+  rep.log.info({ imageUrl });
 
   try {
     const collection = await rep.server.prisma.collection.update({
@@ -161,7 +167,8 @@ export async function updateCollectionById(
         id,
       },
       data: {
-        ...req.body,
+        coverImage: imageUrl ?? "",
+        ...body,
       },
       select: {
         name: true,
@@ -172,6 +179,7 @@ export async function updateCollectionById(
 
     rep.status(200).send({ data: collection });
   } catch (err) {
+    rep.log.info("error here");
     rep.log.error(err);
     rep.status(500).send({ error: err });
   }
@@ -208,3 +216,12 @@ export async function deleteCollectionById() {
 
 //   rep.status(200).send({ status: "success", collectionId });
 // }
+//
+const getImageUrl = async (image: Buffer, server: any) => {
+  const base64 = Buffer.from(image.data).toString("base64");
+  const upload = await uploadImage(server, base64, "test");
+
+  server.log.info({ upload });
+
+  return upload.url;
+};

@@ -39,6 +39,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "fastify-file-upload": "^4.0.0",
     "fastify-plugin": "^4.5.1",
+    "imagekit": "^4.1.4",
     "prettier": "^3.0.3",
     "prisma": "^5.4.2",
     "tsx": "^4.7.0",

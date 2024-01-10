@@ -15,6 +15,9 @@ const schema = {
     IMAGEKIT_PRIVATE_KEY: {
       type: "string",
     },
+    IMAGEKIT_URL_ENDPOINT: {
+      type: "string",
+    },
     DATABASE_URL: {
       type: "string",
     },

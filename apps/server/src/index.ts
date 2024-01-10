@@ -17,9 +17,11 @@ import { trackSchemas } from "./modules/track/track.schema";
 import { authSchemas } from "./modules/auth/auth.schema";
 import { collectionSchemas } from "./modules/collection/collection.schema";
 import { userSchemas } from "./modules/user/user.schema";
+import { imageKitPlugin } from "./plugins/image-kit";
 
 const server = fastify({
   logger: {
+    level: "debug",
     transport: {
       target: "pino-pretty",
     },
@@ -48,6 +50,7 @@ async function main() {
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
   await server.register(fastifyCors);
+  await server.register(imageKitPlugin);
   server.register(fileUpload);
   //TODO: remove jwt
   server.register(fastifyJwt, {
