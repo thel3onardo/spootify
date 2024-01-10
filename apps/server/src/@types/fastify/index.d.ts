@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import { Session } from "lucia";
 
 declare module "fastify" {
@@ -9,5 +10,6 @@ declare module "fastify" {
     /* eslint-disable */
   > {
     session: Session | null;
+    prisma: PrismaClient;
   }
 }
