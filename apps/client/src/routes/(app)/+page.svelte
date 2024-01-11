@@ -6,9 +6,8 @@
   import Navbar from '$lib/ui/interface/Navbar.svelte';
   import { user } from '$lib/stores/user';
   import Button from '$lib/ui/components/button/Button.svelte';
-  import { setTrack } from '$lib/stores/track';
-  import { fetchTrackById } from '$lib/repositories/audio';
   import Link from '$lib/ui/components/Link.svelte';
+  import { playTrack } from '$lib/stores/track';
 
   let bgColor = '';
   let defaultBgColor = '#9f1239';
@@ -77,27 +76,6 @@
 
   const setColor = (colorHex: any, id: number) => {
     latestAlbumsColors[id] = colorHex;
-  };
-
-  const playMusic = async (trackId: number) => {
-    try {
-      const data = await fetchTrackById(trackId);
-      const { id, name, favorite, coverImage, author, ...other } = data.data;
-
-      //TODO: implement this with response data typed
-      //@ts-ignore
-      setTrack({
-        id,
-        favorite,
-        coverImage,
-        author,
-        name,
-        audio: other.TrackAudio,
-      });
-    } catch (err) {
-      //TODO: implement toast
-      console.error(err);
-    }
   };
 
   onMount(() => {
@@ -181,11 +159,11 @@
       </section>
     {/each}
 
-    <button on:click={() => playMusic(19)}>
+    <button on:click={() => playTrack(19)}>
       <Button variant="primary" rounded="xl">Play music</Button>
     </button>
 
-    <button on:click={() => playMusic(25)}>
+    <button on:click={() => playTrack(25)}>
       <Button variant="primary" rounded="xl">Play music 2</Button>
     </button>
 

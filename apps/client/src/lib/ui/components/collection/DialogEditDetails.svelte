@@ -6,14 +6,29 @@
   import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
   import Icon from '@iconify/svelte';
   import DropdownMenu from '../DropdownMenu.svelte';
-
+  import { ZodError, z, type ZodIssue } from 'zod';
   import { collectionRepository } from '$lib/repositories';
+  import { addToast } from '../Toast.svelte';
+  import { createEventDispatcher } from 'svelte';
+  import { capitalize } from '$lib/utils';
 
-  let name: string;
-  let description: string;
-  let imageFile: FileList;
+  const dispatch = createEventDispatcher();
+  //TODO: remove z.any()
+  const validationSchema = z.object({
+    name: z.string().min(2).optional(),
+    description: z.string().min(2).optional(),
+    fileImage: z.any().optional(),
+  });
+
+  let name = '';
+  let description = '';
+  let imageFile: FileList | null;
   let inputFile: HTMLInputElement;
   let loading = false;
+
+  let showErrorMessage = false;
+  let errorMessage: string | string[];
+
   let menuOptions = [
     {
       icon: 'ph:image-light',
@@ -32,19 +47,49 @@
     visible: boolean,
     playlistOwner: boolean;
 
+  const validate = () => {
+    if (showErrorMessage) showErrorMessage = false;
+
+    const valid = validationSchema.safeParse({
+      name,
+      description,
+      fileImage: imageFile && imageFile[0],
+    });
+
+    if (valid.success) return saveChanges();
+
+    errorMessage = valid.error.issues.map((issue) => {
+      return capitalize(issue.message.replace('String', String(issue.path[0])));
+    });
+    showErrorMessage = true;
+  };
+
+  const resetFormValues = () => {
+    name = '';
+    description = '';
+    imageFile = null;
+  };
+
   const saveChanges = async () => {
-    //TODO: validate fields
     try {
       loading = true;
-      const res = await collectionRepository.editCollection(playlistId, {
-        name,
-        description,
-        coverImage: imageFile[0],
-      });
-      if (res.ok) {
-        const data = await res.json();
 
-        console.log({ data });
+      const body = { name, description, coverImage: imageFile && imageFile[0] };
+      const res = await collectionRepository.editCollection(playlistId, body);
+
+      if (res.ok) {
+        dispatch('closeDialog');
+
+        resetFormValues();
+
+        //TODO: use success toast variant
+        return addToast({
+          data: {
+            description: 'Playlist data changed',
+            icon: 'ph:check-circle',
+            colorClass: 'text-primary',
+          },
+        });
       }
     } catch (err) {
       //TODO: handle errors
@@ -65,6 +110,21 @@
 <Dialog closeIcon bind:visible>
   <svelte:fragment slot="title">Edit details</svelte:fragment>
   <svelte:fragment slot="content">
+    {#if showErrorMessage}
+      <div
+        class="flex w-full items-center gap-x-2 rounded-lg bg-neutral-800 px-4 py-3"
+      >
+        <Icon
+          icon="ph:warning-circle"
+          width="1.5rem"
+          height="1.5rem"
+          class="text-red-400"
+        />
+        <p class="text-xs font-medium text-neutral-400">
+          {errorMessage}
+        </p>
+      </div>
+    {/if}
     <div class="mb-2 mt-4 flex gap-x-4">
       <div class="relative h-[180px] w-[180px]">
         <CollectionImage
@@ -119,7 +179,7 @@
     </div>
     <div class="flex justify-end">
       <Button
-        on:click={saveChanges}
+        on:click={validate}
         variant="light"
         rounded="full"
         {loading}

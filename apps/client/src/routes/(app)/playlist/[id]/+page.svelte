@@ -14,7 +14,7 @@
 
   let backgroundColor: string;
   let filterValue = '';
-  let editDialogVisible = false;
+  let editDialogVisible = true;
 
   const getAverageColor = async (imageUrl: string) => {
     const fac = new FastAverageColor();
@@ -44,7 +44,7 @@
 </script>
 
 <div
-  class="flex min-h-full w-full flex-col"
+  class="flex h-full w-full flex-col"
   style="--main-color: {backgroundColor}"
 >
   <div class="playlist-page relative">
@@ -76,7 +76,7 @@
       </div>
     </div>
   </div>
-  <div class="relative isolate flex flex-col bg-neutral-950 p-8">
+  <div class="relative isolate flex h-full flex-col bg-neutral-950 p-8">
     <div class="gradient absolute left-0 top-0 -z-10 h-[232px] w-full"></div>
     <div class="flex items-center justify-between">
       <div class="flex gap-x-8">
@@ -89,13 +89,15 @@
         <SortOptionsMenu />
       </div>
     </div>
-    <TracksList class="my-8" />
+    <TracksList class="my-8" tracks={data.tracks} />
   </div>
+
   <DialogEditDetails
     bind:visible={editDialogVisible}
     playlistId={data.playlistId}
     playlistOwner={data.playlistOwner}
     coverImageUrl={data.coverImage}
+    on:closeDialog={toggleEditDialog}
   />
 </div>
 

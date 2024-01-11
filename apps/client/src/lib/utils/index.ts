@@ -5,3 +5,7 @@ export const secondsToMinutes = (seconds: number) => {
 
   return `${minutes}:${String(secondsRemaining).padStart(2, '0')}`;
 };
+
+export const capitalize = (word: string) => {
+  return word[0].toUpperCase() + word.slice(1);
+};
