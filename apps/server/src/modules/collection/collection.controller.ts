@@ -127,18 +127,31 @@ export async function getColletionById(
                 id: true,
               },
             },
+            TrackAudio: {
+              select: {
+                duration: true,
+              },
+            },
           },
         },
       },
     });
     //TODO: implement favorite
 
+    const responseTrack = tracks.map((el) => {
+      const { TrackAudio, ...track } = el.track;
+
+      return {
+        ...track,
+        addedAt: el.addedAt,
+        duration: TrackAudio?.duration ?? null,
+      };
+    });
+
     const responseBody = {
       data: {
         ...collection,
-        tracks: tracks.map((track) => {
-          return { addedAt: track.addedAt, ...track.track };
-        }),
+        tracks: responseTrack,
       },
     };
 
