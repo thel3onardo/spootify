@@ -47,7 +47,7 @@ export const addTrackToCollection = async (
     await rep.server.prisma.trackOnCollection.create({
       data: {
         collectionId,
-        trackId,
+        trackId: Number(trackId),
       },
     });
 
@@ -124,14 +124,25 @@ export async function getColletionById(
             author: {
               select: {
                 name: true,
+                id: true,
               },
             },
           },
         },
       },
     });
+    //TODO: implement favorite
 
-    rep.status(200).send({ data: { ...collection, tracks } });
+    const responseBody = {
+      data: {
+        ...collection,
+        tracks: tracks.map((track) => {
+          return { addedAt: track.addedAt, ...track.track };
+        }),
+      },
+    };
+
+    rep.status(200).send(responseBody);
   } catch (err) {
     rep.log.error(err);
 

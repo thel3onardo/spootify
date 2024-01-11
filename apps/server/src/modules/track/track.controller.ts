@@ -96,7 +96,7 @@ export async function createTrack(
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject(projectID)
     .setKey(
-      "deadc5291a1415771c87923de066f3eba71f3c12cd85e528ecf17e96b63433f10f77d0ab13203cae1038702ad371c9abbf1f1981d555f7d280427b6b6b4057cc55d1e931f91cff1ce04d0dd189353cf7f931b2b8a91572d25284bccb5e3e4c60c6b56a2c9d5352af6db7a5639c81e390e7cdfffd9c8798ca3ba996db2a902d56",
+      "d80dbfe80b5e8f25c90d9b96c8847a0ffca8036291858896adf79c9cc4edaa6e9ecdba6da7c2fc562fb3ecc525719903dc99a2781d9fe6866beef79233bd7b2fcdf2deee442ddf31f6102ead454e8fee2b83b3abc0d23485c115e4d5efe2e4258dbf967c2f2d4747456605cba12585402f9eb2821bc1fb8cf6066e90e677aec8",
     );
 
   const storage = new Storage(client);
