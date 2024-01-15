@@ -48,7 +48,7 @@
   $: value.set([sliderValue * 100]);
 </script>
 
-<div class="flex items-center gap-x-6 text-gray-500">
+<div class="flex items-center gap-x-6 text-neutral-400">
   <IconButton
     on:click={togglePlayingNowMenu}
     tooltipLabel="Playing now"
@@ -92,7 +92,7 @@
     <span class="h-[4px] w-full rounded-lg bg-gray-800">
       <span
         use:melt={$range}
-        class="group-hover:bg-primary h-[4px] rounded-lg bg-white"
+        class="h-[4px] rounded-lg bg-white group-hover:bg-primary"
       />
     </span>
     <span

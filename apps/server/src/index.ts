@@ -18,6 +18,7 @@ import { authSchemas } from "./modules/auth/auth.schema";
 import { collectionSchemas } from "./modules/collection/collection.schema";
 import { userSchemas } from "./modules/user/user.schema";
 import { imageKitPlugin } from "./plugins/image-kit";
+import { setupRoutes } from "./config/routes";
 
 const server = fastify({
   logger: {
@@ -42,36 +43,27 @@ async function main() {
   //decorators
   server.decorate("session", null);
 
-  //pluginsa
-  server.register(fastifyCookie, {
-    hook: "onRequest",
-    parseOptions: {},
-  });
+  await server.register(fastifyCors, { origin: true });
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
-  await server.register(fastifyCors);
   await server.register(imageKitPlugin);
-  server.register(fileUpload);
+  await server.register(fileUpload);
   //TODO: remove jwt
-  server.register(fastifyJwt, {
+  await server.register(fastifyJwt, {
     secret: server.config.JWT_SECRET,
     sign: {
       expiresIn: "10m",
     },
   });
 
-  //routes
-  server.register(
-    (app, _, done) => {
-      trackRoutes(app);
-      authRoutes(app);
-      collectionRoutes(app);
-      userRoutes(app);
+  //plugins
+  server.register(fastifyCookie, {
+    hook: "onRequest",
+    parseOptions: {},
+  });
 
-      done();
-    },
-    { prefix: "/api" },
-  );
+  //routes
+  setupRoutes(server);
 
   server.listen({ port: server.config.PORT || 4000 }, async (err) => {
     if (err) {

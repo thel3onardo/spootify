@@ -12,9 +12,6 @@
     //TODO: there's a way to improve this?
     type = type === 'text' ? 'password' : 'text';
   };
-  const handleInput = (e: Event) => {
-    value = (e.target as HTMLInputElement).value;
-  };
 
   export let type = 'text',
     placeholder: string,
@@ -35,16 +32,15 @@
   {/if}
   <div class="relative">
     <input
+      bind:value
       id={name}
       class={`${
         icon ? 'pl-12 pr-4' : 'px-4'
       } w-full rounded-lg border border-gray-900 bg-gray-950 py-3 text-sm font-medium text-neutral-400 outline-none transition placeholder:text-gray-500 hover:border-gray-700 focus:border-primary`}
-      {type}
       {placeholder}
       {autocomplete}
       {inputmode}
       spellcheck="false"
-      on:input={handleInput}
     />
     {#if icon}
       <Icon

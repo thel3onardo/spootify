@@ -1,10 +1,10 @@
 export const signIn = (body: { email: string; password: string }) => {
-  return fetch("http://localhost:5000/api/auth/user/signin", {
+  return fetch('http://localhost:5000/api/auth/user/signin', {
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
     },
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(body),
   });
 };

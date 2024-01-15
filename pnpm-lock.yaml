@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@moonrepo/cli':
+        specifier: ^1.19.2
+        version: 1.19.2
 
   apps/client:
     dependencies:
@@ -25,6 +29,9 @@ importers:
       simplebar:
         specifier: ^6.2.5
         version: 6.2.5
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@iconify/svelte':
         specifier: ^3.1.4
@@ -65,6 +72,9 @@ importers:
       eslint-plugin-prettier:
         specifier: ^5.0.0
         version: 5.1.2(eslint-config-prettier@9.1.0)(eslint@8.56.0)(prettier@3.1.1)
+      eslint-plugin-simple-import-sort:
+        specifier: ^10.0.0
+        version: 10.0.0(eslint@8.56.0)
       eslint-plugin-svelte:
         specifier: ^2.33.1
         version: 2.35.1(eslint@8.56.0)(svelte@4.2.8)
@@ -183,6 +193,9 @@ importers:
       fastify-plugin:
         specifier: ^4.5.1
         version: 4.5.1
+      imagekit:
+        specifier: ^4.1.4
+        version: 4.1.4
       prettier:
         specifier: ^3.0.3
         version: 3.1.1
@@ -730,6 +743,78 @@ packages:
       focus-trap: 7.5.4
       nanoid: 4.0.2
       svelte: 4.2.8
+
+  /@moonrepo/cli@1.19.2:
+    resolution: {integrity: sha512-RMGzIXfNskUy5CGWfpG94svkKUQcupPa+qPnURrJTLQOimNjraYXHbTDFsmdEvRKRJBF9x6xBLg7siYvJTWN3A==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      detect-libc: 2.0.2
+    optionalDependencies:
+      '@moonrepo/core-linux-arm64-gnu': 1.19.2
+      '@moonrepo/core-linux-arm64-musl': 1.19.2
+      '@moonrepo/core-linux-x64-gnu': 1.19.2
+      '@moonrepo/core-linux-x64-musl': 1.19.2
+      '@moonrepo/core-macos-arm64': 1.19.2
+      '@moonrepo/core-macos-x64': 1.19.2
+      '@moonrepo/core-windows-x64-msvc': 1.19.2
+    dev: true
+
+  /@moonrepo/core-linux-arm64-gnu@1.19.2:
+    resolution: {integrity: sha512-vxDO9DgTpdKNQoH0uY9VzWGAXl7LLl7t8xSfkiRJye0p1TgfQmF9Q+UmDzBxcFij0ADQb/v4grrg4aePeM1kAw==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-linux-arm64-musl@1.19.2:
+    resolution: {integrity: sha512-w/WEVFniW7SItH79xARKTLId8gLnLIy3ewhLV9PqerY1CmMn7GgRVsTVFztfU4p6XExDTM6DiPyHxOKrg3LZDA==}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-linux-x64-gnu@1.19.2:
+    resolution: {integrity: sha512-tCft/ihbvUN/qadKpDbTdtfjrPXYYJRW9yo0m8FYBQiIgEY0FwPg9p329QDcXYdmBTr9h5moKY4pgo85dOcFsg==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-linux-x64-musl@1.19.2:
+    resolution: {integrity: sha512-XUV05iYTPbvFiCXB6nt7HbvWZiNsIOsLKnFmpnkcz+jylezqV31NOWN8+ZoYS9bUVRb/UzZ4FXuPD+9/RvtJ4A==}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-macos-arm64@1.19.2:
+    resolution: {integrity: sha512-jJX5L14zapJUpZ6YATz3AZmqtI9QPFQgkOH4YULGkNnGuHKlxqTptgA97sP+Wc3MhLJfIhJrUEUC8576+YrK9Q==}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-macos-x64@1.19.2:
+    resolution: {integrity: sha512-vwqO7qGfVaIg7uxpUR0b15JQDhaIgq3AQGC0RLRNuAD6OtG1M/wen/MCfNcZ9sbiQrGB0XsWcDdcna0ee8A63A==}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  /@moonrepo/core-windows-x64-msvc@1.19.2:
+    resolution: {integrity: sha512-UUNrgIENWjg4sNKEe5Rh4WIscTSNpxH+cSMassk4mlOZxFVaF71a7PBlGW3+SJa8X7h3WiDJaZxt9IWBLL6I9w==}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -1501,7 +1586,6 @@ packages:
 
   /asynckit@0.4.0:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
-    dev: false
 
   /atomic-sleep@1.0.0:
     resolution: {integrity: sha512-kNOjDqAh7px0XWNI+4QbzoiR/nTkHAWNud2uvnJquD1/x5a7EQZMJT0AczqK0Qn67oY/TTQ1LbUKajZpp3I9tQ==}
@@ -1538,6 +1622,15 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /axios@0.27.2:
+    resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
+    dependencies:
+      follow-redirects: 1.15.4
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
 
   /axios@1.6.3:
     resolution: {integrity: sha512-fWyNdeawGam70jXSVlKl+SUNVcL6j6W79CuSIPfi6HnDUmSCH6gyUys/HrqHeA/wU0Az41rRgean494d0Jb+ww==}
@@ -1749,7 +1842,6 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
-    dev: false
 
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -1876,7 +1968,6 @@ packages:
   /delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
-    dev: false
 
   /delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
@@ -1899,7 +1990,6 @@ packages:
   /detect-libc@2.0.2:
     resolution: {integrity: sha512-UX6sGumvvqSaXgdKGUsgZWqcUyIXZ/vZTrlRT/iobiKhGL0zL4d3osHj3uqllWJK+i+sixDS/3COVEOFbupFyw==}
     engines: {node: '>=8'}
-    dev: false
 
   /devalue@4.3.2:
     resolution: {integrity: sha512-KqFl6pOgOW+Y6wJgu80rHpo2/3H07vr8ntR9rkkFIRETewbf5GaYYcakYfiKz89K+sLsuPkQIZaXDMjUObZwWg==}
@@ -2241,6 +2331,14 @@ packages:
       prettier: 3.1.1
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.8
+    dev: true
+
+  /eslint-plugin-simple-import-sort@10.0.0(eslint@8.56.0):
+    resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
+    peerDependencies:
+      eslint: '>=5.0.0'
+    dependencies:
+      eslint: 8.56.0
     dev: true
 
   /eslint-plugin-svelte@2.35.1(eslint@8.56.0)(svelte@4.2.8):
@@ -2637,7 +2735,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -2660,7 +2757,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: false
 
   /forwarded@0.2.0:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
@@ -2840,6 +2936,10 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
+  /hamming-distance@1.0.0:
+    resolution: {integrity: sha512-hYz2IIKtyuZGfOqCs7skNiFEATf+v9IUNSOaQSr6Ll4JOxxWhOvXvc3mIdCW82Z3xW+zUoto7N/ssD4bDxAWoA==}
+    dev: true
+
   /has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -2922,6 +3022,20 @@ packages:
   /ignore@5.3.0:
     resolution: {integrity: sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==}
     engines: {node: '>= 4'}
+    dev: true
+
+  /imagekit@4.1.4:
+    resolution: {integrity: sha512-yie0hMi+GVk8gtwi3hr3lwh/pAJv/jGpzteYOubs0I4h3Jic5xBXzWPrlGM4pPbAfWMr5UFXk8w0I4A1Xr6fDQ==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      axios: 0.27.2
+      form-data: 4.0.0
+      hamming-distance: 1.0.0
+      lodash: 4.17.21
+      tslib: 2.6.2
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /import-fresh@3.3.0:
@@ -3233,7 +3347,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: false
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -3302,14 +3415,12 @@ packages:
   /mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
-    dev: false
 
   /mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
     dependencies:
       mime-db: 1.52.0
-    dev: false
 
   /mime@3.0.0:
     resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
@@ -4840,6 +4951,11 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: true
 
   /vite@5.0.10:
     resolution: {integrity: sha512-2P8J7WWgmc355HUMlFrwofacvr98DAjoE52BfdbwQtyLH06XKwaL/FMnmKM2crF0iX4MpmMKoDlNCB1ok7zHCw==}

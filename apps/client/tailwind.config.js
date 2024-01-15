@@ -28,6 +28,9 @@ export default {
       boxShadow: {
         card: '0px 2rem 20rem 0px rgba(30,215,96, 0.2)',
       },
+      screens: {
+        '3xl': '1800px',
+      },
     },
   },
   plugins: [],

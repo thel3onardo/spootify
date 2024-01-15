@@ -21,7 +21,7 @@
   } = createDropdownMenu({ positioning: { placement } });
 </script>
 
-<div use:melt={$trigger}>
+<div use:melt={$trigger} class="h-fit">
   <slot name="trigger" />
 </div>
 

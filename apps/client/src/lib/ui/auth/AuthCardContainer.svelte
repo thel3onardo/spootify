@@ -2,6 +2,12 @@
   import { fade, fly } from 'svelte/transition';
   import Button from '$lib/ui/components/button/Button.svelte';
   import SocialAuthButton from '$lib/ui/components/button/SocialAuthButton.svelte';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+  const emitCtaClick = () => {
+    dispatch('ctaClick');
+  };
 </script>
 
 <div
@@ -39,7 +45,7 @@
     </div>
 
     <Button
-      on:click={() => ''}
+      on:click={emitCtaClick}
       variant="primary"
       rounded="full"
       class="mb-8 mt-12 px-8 py-4"

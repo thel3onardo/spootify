@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { CreateCollection, UpdateCollection } from "./collection.schema";
 import { Prisma } from "@prisma/client";
-import { uploadImage } from "src/utils/storage";
+import { uploadImage } from "../../utils/storage";
 
 export async function createCollection(
   req: FastifyRequest<{ Body: CreateCollection }>,
@@ -108,6 +108,13 @@ export async function getColletionById(
         name: true,
         description: true,
         coverImage: true,
+        author: {
+          select: {
+            id: true,
+            name: true,
+            profileImage: true,
+          },
+        },
       },
     });
     const tracks = await rep.server.prisma.trackOnCollection.findMany({

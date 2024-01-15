@@ -11,10 +11,13 @@
   import Navbar from '$lib/ui/interface/Navbar.svelte';
   import DialogEditDetails from '$lib/ui/components/collection/DialogEditDetails.svelte';
   import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
+  import Avatar from '$lib/components/Avatar.svelte';
+  import ViewMode from '$lib/ui/components/collection/ViewMode.svelte';
 
   let backgroundColor: string;
   let filterValue = '';
   let editDialogVisible = true;
+  let viewMode: 'list' | 'compact' = 'list';
 
   const getAverageColor = async (imageUrl: string) => {
     const fac = new FastAverageColor();
@@ -32,6 +35,14 @@
 
   const toggleEditDialog = () => {
     editDialogVisible = !editDialogVisible;
+  };
+
+  const setNewCollectionData = (e: CustomEvent) => {
+    data.coverImage = e.detail.coverImage;
+    data.name = e.detail.name;
+    data.description = e.detail.description;
+
+    getAverageColor(data.coverImage);
   };
 
   onMount(() => {
@@ -63,16 +74,43 @@
       </div>
       <div class="font-manrope ml-6 basis-3/4">
         <p class="mb-2 text-sm font-semibold text-neutral-200">Playlist</p>
-        <button on:click={data.playlistOwner ? toggleEditDialog : ''}>
+
+        <button on:click={() => (data.playlistOwner ? toggleEditDialog() : '')}>
           <h1
-            class="mb-6 text-start font-inter text-6xl font-bold tracking-tighter text-neutral-50 lg:text-6xl xl:text-8xl"
+            class="3xl:text-8xl mb-6 text-start font-inter font-bold leading-6 tracking-tighter text-neutral-50 md:text-3xl lg:text-5xl 2xl:text-7xl"
           >
             {data.name}
           </h1>
         </button>
+
         <p class="text-sm font-medium text-neutral-300">
           {data.description ?? ''}
         </p>
+
+        <div class="mt-4 flex items-center text-sm text-neutral-200">
+          <div class="flex items-center gap-x-1">
+            {#if data.author.profileImage}
+              <Avatar src={data.author.profileImage} class="h-6 w-6" />
+            {/if}
+            <a
+              href="/profile/{data.author.id}"
+              class="tracking-wide hover:underline"
+            >
+              <span class="font-extrabold">{data.author.name}</span>
+            </a>
+          </div>
+
+          {#if data.tracks?.length > 0}
+            <div class="font-medium before:mx-1.5 before:content-['•']">
+              <span
+                >{data.tracks?.length} song{data.tracks.length > 1
+                  ? 's'
+                  : ''}</span
+              >
+              <span>, 232 minutes</span>
+            </div>
+          {/if}
+        </div>
       </div>
     </div>
   </div>
@@ -84,9 +122,13 @@
         <SaveLibraryButton size="lg" />
         <DownloadButton />
       </div>
-      <div class="relative flex gap-x-6">
+      <div class="relative flex items-center gap-x-6">
         <FilterBar placeholder="Search in playlist" bind:value={filterValue} />
         <SortOptionsMenu />
+        <ViewMode
+          mode={viewMode}
+          on:switchViewMode={(e) => (viewMode = e.detail)}
+        />
       </div>
     </div>
     <TracksList class="my-8" tracks={data.tracks} />
@@ -96,8 +138,11 @@
     bind:visible={editDialogVisible}
     playlistId={data.playlistId}
     playlistOwner={data.playlistOwner}
-    coverImageUrl={data.coverImage}
+    imageUrl={data.coverImage}
+    name={data.name}
+    description={data.description}
     on:closeDialog={toggleEditDialog}
+    on:newCollectionData={setNewCollectionData}
   />
 </div>
 

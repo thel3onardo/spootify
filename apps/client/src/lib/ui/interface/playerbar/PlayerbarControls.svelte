@@ -29,7 +29,7 @@
 </script>
 
 <div class="flex grow flex-col items-center justify-center">
-  <div class="flex items-center gap-x-6 text-gray-500">
+  <div class="flex items-center gap-x-6 text-neutral-400">
     <IconButton
       icon="ph:shuffle-bold"
       tooltipLabel="Random"
@@ -41,19 +41,19 @@
       <IconButton
         icon="fluent:arrow-previous-12-filled"
         tooltipLabel="Previous"
-        class="hover:text-white p-2"
+        class="p-2 hover:text-white"
       />
       <IconButton
         on:click={emitTogglePlay}
         tooltipLabel="Toggle play"
-        class="p-1 select-none rounded-full bg-white text-black cursor-default active:scale-90 transition"
+        class="cursor-default select-none rounded-full bg-white p-1 text-black transition active:scale-90"
         icon={playing ? 'ic:round-pause' : 'ic:baseline-play-arrow'}
         iconSize="1.5rem"
       />
       <IconButton
         icon="fluent:arrow-next-12-filled"
         tooltipLabel="Next"
-        class="hover:text-white p-1"
+        class="p-1 hover:text-white"
       />
     </div>
 
@@ -65,7 +65,7 @@
   </div>
 
   <div
-    class="mt-2 flex w-full max-w-[700px] items-center font-manrope text-xs font-semibold text-gray-500"
+    class="font-manrope mt-2 flex w-full max-w-[700px] items-center text-xs font-semibold text-neutral-400"
   >
     <span>{secondsToMinutes(currentTime)}</span>
     <span

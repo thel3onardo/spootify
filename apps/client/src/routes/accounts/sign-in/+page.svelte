@@ -14,6 +14,7 @@
   const login = async () => {
     try {
       const res = await signIn({ email, password });
+
       if (res.ok) {
         const data = await res.json();
 
@@ -44,7 +45,7 @@
 <div
   class="flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-gray-950 to-black"
 >
-  <AuthCardContainer>
+  <AuthCardContainer on:ctaClick={login}>
     <svelte:fragment slot="title">Log in to Spootify</svelte:fragment>
     <svelte:fragment slot="description"
       >Connect to millions of musics, enjoy the best!</svelte:fragment

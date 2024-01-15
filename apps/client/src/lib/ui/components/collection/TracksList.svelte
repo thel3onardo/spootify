@@ -1,7 +1,6 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
   import TrackItem from './TrackItem.svelte';
-  import { number, string } from 'zod';
 
   interface ITrack {
     id: number;
@@ -22,7 +21,7 @@
 
 <div class="text-neutral-400 {$$props.class}">
   <div
-    class="font-manrope mb-4 grid grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 border-b border-neutral-800 px-4 py-2 text-sm font-medium"
+    class="font-manrope mb-4 grid select-none grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 border-b border-neutral-800 px-4 py-2 text-sm font-medium"
   >
     {#each tableSections as section}
       <span>{section}</span>

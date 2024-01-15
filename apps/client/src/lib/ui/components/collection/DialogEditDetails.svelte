@@ -6,10 +6,10 @@
   import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
   import Icon from '@iconify/svelte';
   import DropdownMenu from '../DropdownMenu.svelte';
-  import { ZodError, z, type ZodIssue } from 'zod';
+  import { z } from 'zod';
   import { collectionRepository } from '$lib/repositories';
   import { addToast } from '../Toast.svelte';
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onMount } from 'svelte';
   import { capitalize } from '$lib/utils';
 
   const dispatch = createEventDispatcher();
@@ -20,8 +20,6 @@
     fileImage: z.any().optional(),
   });
 
-  let name = '';
-  let description = '';
   let imageFile: FileList | null;
   let inputFile: HTMLInputElement;
   let loading = false;
@@ -43,7 +41,9 @@
   ];
 
   export let playlistId: string,
-    coverImageUrl: string,
+    name: string,
+    description: string,
+    imageUrl: string,
     visible: boolean,
     playlistOwner: boolean;
 
@@ -64,12 +64,6 @@
     showErrorMessage = true;
   };
 
-  const resetFormValues = () => {
-    name = '';
-    description = '';
-    imageFile = null;
-  };
-
   const saveChanges = async () => {
     try {
       loading = true;
@@ -78,9 +72,10 @@
       const res = await collectionRepository.editCollection(playlistId, body);
 
       if (res.ok) {
-        dispatch('closeDialog');
+        const data = await res.json();
 
-        resetFormValues();
+        dispatch('closeDialog');
+        dispatch('newCollectionData', data.data);
 
         //TODO: use success toast variant
         return addToast({
@@ -120,7 +115,7 @@
           height="1.5rem"
           class="text-red-400"
         />
-        <p class="text-xs font-medium text-neutral-400">
+        <p class="text-sm font-medium text-neutral-400">
           {errorMessage}
         </p>
       </div>
@@ -129,7 +124,7 @@
       <div class="relative h-[180px] w-[180px]">
         <CollectionImage
           on:click={triggerInputFile}
-          imageSrc={coverImageUrl}
+          imageSrc={imageUrl}
           imageAlt="CHANGE_THIS"
           {playlistOwner}
         />
