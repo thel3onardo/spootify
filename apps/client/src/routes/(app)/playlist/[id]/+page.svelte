@@ -137,7 +137,7 @@
         />
       </div>
     </div>
-    <TracksList class="my-8" tracks={data.tracks} />
+    <TracksList class="my-8" tracks={data.tracks} {viewMode} />
   </div>
 
   <DialogEditDetails

@@ -9,7 +9,7 @@
   import { z } from 'zod';
   import { collectionRepository } from '$lib/repositories';
   import { addToast } from '$lib/ui/components/Toast.svelte';
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import { capitalize } from '$lib/utils';
 
   const dispatch = createEventDispatcher();

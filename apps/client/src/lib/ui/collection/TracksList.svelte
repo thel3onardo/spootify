@@ -1,6 +1,7 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
   import TrackItem from '$lib/ui/collection/TrackItem.svelte';
+  import type { ViewModeType } from './ViewMode.svelte';
 
   interface ITrack {
     id: number;
@@ -14,16 +15,23 @@
     duration: number;
   }
 
-  const tableSections = ['#', 'Title', 'Album', 'Date added'];
+  const tableSectionsItems = ['#', 'Title', 'Artist', 'Album', 'Date added'];
+  const generateTableSections = (viewMode: ViewModeType): string[] => {
+    if (viewMode === 'compact') return tableSectionsItems;
 
-  export let tracks: ITrack[];
+    return tableSectionsItems.filter((el) => el !== 'Artist');
+  };
+
+  export let tracks: ITrack[], viewMode: ViewModeType;
 </script>
 
 <div class="text-neutral-400 {$$props.class}">
   <div
-    class="font-manrope mb-4 grid select-none grid-cols-[16px_6fr_4fr_3fr_1fr] gap-4 border-b border-neutral-800 px-4 py-2 text-sm font-medium"
+    class="{viewMode === 'compact'
+      ? 'grid-cols-[16px_6fr_4fr_4fr_3fr_1fr]'
+      : 'grid-cols-[16px_6fr_4fr_3fr_1fr]'} font-manrope mb-4 grid select-none gap-4 border-b border-neutral-800 px-4 py-2 text-sm font-medium"
   >
-    {#each tableSections as section}
+    {#each generateTableSections(viewMode) as section}
       <span>{section}</span>
     {/each}
     <Icon
@@ -40,6 +48,7 @@
       author={track.author}
       addedAt={track.addedAt}
       duration={track.duration}
+      isCompact={viewMode === 'compact'}
     />
   {/each}
 </div>

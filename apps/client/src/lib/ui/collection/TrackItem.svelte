@@ -4,7 +4,7 @@
   import Icon from '@iconify/svelte';
 
   const formatDate = (date: string) => {
-    //date as ISO 8601
+    // expected date as ISO 8601 format
     const dateFormat = new Date(date).toString().split(' ');
     const day = dateFormat[1];
     const month = dateFormat[2];
@@ -18,12 +18,15 @@
     coverImageUrl: string,
     addedAt: string,
     author: { name: string; id: string },
-    duration: number;
+    duration: number,
+    isCompact = false;
 </script>
 
 <button on:click={() => playTrack(id)} class="w-full">
   <div
-    class="group grid h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr] items-center gap-4 rounded-lg px-4 text-start font-inter text-sm text-neutral-400 hover:bg-neutral-800"
+    class="{isCompact
+      ? 'h-[40px] grid-cols-[16px_6fr_4fr_4fr_3fr_1fr]'
+      : 'h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr]'} group grid items-center gap-4 rounded-lg px-4 text-start font-inter text-sm text-neutral-400 hover:bg-neutral-800"
   >
     <div>
       <span class="visible group-hover:hidden">1</span>
@@ -35,22 +38,30 @@
       />
     </div>
     <div class="flex items-center">
-      <div class="mr-4 h-[45px] w-[45px] overflow-hidden rounded-lg">
-        <img src={coverImageUrl} class="h-full object-cover" alt="#" />
-      </div>
+      {#if !isCompact}
+        <div class="mr-4 h-[45px] w-[45px] overflow-hidden rounded-lg">
+          <img src={coverImageUrl} class="h-full object-cover" alt="#" />
+        </div>
+      {/if}
       <div class="text-start text-sm">
         <h4 class="mb-0 font-medium text-neutral-50">{name}</h4>
-        <span>
-          <a href="/" class="hover:underline">{author.name}</a>
-        </span>
+        {#if !isCompact}
+          <span>
+            <a href="/" class="hover:underline">{author.name}</a>
+          </span>
+        {/if}
       </div>
     </div>
+    {#if isCompact}
+      <div>
+        <span>{author.name}</span>
+      </div>
+    {/if}
     <div>
       <span>Starboy</span>
     </div>
     <div>
       <span>{formatDate(addedAt)}</span>
-      <!-- <span>Aug 7, 2023</span> -->
     </div>
     <div>
       <span>{secondsToMinutes(duration)}</span>
