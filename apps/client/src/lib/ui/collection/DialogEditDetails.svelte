@@ -3,12 +3,12 @@
   import Button from '$lib/ui/components/button/Button.svelte';
   import InputText from '$lib/ui/components/form/InputText.svelte';
   import InputTextArea from '$lib/ui/components/form/InputTextArea.svelte';
-  import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
+  import CollectionImage from '$lib/ui/collection/CollectionImage.svelte';
   import Icon from '@iconify/svelte';
-  import DropdownMenu from '../DropdownMenu.svelte';
+  import DropdownMenu from '$lib/ui/components/DropdownMenu.svelte';
   import { z } from 'zod';
   import { collectionRepository } from '$lib/repositories';
-  import { addToast } from '../Toast.svelte';
+  import { addToast } from '$lib/ui/components/Toast.svelte';
   import { createEventDispatcher, onMount } from 'svelte';
   import { capitalize } from '$lib/utils';
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from '@iconify/svelte';
-  import TrackItem from './TrackItem.svelte';
+  import TrackItem from '$lib/ui/collection/TrackItem.svelte';
 
   interface ITrack {
     id: number;

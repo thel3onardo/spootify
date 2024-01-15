@@ -1,19 +1,4 @@
-<script lang="ts">
-  import Icon from '@iconify/svelte';
-  import DropdownMenu from '../DropdownMenu.svelte';
-  import { createEventDispatcher } from 'svelte';
-
-  type ViewModeList = Record<
-    string,
-    { id: string; icon: string; label: string }
-  >;
-  type ViewMode = keyof typeof viewModeList;
-
-  const dispatch = createEventDispatcher();
-  const emitSwichViewMode = (newViewMode: string) => {
-    dispatch('switchViewMode', newViewMode);
-  };
-
+<script lang="ts" context="module">
   const viewModeList = {
     compact: {
       id: 'compact',
@@ -27,7 +12,24 @@
     },
   } satisfies ViewModeList;
 
-  export let mode: ViewMode;
+  export type ViewModeList = Record<
+    string,
+    { id: string; icon: string; label: string }
+  >;
+  export type ViewModeType = keyof typeof viewModeList;
+</script>
+
+<script lang="ts">
+  import Icon from '@iconify/svelte';
+  import DropdownMenu from '$lib/ui/components/DropdownMenu.svelte';
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+  const emitSwichViewMode = (newViewMode: string) => {
+    dispatch('switchViewMode', newViewMode);
+  };
+
+  export let mode: ViewModeType;
 </script>
 
 <DropdownMenu placement="bottom-end" variant="dark" class="w-[180px] p-2">

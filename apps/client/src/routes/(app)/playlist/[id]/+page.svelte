@@ -4,20 +4,22 @@
 
   import PlayButton from '$lib/ui/components/button/PlayButton.svelte';
   import SaveLibraryButton from '$lib/components/SaveLibraryButton.svelte';
-  import DownloadButton from '$lib/ui/components/collection/DownloadButton.svelte';
-  import TracksList from '$lib/ui/components/collection/TracksList.svelte';
+  import DownloadButton from '$lib/ui/collection/DownloadButton.svelte';
+  import TracksList from '$lib/ui/collection/TracksList.svelte';
   import FilterBar from '$lib/components/IconSearchbar.svelte';
-  import SortOptionsMenu from '$lib/ui/components/collection/SortOptionsMenu.svelte';
+  import SortOptionsMenu from '$lib/ui/collection/SortOptionsMenu.svelte';
   import Navbar from '$lib/ui/interface/Navbar.svelte';
-  import DialogEditDetails from '$lib/ui/components/collection/DialogEditDetails.svelte';
-  import CollectionImage from '$lib/ui/components/collection/CollectionImage.svelte';
+  import DialogEditDetails from '$lib/ui/collection/DialogEditDetails.svelte';
+  import CollectionImage from '$lib/ui/collection/CollectionImage.svelte';
   import Avatar from '$lib/components/Avatar.svelte';
-  import ViewMode from '$lib/ui/components/collection/ViewMode.svelte';
+  import ViewMode from '$lib/ui/collection/ViewMode.svelte';
+
+  import type { ViewModeType } from '$lib/ui/collection/ViewMode.svelte';
 
   let backgroundColor: string;
   let filterValue = '';
   let editDialogVisible = true;
-  let viewMode: 'list' | 'compact' = 'list';
+  let viewMode: ViewModeType = 'list';
 
   const getAverageColor = async (imageUrl: string) => {
     const fac = new FastAverageColor();
@@ -43,6 +45,10 @@
     data.description = e.detail.description;
 
     getAverageColor(data.coverImage);
+  };
+
+  const switchViewMode = (newViewMode: ViewModeType) => {
+    viewMode = newViewMode;
   };
 
   onMount(() => {
@@ -127,7 +133,7 @@
         <SortOptionsMenu />
         <ViewMode
           mode={viewMode}
-          on:switchViewMode={(e) => (viewMode = e.detail)}
+          on:switchViewMode={(e) => switchViewMode(e.detail)}
         />
       </div>
     </div>
