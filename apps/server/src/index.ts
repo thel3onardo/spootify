@@ -8,11 +8,6 @@ import fastifyCookie from "@fastify/cookie";
 import { prismaPlugin } from "./plugins/prisma";
 import { envConfig } from "./config/env";
 
-import trackRoutes from "./modules/track/track.route";
-import authRoutes from "./modules/auth/auth.route";
-import collectionRoutes from "./modules/collection/collection.route";
-import userRoutes from "./modules/user/user.routes";
-
 import { trackSchemas } from "./modules/track/track.schema";
 import { authSchemas } from "./modules/auth/auth.schema";
 import { collectionSchemas } from "./modules/collection/collection.schema";

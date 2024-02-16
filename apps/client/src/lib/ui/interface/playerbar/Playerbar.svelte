@@ -15,6 +15,7 @@
   const setupAudioListeners = () => {
     audio.addEventListener('canplaythrough', () => {
       //canplaythrough
+      togglePlay();
     });
 
     audio.addEventListener('timeupdate', (e) => {

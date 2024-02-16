@@ -3,6 +3,7 @@
   import Switch from '$lib/ui/components/form/Switch.svelte';
   import Link from '$lib/ui/components/Link.svelte';
   import AuthCardContainer from '$lib/ui/auth/AuthCardContainer.svelte';
+
   import { signIn } from '$lib/repositories/auth';
   import { addToast } from '$lib/ui/components/Toast.svelte';
   import { goto } from '$app/navigation';

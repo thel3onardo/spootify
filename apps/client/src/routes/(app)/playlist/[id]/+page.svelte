@@ -125,7 +125,9 @@
     <div class="flex items-center justify-between">
       <div class="flex gap-x-8">
         <PlayButton class="mr-4" />
-        <SaveLibraryButton size="lg" />
+        {#if !data.playlistOwner}
+          <SaveLibraryButton size="lg" />
+        {/if}
         <DownloadButton />
       </div>
       <div class="relative flex items-center gap-x-6">

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
   import Icon from '@iconify/svelte';
+  import { createEventDispatcher } from 'svelte';
 
   export let imageSrc: string, imageAlt: string, playlistOwner: boolean;
 

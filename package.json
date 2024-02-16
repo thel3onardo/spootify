@@ -2,10 +2,12 @@
   "name": "spootify",
   "private": "true",
   "packageManager": "",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint"
+  },
   "engines": {
     "node": "20.9.0"
-  },
-  "devDependencies": {
-    "@moonrepo/cli": "^1.19.2"
   }
 }
