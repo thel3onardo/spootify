@@ -45,6 +45,7 @@
     "bits-ui": "^0.18.1",
     "fast-average-color": "^9.4.0",
     "simplebar": "^6.2.5",
+    "tailwind-merge": "^2.2.1",
     "zod": "^3.22.4"
   },
   "type": "module"

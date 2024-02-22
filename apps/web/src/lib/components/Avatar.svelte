@@ -1,5 +1,7 @@
 <script lang="ts">
+  import SkeletonLoader from '$lib/ui/components/SkeletonLoader.svelte';
   import { createAvatar, melt } from '@melt-ui/svelte';
+  import { twMerge } from 'tailwind-merge';
 
   export let src: string;
 
@@ -11,9 +13,14 @@
   });
 </script>
 
-<div class="flex items-center justify-center rounded-full {$$props.class}">
+<div
+  class={twMerge(
+    'relative flex items-center justify-center rounded-full',
+    $$props.class,
+  )}
+>
   {#if $loadingStatus === 'loading'}
-    <div class="h-full w-full rounded-[inherit] bg-gray-800" />
+    <SkeletonLoader class="left-0 top-0 rounded-[inherit] bg-gray-800/40" />
   {:else if $loadingStatus === 'error'}
     <span use:melt={$fallback} class="text-magnum-700 text-3xl font-medium"
       >RH</span

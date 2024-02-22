@@ -1,4 +1,8 @@
-<div class="skeleton h-full w-full bg-gray-900 {$$props.class}" />
+<script>
+  import { twMerge } from 'tailwind-merge';
+</script>
+
+<div class={twMerge('skeleton h-full w-full bg-gray-700', $$props.class)} />
 
 <style>
   @keyframes shimmer {

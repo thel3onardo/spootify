@@ -83,7 +83,7 @@
 
         <button on:click={() => (data.playlistOwner ? toggleEditDialog() : '')}>
           <h1
-            class="3xl:text-8xl mb-6 text-start font-inter font-bold leading-6 tracking-tighter text-neutral-50 md:text-3xl lg:text-5xl 2xl:text-7xl"
+            class="mb-6 text-start font-inter font-bold leading-6 tracking-tighter text-neutral-50 md:text-3xl lg:text-5xl 2xl:text-7xl 3xl:text-8xl"
           >
             {data.name}
           </h1>
@@ -96,7 +96,7 @@
         <div class="mt-4 flex items-center text-sm text-neutral-200">
           <div class="flex items-center gap-x-1">
             {#if data.author.profileImage}
-              <Avatar src={data.author.profileImage} class="h-6 w-6" />
+              <Avatar src={data.author.profileImage} class="h-8 w-8" />
             {/if}
             <a
               href="/profile/{data.author.id}"
