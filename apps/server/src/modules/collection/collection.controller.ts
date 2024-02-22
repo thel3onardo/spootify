@@ -164,11 +164,17 @@ export async function getColletionById(
 
     rep.status(200).send(responseBody);
   } catch (err) {
-    rep.log.error(err);
-
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2025") {
+        return rep.status(404).send({
+          status: "Not found",
+          message: "Collection with specified ID not found",
+        });
+      }
       return rep.status(500).send({ status: "err", message: err.message });
     }
+
+    rep.log.error(err);
 
     rep
       .status(500)
