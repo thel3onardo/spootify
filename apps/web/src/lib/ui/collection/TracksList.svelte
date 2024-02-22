@@ -40,8 +40,9 @@
       height="1.2rem"
     />
   </div>
-  {#each tracks as track}
+  {#each tracks as track, index}
     <TrackItem
+      index={index + 1}
       id={track.id}
       name={track.name}
       coverImageUrl={track.coverImage}

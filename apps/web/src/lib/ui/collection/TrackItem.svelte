@@ -19,6 +19,7 @@
     addedAt: string,
     author: { name: string; id: string },
     duration: number,
+    index: number,
     isCompact = false;
 </script>
 
@@ -29,7 +30,7 @@
       : 'h-[60px] grid-cols-[16px_6fr_4fr_3fr_1fr]'} group grid items-center gap-4 rounded-lg px-4 text-start font-inter text-sm text-neutral-400 hover:bg-neutral-800"
   >
     <div>
-      <span class="visible group-hover:hidden">1</span>
+      <span class="visible group-hover:hidden">{index}</span>
       <Icon
         icon="ph:play-fill"
         height="1rem"

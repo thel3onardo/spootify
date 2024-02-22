@@ -6,7 +6,6 @@ import trackRoutes from "../modules/track/track.route";
 import userRoutes from "../modules/user/user.routes";
 
 const setupRoutes = (server: FastifyInstance) => {
-  server.log.info("yey");
   server.register(
     (app, _, done) => {
       trackRoutes(app);

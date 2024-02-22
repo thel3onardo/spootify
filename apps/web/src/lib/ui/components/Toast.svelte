@@ -6,7 +6,7 @@
   };
 
   const {
-    elements: { content, title, description, close },
+    elements: { content, description, close },
     helpers,
     states: { toasts },
     actions: { portal },
@@ -28,7 +28,7 @@
   {#each $toasts as { id, data } (id)}
     <div
       use:melt={$content(id)}
-      transition:fly={{ x: 20, opacity: 0 }}
+      transition:fly={{ x: 40, opacity: 0, duration: 500 }}
       class="rounded-xl bg-gray-950 text-gray-400 shadow-md"
     >
       <div
@@ -36,11 +36,11 @@
       >
         <Icon
           icon={data.icon}
-          width="2rem"
-          height="2rem"
+          width="1.75rem"
+          height="1.75rem"
           class={data.colorClass}
         />
-        <p use:melt={$description(id)}>
+        <p use:melt={$description(id)} class="text-sm font-medium">
           {data.description}
         </p>
         <button

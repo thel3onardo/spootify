@@ -35,7 +35,7 @@ async function main() {
     server.addSchema(schema);
   }
 
-  //decorators
+  // decorators
   server.decorate("session", null);
 
   await server.register(fastifyCors, { origin: true });

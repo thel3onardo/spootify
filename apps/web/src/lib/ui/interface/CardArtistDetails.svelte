@@ -13,7 +13,7 @@
     style="background-image: url('{coverImage}')"
   >
     <div
-      class="relative z-20 flex h-full w-full flex-col justify-between p-4 font-manrope"
+      class="font-manrope relative z-20 flex h-full w-full flex-col justify-between p-4"
     >
       <div class="flex items-center">
         <Icon

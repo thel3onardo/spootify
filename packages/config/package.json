@@ -1,0 +1,22 @@
+{
+  "name": "@repo/config",
+  "version": "0.0.1",
+  "type": "module",
+  "module": "index.ts",
+  "main": "index.ts",
+  "exports": {
+    "./postcssConfig": {
+      "import": "./postcss.config.cjs",
+      "require": "./postcss.config.cjs"
+    },
+    "./tailwindConfig": {
+      "import": "./tailwind.config.ts",
+      "require": "./tailwind.config.ts"
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1"
+  }
+}
