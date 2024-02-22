@@ -29,7 +29,6 @@
         $page.url.pathname
           ? 'text-neutral-50'
           : 'text-neutral-400'}"
-        data-sveltekit-preload-data
       >
         <Icon {icon} width="1.8rem" height="1.8rem" />
         <span class="text-md font-manrope font-bold">{label}</span>

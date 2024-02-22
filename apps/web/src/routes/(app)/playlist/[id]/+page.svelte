@@ -11,7 +11,7 @@
   import Navbar from '$lib/ui/interface/Navbar.svelte';
   import DialogEditDetails from '$lib/ui/collection/DialogEditDetails.svelte';
   import CollectionImage from '$lib/ui/collection/CollectionImage.svelte';
-  import Avatar from '$lib/components/Avatar.svelte';
+  import Avatar from '$lib/ui/components/Avatar.svelte';
   import ViewMode from '$lib/ui/collection/ViewMode.svelte';
 
   import type { ViewModeType } from '$lib/ui/collection/ViewMode.svelte';
