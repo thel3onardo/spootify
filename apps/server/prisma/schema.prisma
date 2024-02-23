@@ -103,6 +103,7 @@ model Session {
   user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])
+  @@map("sessions")
 }
 
 model Key {
@@ -112,4 +113,5 @@ model Key {
   user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])
+  @@map("keys")
 }

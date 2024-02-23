@@ -38,7 +38,12 @@ async function main() {
   // decorators
   server.decorate("session", null);
 
-  await server.register(fastifyCors, { origin: true });
+  await server.register(fastifyCors, {
+    origin: true,
+    credentials: true,
+    allowedHeaders: ["Set-Cookie", "Content-Type"],
+    exposedHeaders: ["Authorization"],
+  });
   await server.register(prismaPlugin);
   await server.register(fastifyEnv, envConfig);
   await server.register(imageKitPlugin);

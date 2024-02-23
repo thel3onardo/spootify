@@ -33,12 +33,7 @@ export const signUpWithCredentials = async (
 
     return rep
       .status(201)
-      .setCookie("auth_session", session.sessionId, {
-        path: "/",
-        expires: session.activePeriodExpiresAt,
-        httpOnly: true,
-        secure: false,
-      })
+      .header("authorization", `Bearer ${session.sessionId}`)
       .send({ status: "success", message: "User created successfully" });
   } catch (err) {
     rep.log.error(err);
@@ -74,8 +69,8 @@ export const signInWithCredentials = async (
         path: "/",
         expires: session.activePeriodExpiresAt,
         httpOnly: true,
-        sameSite: "lax",
-        secure: false,
+        sameSite: "none",
+        secure: true,
       })
       .send({ status: "success", message: "Authenticated" });
   } catch (e) {
