@@ -9,7 +9,6 @@ import { prismaPlugin } from "./plugins/prisma";
 import { envConfig } from "./config/env";
 
 import { trackSchemas } from "./modules/track/track.schema";
-import { authSchemas } from "./modules/auth/auth.schema";
 import { collectionSchemas } from "./modules/collection/collection.schema";
 import { userSchemas } from "./modules/user/user.schema";
 import { imageKitPlugin } from "./plugins/image-kit";
@@ -29,7 +28,6 @@ async function main() {
   //TODO: abstract this away, pleasee
   for (const schema of [
     ...trackSchemas,
-    ...authSchemas,
     ...collectionSchemas,
     ...userSchemas,
   ]) {

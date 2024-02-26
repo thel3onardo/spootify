@@ -7,7 +7,7 @@ export const registerWithCredentials = async (
   req: FastifyRequest<{ Body: SignUpUser }>,
   rep: FastifyReply,
 ) => {
-  const { email, password, name, birthDate } = req.body;
+  const { email, password, name, birthDate, username } = req.body;
   const hashedPassword = await new Argon2id().hash(password);
 
   rep.server.log.info({ hashedPassword });
@@ -17,6 +17,7 @@ export const registerWithCredentials = async (
       data: {
         email,
         name,
+        username,
         birthDate: new Date(birthDate),
         hashedPassword,
       },
