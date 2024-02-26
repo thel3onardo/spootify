@@ -1,14 +1,14 @@
 import { FastifyInstance } from "fastify";
 
-import collectionRoutes from "../modules/collection/collection.route";
 import trackRoutes from "../modules/track/track.route";
 import userRoutes from "../modules/user/user.routes";
+import { setPlaylistRoutes } from "../modules/playlist/playlist.routes";
 
 const setupRoutes = (server: FastifyInstance) => {
   server.register(
     (app, _, done) => {
       trackRoutes(app);
-      collectionRoutes(app);
+      setPlaylistRoutes(app);
       userRoutes(app);
 
       done();

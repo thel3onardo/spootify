@@ -9,11 +9,11 @@ import { prismaPlugin } from "./plugins/prisma";
 import { envConfig } from "./config/env";
 
 import { trackSchemas } from "./modules/track/track.schema";
-import { collectionSchemas } from "./modules/collection/collection.schema";
 import { userSchemas } from "./modules/user/user.schema";
 import { imageKitPlugin } from "./plugins/image-kit";
 import { setupRoutes } from "./config/routes";
 import { luciaPlugin } from "./plugins/lucia";
+import { playlistSchemas } from "./modules/playlist/playlist.schemas";
 
 const server = fastify({
   logger: {
@@ -26,11 +26,7 @@ const server = fastify({
 
 async function main() {
   //TODO: abstract this away, pleasee
-  for (const schema of [
-    ...trackSchemas,
-    ...collectionSchemas,
-    ...userSchemas,
-  ]) {
+  for (const schema of [...trackSchemas, ...playlistSchemas, ...userSchemas]) {
     server.addSchema(schema);
   }
 

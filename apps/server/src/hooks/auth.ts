@@ -1,6 +1,6 @@
-import { FastifyReply, FastifyRequest } from "fastify";
-
-export const authHook = async (req: FastifyRequest, rep: FastifyReply) => {
+//TODO: any is bad, right?
+// eslint-disable-next-line
+export const authHook = async (req: any, rep: any) => {
   const cookieSessionId = req.cookies["auth_session"];
   if (!cookieSessionId)
     return rep.status(401).send({ status: "error", message: "Unauthorized" });
