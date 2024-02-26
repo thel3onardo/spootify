@@ -26,6 +26,14 @@
     observer.observe(navEl);
   });
 
+  const historyForward = () => {
+    history.go(1);
+  };
+
+  const historyBack = () => {
+    history.go(-1);
+  };
+
   export let bgColor = '#121212';
 </script>
 
@@ -35,18 +43,19 @@
   style="--bgColor: {bgColor}"
 >
   <div class="flex items-center gap-x-3 text-white">
-    <!-- TODO: implement functionality to those buttons below -->
     <IconButton
       icon="ion:ios-arrow-back"
       iconSize={NAVBAR_ICONS_SIZE.ARROWS}
       class="rounded-full bg-gray-950/70 p-2.5 hover:bg-gray-950"
       tooltipLabel="Go back"
+      on:click={historyBack}
     />
     <IconButton
       icon="ion:ios-arrow-forward"
       iconSize={NAVBAR_ICONS_SIZE.ARROWS}
       class="rounded-full bg-gray-950/70 p-2.5 hover:bg-gray-950"
       tooltipLabel="Go forward"
+      on:click={historyForward}
     />
 
     <slot name="content" />
@@ -73,7 +82,11 @@
         tooltipLabel="Friend activity"
         class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
       />
-      <DropdownMenu class="min-w-[150px] rounded bg-gray-800 p-1 text-white">
+      <DropdownMenu
+        placement="bottom-start"
+        variant="light"
+        class="min-w-[150px] rounded bg-gray-800 p-1 text-white"
+      >
         <IconButton
           icon="material-symbols:person-2-outline"
           iconSize={NAVBAR_ICONS_SIZE.OTHER}
