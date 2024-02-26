@@ -150,7 +150,6 @@ export async function getPlaylistById(
         },
       },
     });
-    //TODO: implement favorite
 
     const tracksResponse = tracks.map((el) => {
       const { trackAudio, ...track } = el.track;
