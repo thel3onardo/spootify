@@ -14,6 +14,7 @@ import { collectionSchemas } from "./modules/collection/collection.schema";
 import { userSchemas } from "./modules/user/user.schema";
 import { imageKitPlugin } from "./plugins/image-kit";
 import { setupRoutes } from "./config/routes";
+import { luciaPlugin } from "./plugins/lucia";
 
 const server = fastify({
   logger: {
@@ -45,6 +46,7 @@ async function main() {
     exposedHeaders: ["Authorization"],
   });
   await server.register(prismaPlugin);
+  await server.register(luciaPlugin);
   await server.register(fastifyEnv, envConfig);
   await server.register(imageKitPlugin);
   await server.register(fileUpload);

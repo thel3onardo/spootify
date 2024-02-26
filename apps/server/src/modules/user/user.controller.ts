@@ -1,39 +1,40 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { SignInUser, SignUpUser } from "./user.schema";
-import { auth } from "../../config/lucia";
 import { Prisma } from "@prisma/client";
-import crypto from "crypto";
-import { LuciaError } from "lucia";
+import { Argon2id } from "oslo/password";
 
-export const signUpWithCredentials = async (
+export const registerWithCredentials = async (
   req: FastifyRequest<{ Body: SignUpUser }>,
   rep: FastifyReply,
 ) => {
   const { email, password, name, birthDate } = req.body;
+  const hashedPassword = await new Argon2id().hash(password);
+
+  rep.server.log.info({ hashedPassword });
 
   try {
-    const user = await auth.createUser({
-      userId: crypto.randomUUID(),
-      key: {
-        providerId: "email",
-        providerUserId: email,
-        password,
-      },
-      attributes: {
+    const user = await rep.server.prisma.user.create({
+      data: {
         email,
         name,
         birthDate: new Date(birthDate),
+        hashedPassword,
       },
     });
 
-    const session = await auth.createSession({
-      userId: user.userId,
-      attributes: {},
-    });
+    const session = await rep.server.lucia.createSession(user.id, {});
+
+    rep.server.log.info({ session });
 
     return rep
       .status(201)
-      .header("authorization", `Bearer ${session.sessionId}`)
+      .setCookie("auth_session", session.id, {
+        path: "/",
+        expires: session.expiresAt,
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      })
       .send({ status: "success", message: "User created successfully" });
   } catch (err) {
     rep.log.error(err);
@@ -50,67 +51,93 @@ export const signUpWithCredentials = async (
   }
 };
 
-export const signInWithCredentials = async (
+export const loginWithCredentials = async (
   req: FastifyRequest<{ Body: SignInUser }>,
   rep: FastifyReply,
 ) => {
   const { email, password } = req.body;
 
   try {
-    const user = await auth.useKey("email", email, password);
-    const session = await auth.createSession({
-      userId: user.userId,
-      attributes: {},
+    const user = await rep.server.prisma.user.findFirst({
+      where: {
+        email,
+      },
     });
+
+    if (!user) {
+      return rep
+        .status(404)
+        .send({ status: "error", message: "User not found" });
+    }
+
+    const validPassword = await new Argon2id().verify(
+      user.hashedPassword,
+      password,
+    );
+
+    if (!validPassword) {
+      return rep
+        .status(400)
+        .send({ status: "error", message: "Invalid e-mail or password" });
+    }
+
+    const session = await rep.server.lucia.createSession(user.id, {});
 
     return rep
       .status(200)
-      .setCookie("auth_session", session.sessionId, {
+      .setCookie("auth_session", session.id, {
         path: "/",
-        expires: session.activePeriodExpiresAt,
+        expires: session.expiresAt,
         httpOnly: true,
         sameSite: "none",
         secure: true,
       })
       .send({ status: "success", message: "Authenticated" });
   } catch (e) {
-    if (
-      e instanceof LuciaError &&
-      (e.message === "AUTH_INVALID_KEY_ID" ||
-        e.message === "AUTH_INVALID_PASSWORD")
-    ) {
-      return rep
-        .status(404)
-        .send({ status: "error", message: "Email or password invalid" });
-    }
-
-    rep.status(500).send({ status: "Unknown error", message: e });
+    rep.status(500).send({ status: "error", message: e });
   }
 };
 
 export const signOut = async (req: FastifyRequest, rep: FastifyReply) => {
   try {
-    const sessionId = rep.server.session?.sessionId;
-    if (!sessionId) return;
+    const user = rep.server.user;
 
-    await auth.invalidateSession(sessionId);
+    await rep.server.lucia.invalidateUserSessions(user.id);
 
-    rep.status(204).setCookie("auth_session", "", {
-      path: "/",
-      expires: new Date("Thu, 01 Jan 1970 00:00:00"),
-    });
+    return rep
+      .status(204)
+      .setCookie("auth_session", "", {
+        path: "/",
+        expires: new Date("Thu, 01 Jan 1970 00:00:00"),
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+      })
+      .send();
   } catch (err) {
-    rep.status(500).send({ err });
+    rep.server.log.error(err);
+
+    rep.status(500).send({ status: "error", message: err });
+  }
+};
+
+export const getUserSessions = async (
+  req: FastifyRequest,
+  rep: FastifyReply,
+) => {
+  try {
+    const sessions = await rep.server.lucia.getUserSessions(rep.server.user.id);
+
+    return rep.status(200).send({ status: "success", data: sessions });
+  } catch (err: unknown) {
+    rep.server.log.error(err);
+
+    return rep.status(500).send({ status: "error", message: err });
   }
 };
 
 export const getUser = async (req: FastifyRequest, rep: FastifyReply) => {
-  const session = rep.server.session;
-  if (!session) return;
-
-  rep.log.info({ session });
-
-  const user = await auth.getUser(session?.user.userId);
+  const user = rep.server.user;
 
   rep.status(200).send({ status: "success", data: user });
 };

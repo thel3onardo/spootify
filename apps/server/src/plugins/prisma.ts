@@ -1,9 +1,9 @@
-import { FastifyPluginAsync } from "fastify";
-import { initializePrisma } from "../config/prisma";
 import fastifyPlugin from "fastify-plugin";
+import { FastifyPluginAsync } from "fastify";
+import { PrismaClient } from "@prisma/client";
 
 const prismaPlugin: FastifyPluginAsync = fastifyPlugin(async (server) => {
-  const client = initializePrisma();
+  const client = new PrismaClient({ errorFormat: "pretty" });
 
   try {
     await client.$connect();
@@ -11,7 +11,6 @@ const prismaPlugin: FastifyPluginAsync = fastifyPlugin(async (server) => {
     server.log.info("Connected to database");
 
     server.decorate("prisma", client);
-
     server.addHook("onClose", async (server) => {
       await server.prisma.$disconnect();
     });

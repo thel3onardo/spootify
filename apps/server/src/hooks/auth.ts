@@ -1,14 +1,18 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { auth } from "../config/lucia";
 
 export const authHook = async (req: FastifyRequest, rep: FastifyReply) => {
-  const sessionId = req.cookies["auth_session"];
+  const cookieSessionId = req.cookies["auth_session"];
+  if (!cookieSessionId)
+    return rep.status(401).send({ status: "error", message: "Unauthorized" });
 
-  if (!sessionId) {
-    return rep.status(401).send({ status: "fail", message: "Unauthorized" });
+  const { session, user } =
+    await rep.server.lucia.validateSession(cookieSessionId);
+
+  if (!session) {
+    return rep.status(401).send({ status: "error", message: "Unauthorized" });
   }
 
-  const session = await auth.getSession(sessionId);
-
+  //is this injection? pretty sure it is.
   rep.server.session = session;
+  rep.server.user = user;
 };

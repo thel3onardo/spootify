@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Session } from "lucia";
+import { Lucia, Session, User } from "lucia";
 
 declare module "fastify" {
   export interface FastifyInstance<
@@ -10,7 +10,9 @@ declare module "fastify" {
     /* eslint-disable */
   > {
     session: Session | null;
+    user: User;
     prisma: PrismaClient;
+    lucia: Lucia, 
     config: {
       PORT: number;
       JWT_SECRET: string;

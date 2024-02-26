@@ -1,10 +1,10 @@
-/// <reference types="lucia" />
-declare namespace Lucia {
-  type Auth = import("../config/lucia").Auth;
-  type DatabaseUserAttributes = {
-    email: string;
-    name: string;
-    birthDate: Date;
-  };
-  //   type DatabaseSessionAttributes = {};
-}
+// declare module "lucia" {
+//   interface Register {
+//     // Lucia: typeof lucia;
+//     DatabaseUserAttributes: {
+//       email: string;
+//       name: string;
+//       birthDate: string;
+//     };
+//   }
+// }
