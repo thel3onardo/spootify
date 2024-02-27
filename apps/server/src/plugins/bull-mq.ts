@@ -2,7 +2,7 @@ import { createBullBoard } from "@bull-board/api";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { FastifyAdapter } from "@bull-board/fastify";
 import { FastifyPluginAsync } from "fastify";
-import fastifyPlugin from "fastify-plugin";
+import { fastifyPlugin } from "fastify-plugin";
 import { mailQueue } from "~/queues";
 import { setupWorkers } from "~/queues/setup-workers";
 
