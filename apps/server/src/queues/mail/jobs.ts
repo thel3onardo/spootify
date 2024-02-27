@@ -1,5 +1,6 @@
 import { mailQueue } from ".";
+import { AnotherJobData } from "./workers";
 
-export const sendMail = (email: string) => {
-  mailQueue.add("registry", { data: email });
+export const sendMail = (JobData: AnotherJobData) => {
+  mailQueue.add("sendEmailJob", { ...JobData });
 };

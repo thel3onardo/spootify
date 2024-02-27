@@ -1,11 +1,26 @@
 import { Job, Worker } from "bullmq";
 import { FastifyBaseLogger } from "fastify";
+import {
+  createTestAccount,
+  createTransport,
+  getTestMessageUrl,
+} from "nodemailer";
+
+export interface AnotherJobData {
+  from: string;
+  to: string;
+  subject: string;
+  text: string;
+}
 
 export const setupMailWorker = (logger: FastifyBaseLogger) => {
   const mailWorker = new Worker(
     "mail",
     async (job: Job) => {
-      logger.debug({ jobData: job.data });
+      const info = await sendEmailWithNodemailer(job.data);
+
+      logger.info("Preview URL %s", getTestMessageUrl(info));
+      logger.debug({ info });
 
       return "test";
     },
@@ -22,7 +37,39 @@ export const setupMailWorker = (logger: FastifyBaseLogger) => {
     console.log("job failed", error, job);
   });
 
-  mailWorker.on("completed", (job, returnedValue) => {
-    console.log("job finished", returnedValue, job);
-  });
+  // mailWorker.on("completed", (job, returnedValue) => {
+  //   console.log("job finished", returnedValue, job);
+  // });
 };
+
+async function sendEmailWithNodemailer({
+  from,
+  to,
+  subject,
+  text,
+}: AnotherJobData) {
+  const testAccount = await createTestAccount();
+  //TODO: change transporter to mailgun
+  const transporter = createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    auth: {
+      user: testAccount.user,
+      pass: testAccount.pass,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  const info = await transporter.sendMail({
+    from,
+    to,
+    subject,
+    text,
+    html: `<p>ephemeral html</p>`,
+  });
+
+  return info;
+}

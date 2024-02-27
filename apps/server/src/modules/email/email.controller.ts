@@ -11,34 +11,7 @@ export const sendEmail = async (
 
   rep.log.info("Sending email to: ", to);
 
-  sendMail(to);
-
-  // await sendNewEmail({ from, to, subject, text }, rep.server.emailQueue);
-
-  // const testAccount = await nodemailer.createTestAccount();
-  // const transporter = nodemailer.createTransport({
-  //   host: "smtp.ethereal.email",
-  //   port: 587,
-  //   secure: false,
-  //   auth: {
-  //     user: testAccount.user,
-  //     pass: testAccount.pass,
-  //   },
-  //   tls: {
-  //     rejectUnauthorized: false,
-  //   },
-  // });
-
-  // const info = await transporter.sendMail({
-  //   from,
-  //   to,
-  //   subject,
-  //   text,
-  //   html: `<strong>${text}</strong>`,
-  // });
-
-  // rep.log.info("Message sent: %s", info.messageId);
-  // rep.log.info("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  sendMail({ from, to, subject, text });
 
   rep.status(200).send({
     status: "success",
