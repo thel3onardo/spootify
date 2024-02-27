@@ -1,7 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { Prisma } from "@prisma/client";
 import { CreatePlaylistSchema, UpdatePlaylistSchema } from "./playlist.schemas";
-import { uploadImage } from "src/utils/storage";
+// eslint-disable-next-line import/no-unresolved
+import { uploadImage } from "~/utils/storage";
 
 export async function createPlaylist(
   req: FastifyRequest<{ Body: CreatePlaylistSchema }>,

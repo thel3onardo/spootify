@@ -14,6 +14,7 @@ import { imageKitPlugin } from "./plugins/image-kit";
 import { setupRoutes } from "./config/routes";
 import { luciaPlugin } from "./plugins/lucia";
 import { playlistSchemas } from "./modules/playlist/playlist.schemas";
+import { bullMqPlugin } from "./plugins/bull-mq";
 
 const server = fastify({
   logger: {
@@ -33,6 +34,7 @@ async function main() {
   // decorators
   server.decorate("session", null);
 
+  // async plugins
   await server.register(fastifyCors, {
     origin: true,
     credentials: true,
@@ -51,6 +53,7 @@ async function main() {
       expiresIn: "10m",
     },
   });
+  await server.register(bullMqPlugin);
 
   //plugins
   server.register(fastifyCookie, {

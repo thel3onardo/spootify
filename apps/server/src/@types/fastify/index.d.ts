@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { Queue } from "bull";
 import { Lucia, Session, User } from "lucia";
 
 declare module "fastify" {
@@ -12,6 +13,7 @@ declare module "fastify" {
     session: Session | null;
     user: User;
     prisma: PrismaClient;
+    emailQueue: Queue,
     lucia: Lucia, 
     config: {
       PORT: number;
