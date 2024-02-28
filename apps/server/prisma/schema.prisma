@@ -61,8 +61,8 @@ model Album {
   coverImage      String @map("cover_img")
   backgroundImage String @map("background_img")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("albums")
 }
