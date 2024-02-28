@@ -19,5 +19,5 @@ export const { schemas: playlistSchemas, $ref } = buildJsonSchemas(
     createPlaylistSchema,
     updatePlaylistSchema,
   },
-  { $id: "playlistSchema" },
+  { $id: "playlistSchemas" },
 );

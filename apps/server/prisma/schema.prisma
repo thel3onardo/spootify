@@ -16,7 +16,6 @@ model User {
   emailVerified  Boolean  @default(false) @map("email_verified")
   hashedPassword String   @map("hashed_password")
   name           String?
-  username       String   @unique
   birthDate      DateTime @db.DateTime()
 
   coverImage   String? @map("cover_img")

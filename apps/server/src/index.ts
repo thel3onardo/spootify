@@ -8,13 +8,11 @@ import fastifyCookie from "@fastify/cookie";
 import { prismaPlugin } from "./plugins/prisma";
 import { envConfig } from "./config/env";
 
-import { trackSchemas } from "./modules/track/track.schema";
-import { userSchemas } from "./modules/user/user.schema";
 import { imageKitPlugin } from "./plugins/image-kit";
 import { setupRoutes } from "./config/routes";
 import { luciaPlugin } from "./plugins/lucia";
-import { playlistSchemas } from "./modules/playlist/playlist.schemas";
 import { bullMqPlugin } from "./plugins/bull-mq";
+import { setupSchemas } from "./config/schemas";
 
 const server = fastify({
   logger: {
@@ -26,11 +24,6 @@ const server = fastify({
 });
 
 async function main() {
-  //TODO: abstract this away, pleasee
-  for (const schema of [...trackSchemas, ...playlistSchemas, ...userSchemas]) {
-    server.addSchema(schema);
-  }
-
   // decorators
   server.decorate("session", null);
 
@@ -63,6 +56,9 @@ async function main() {
 
   //routes
   setupRoutes(server);
+
+  //setup schemas
+  setupSchemas(server);
 
   server.listen({ port: server.config.PORT || 4000 }, async (err) => {
     if (err) {
