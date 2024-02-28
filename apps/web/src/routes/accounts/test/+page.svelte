@@ -45,9 +45,9 @@
   };
 </script>
 
-<input type="text" value="leo@leo.com" />Email
-<input type="text" value="1234" />Passowrd
-<button type="submit" on:click={submit}>submit</button>
-<button class="rounded-lg bg-red-500 p-2 text-black" on:click={login}
-  >LOgin</button
->
+<form method="post">
+  <input type="text" value="leo@leo.com" />Email
+  <input type="text" value="1234" />Passowrd
+  <button type="submit">submit</button>
+  <button class="rounded-lg bg-red-500 p-2 text-black">LOgin</button>
+</form>

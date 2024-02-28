@@ -19,7 +19,7 @@ const setAuthRoutes = (server: FastifyInstance) => {
     { schema: { body: $ref("loginSchema") } },
     loginWithCredentials,
   );
-  server.get("/auth/sign-out", signOut);
+  server.get("/auth/sign-out", { preHandler: authHook }, signOut);
   server.get("/auth/sessions", { preHandler: authHook }, getSessions);
 };
 

@@ -3,7 +3,6 @@
   import Link from '$lib/ui/components/Link.svelte';
   import Checkbox from '$lib/ui/components/form/Checkbox.svelte';
   import InputText from '$lib/ui/components/form/InputText.svelte';
-  import RadioGroup from '$lib/ui/components/form/RadioGroup.svelte';
 
   let user = {
     name: '',
@@ -13,6 +12,10 @@
     acceptedTerms: false,
   };
 </script>
+
+<svelte:head>
+  <title>Spootify - Register</title>
+</svelte:head>
 
 <AuthCardContainer>
   <svelte:fragment slot="title">Sign up in Spootify</svelte:fragment>

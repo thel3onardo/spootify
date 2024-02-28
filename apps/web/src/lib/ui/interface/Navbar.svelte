@@ -6,6 +6,8 @@
   import DropdownMenu from '$lib/ui/components/DropdownMenu.svelte';
 
   import { NAVBAR_ICONS_SIZE } from '$lib/constants';
+  import UserProfile from './navbar/UserProfile.svelte';
+  import { user } from '$lib/stores/user';
 
   let navEl: HTMLElement;
   let loggedIn = false;
@@ -62,14 +64,7 @@
   </div>
 
   <div class="flex items-center gap-x-3 font-inter">
-    {#if loggedIn}
-      <Button href="/register" rounded="md" variant="dark" class="px-7 py-3">
-        <span class="font-semibold text-white">Sign up</span>
-      </Button>
-      <Button href="/login" rounded="3xl" variant="light" class="px-7 py-3">
-        <span class="font-semibold">Log in</span>
-      </Button>
-    {:else}
+    {#if $user.loggedIn}
       <IconButton
         icon="ph:bell"
         iconSize={NAVBAR_ICONS_SIZE.OTHER}
@@ -82,32 +77,24 @@
         tooltipLabel="Friend activity"
         class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
       />
-      <DropdownMenu
-        placement="bottom-start"
-        variant="light"
-        class="min-w-[150px] rounded bg-gray-800 p-1 text-white"
+      <UserProfile />
+    {:else}
+      <Button
+        href="/accounts/register"
+        rounded="md"
+        variant="dark"
+        class="px-7 py-3"
       >
-        <IconButton
-          icon="material-symbols:person-2-outline"
-          iconSize={NAVBAR_ICONS_SIZE.OTHER}
-          tooltipLabel="Leonardo"
-          class="rounded-full bg-gray-950/70 p-1.5 text-white/80 hover:text-white"
-          slot="trigger"
-        />
-
-        <ul slot="options" class="font-manrope text-sm font-medium">
-          {#each profileMenuOptions as option, index}
-            <li
-              class="p-3 font-semibold hover:bg-gray-500/10 {index ===
-              profileMenuOptions.length - 1
-                ? 'border-t border-gray-500/30'
-                : ''}"
-            >
-              {option.label}
-            </li>
-          {/each}
-        </ul>
-      </DropdownMenu>
+        <span class="font-semibold text-white">Sign up</span>
+      </Button>
+      <Button
+        href="/accounts/login"
+        rounded="3xl"
+        variant="light"
+        class="px-7 py-3"
+      >
+        <span class="font-semibold">Log in</span>
+      </Button>
     {/if}
   </div>
 </nav>
