@@ -26,7 +26,8 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  sessions Session[]
+  sessions       Session[]
+  favoriteTracks FavoriteTrack[]
 
   @@map("users")
 }
@@ -94,8 +95,9 @@ model Track {
   artist   Artist @relation(fields: [artistId], references: [id])
   artistId String @map("artist_id")
 
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+  favoriteTracks FavoriteTrack[]
 
   @@map("tracks")
 }
@@ -110,6 +112,19 @@ model TrackOnPlaylist {
 
   @@id([trackId, playlistId])
   @@map("tracks_on_playlists")
+}
+
+model FavoriteTrack {
+  track Track @relation(fields: [trackId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  trackId Int    @map("track_id")
+  userId  String @map("user_Id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@id([trackId, userId])
+  @@map("favorite_tracks")
 }
 
 model TrackAudio {
