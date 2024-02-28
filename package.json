@@ -4,6 +4,8 @@
   "packageManager": "pnpm@8.14.0",
   "scripts": {
     "dev": "turbo dev",
+    "dev:web": "pnpm run --filter web dev",
+    "dev:desktop": "pnpm run --filter web tauri",
     "build": "turbo build",
     "lint": "turbo lint"
   },
