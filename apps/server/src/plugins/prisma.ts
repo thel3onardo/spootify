@@ -1,4 +1,4 @@
-import fastifyPlugin from "fastify-plugin";
+import { fastifyPlugin } from "fastify-plugin";
 import { FastifyPluginAsync } from "fastify";
 import { PrismaClient } from "@prisma/client";
 

@@ -7,6 +7,7 @@
     "dev:web": "pnpm run --filter web dev",
     "dev:desktop": "pnpm run --filter web tauri",
     "build": "turbo build",
+    "gen:prisma": "cd apps/server && pnpm prisma generate",
     "lint": "turbo lint"
   },
   "engines": {

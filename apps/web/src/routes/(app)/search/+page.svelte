@@ -248,7 +248,7 @@
         bind:value={searchValue}
         type="text"
         placeholder="What do you want to listen to?"
-        class="h-full w-full bg-transparent py-3 font-manrope text-sm font-medium outline-none placeholder:text-white/40"
+        class="font-manrope h-full w-full bg-transparent py-3 text-sm font-medium outline-none placeholder:text-white/40"
       />
     </form>
   </Navbar>
