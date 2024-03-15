@@ -58,7 +58,7 @@ export const playTrack = async (trackId: number) => {
       coverImage,
       author,
       name,
-      audio: other.TrackAudio,
+      audio: other.metadata,
     });
   } catch (err) {
     //TODO: implement toast

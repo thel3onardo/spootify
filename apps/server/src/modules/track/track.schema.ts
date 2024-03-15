@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { buildJsonSchemas } from "fastify-zod";
 
-const createTrackSchema = z.object({
+const createTrackInputSchema = z.object({
   name: z.string(),
-  authorID: z.string(),
+  artistId: z.string(),
   coverImageFile: z.any(),
+  albumId: z.string(),
   audioFile: z.any(),
 });
 
@@ -20,13 +21,13 @@ const testSchema = z.object({
   image: z.any(),
 });
 
-export type CreateTrackInput = z.infer<typeof createTrackSchema>;
+export type CreateTrackInput = z.infer<typeof createTrackInputSchema>;
 export type GetTrackResponse = z.infer<typeof getTrackResponseSchema>;
 export type TestType = z.infer<typeof testSchema>;
 
 export const { schemas: trackSchemas, $ref } = buildJsonSchemas(
   {
-    createTrackSchema,
+    createTrackInputSchema,
     getTrackResponseSchema,
     testSchema,
   },

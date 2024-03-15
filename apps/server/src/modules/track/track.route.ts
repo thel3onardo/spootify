@@ -3,8 +3,8 @@ import {
   createTrack,
   deleteTrackHandler,
   testStuff,
-  getTrackAudioByID,
   getTrackByID,
+  getTrackMetadataByID,
 } from "./track.controller";
 import { $ref } from "./track.schema";
 
@@ -15,7 +15,7 @@ async function trackRoutes(server: FastifyInstance) {
     createTrack,
   );
   server.get("/track/:id", getTrackByID);
-  server.get("/track/:id/audio", getTrackAudioByID);
+  server.get("/track/:id/metadata", getTrackMetadataByID);
   server.delete("/track/:id", deleteTrackHandler);
 
   server.get("/track/test", testStuff);

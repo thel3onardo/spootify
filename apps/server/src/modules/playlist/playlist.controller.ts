@@ -142,7 +142,7 @@ export async function getPlaylistById(
                 id: true,
               },
             },
-            trackAudio: {
+            metadata: {
               select: {
                 duration: true,
               },
@@ -153,12 +153,12 @@ export async function getPlaylistById(
     });
 
     const tracksResponse = tracks.map((el) => {
-      const { trackAudio, ...track } = el.track;
+      const { metadata, ...track } = el.track;
 
       return {
         ...track,
         addedAt: el.addedAt,
-        duration: trackAudio?.duration ?? null,
+        duration: metadata?.duration ?? null,
       };
     });
 

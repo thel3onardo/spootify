@@ -86,7 +86,7 @@ model Track {
   name       String
   coverImage String @map("cover_img")
 
-  trackAudio      TrackAudio?
+  metadata        TrackMetadata?
   trackOnPlaylist TrackOnPlaylist[]
 
   album   Album  @relation(fields: [albumId], references: [id])
@@ -127,7 +127,7 @@ model FavoriteTrack {
   @@map("favorite_tracks")
 }
 
-model TrackAudio {
+model TrackMetadata {
   id Int @id @default(autoincrement())
 
   track   Track @relation(fields: [trackId], references: [id])
@@ -136,7 +136,7 @@ model TrackAudio {
   audioUrl String @map("audio_url")
   duration Int
 
-  @@map("tracks_audios")
+  @@map("tracks_metadata")
 }
 
 model Session {

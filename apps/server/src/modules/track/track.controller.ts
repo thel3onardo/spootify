@@ -21,13 +21,13 @@ export async function getTrackByID(
         coverImage: true,
         createdAt: true,
         updatedAt: true,
-        author: {
+        artist: {
           select: {
             id: true,
             name: true,
           },
         },
-        TrackAudio: {
+        metadata: {
           select: {
             audioUrl: true,
             duration: true,
@@ -51,7 +51,7 @@ export async function getTrackByID(
   }
 }
 
-export async function getTrackAudioByID(
+export async function getTrackMetadataByID(
   req: FastifyRequest<{ Params: { id: number } }>,
   rep: FastifyReply,
 ) {
@@ -59,12 +59,12 @@ export async function getTrackAudioByID(
   const id = Number(params.id);
 
   try {
-    const result = await rep.server.prisma.track.findFirstOrThrow({
+    const { metadata } = await rep.server.prisma.track.findFirstOrThrow({
       where: {
         id,
       },
       select: {
-        TrackAudio: {
+        metadata: {
           where: {
             trackId: id,
           },
@@ -76,7 +76,7 @@ export async function getTrackAudioByID(
       },
     });
 
-    rep.status(200).send({ status: "success", data: result.TrackAudio });
+    rep.status(200).send({ status: "success", data: metadata });
   } catch (err) {
     req.log.error(err);
     rep.status(500).send({ error: err });
@@ -87,7 +87,7 @@ export async function createTrack(
   req: FastifyRequest<{ Body: CreateTrackInput }>,
   rep: FastifyReply,
 ) {
-  const audioFile = req.body.audioFile;
+  const { audioFile, name, artistId, albumId } = req.body;
 
   const bucketID = "658337c8dfcbd522bb9e";
   const projectID = "658336c3b2210d7d3669";
@@ -126,12 +126,13 @@ export async function createTrack(
     const track = await rep.server.prisma.track.create({
       data: {
         coverImage: imageUrl,
-        name: req.body.name,
-        authorId: req.body.authorID,
+        name,
+        artistId,
+        albumId,
       },
     });
 
-    await rep.server.prisma.trackAudio.create({
+    await rep.server.prisma.trackMetadata.create({
       data: {
         trackId: track.id,
         audioUrl,
