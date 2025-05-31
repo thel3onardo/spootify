@@ -62,7 +62,7 @@
       greetingMessage = 'Bom dia';
     }
     if (currentTime >= 12 && currentTime <= 18) {
-      greetingMessage = `Boa tarde, ${$user.name}`;
+      greetingMessage = `Boa tarde`;
     }
 
     if (currentTime >= 18 && currentTime <= 24) {

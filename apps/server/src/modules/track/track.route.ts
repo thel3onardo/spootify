@@ -11,7 +11,7 @@ import { $ref } from "./track.schema";
 async function trackRoutes(server: FastifyInstance) {
   server.post(
     "/track",
-    { schema: { body: $ref("createTrackSchema") } },
+    { schema: { body: $ref("createTrackInputSchema") } },
     createTrack,
   );
   server.get("/track/:id", getTrackByID);

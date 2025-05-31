@@ -27,7 +27,6 @@ async function main() {
   server.decorate("session", null);
 
   // async plugins
-
   await server.register(fastifyEnv, envConfig);
   await server.register(fastifyCors, {
     origin: true,

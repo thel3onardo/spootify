@@ -15,6 +15,7 @@ const getTrackResponseSchema = z.object({
   author: z.any(),
 });
 
+//TODO: remove this
 const testSchema = z.object({
   test: z.string().max(20),
   another: z.string(),
@@ -23,6 +24,7 @@ const testSchema = z.object({
 
 export type CreateTrackInput = z.infer<typeof createTrackInputSchema>;
 export type GetTrackResponse = z.infer<typeof getTrackResponseSchema>;
+//TODO: remove type
 export type TestType = z.infer<typeof testSchema>;
 
 export const { schemas: trackSchemas, $ref } = buildJsonSchemas(
